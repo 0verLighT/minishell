@@ -1,0 +1,20 @@
+{
+	"name": "Debian (C/CPP)",
+	"build": {
+	"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/wxw-matt/devcontainer-features/command_runner:0": {}
+	},
+	"customizations": {
+	"vscode": {
+		"extensions": [
+			"ms-vscode.cpptools",
+			"DoKca.42-ft-count-line",
+			"kube.42header",
+			"WakaTime.vscode-wakatime"
+			]
+		}
+	},
+	"remoteUser": "root"
+}
