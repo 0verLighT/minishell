@@ -24,7 +24,7 @@ $(BUILD_DIR)/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) -j
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 re: fclean all
