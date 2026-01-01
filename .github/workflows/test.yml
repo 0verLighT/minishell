@@ -5,5 +5,7 @@ jobs:
   testing-minishell:
     runs-on: ubuntu-latest
     steps:
-      - name: list file
+      - name: Clone by the runner
         uses: actions/checkout@v4
+      - name: list file
+        run: ls ${{ github.workspace }}
