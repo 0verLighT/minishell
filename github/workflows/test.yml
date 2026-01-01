@@ -1,0 +1,9 @@
+name: Test Minishell
+
+on: [push]
+jobs:
+  testing-minishell:
+    runs-on: ubuntu-lastest
+    step:
+      - run: ls ${{ github.workspace }}
+      - run: echo "test"
