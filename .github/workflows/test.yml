@@ -4,6 +4,6 @@ on: [push]
 jobs:
   testing-minishell:
     runs-on: ubuntu-lastest
-    step:
+    steps:
       - run: ls ${{ github.workspace }}
       - run: echo "test"
