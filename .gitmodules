@@ -1,0 +1,3 @@
+[submodule "libft"]
+	path = libft
+	url = git@git.0verlight.com:42/custom_libft.git
