@@ -3,7 +3,7 @@ name: Test Minishell
 on: [push]
 jobs:
   testing-minishell:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
-      - run: ls ${{ github.workspace }}
-      - run: echo "test"
+      - name: list file
+        uses: actions/checkout@v4
