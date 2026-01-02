@@ -7,5 +7,7 @@ jobs:
     steps:
       - name: Clone by the runner
         uses: actions/checkout@v4
+      - name: Compile Minishell
+        run: make -j
       - name: list file
         run: ls ${{ github.workspace }}

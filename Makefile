@@ -27,7 +27,8 @@ $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR) -j
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
-re: fclean all
+re: fclean
+	$(MAKE) all
 
 clean:
 	make -C $(LIBFT_DIR) clean
