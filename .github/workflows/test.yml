@@ -5,8 +5,17 @@ jobs:
   testing-minishell:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+                  ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: Add known hosts
+        run: ssh-keyscan git.0verlight.com >> ~/.ssh/known_hosts
       - name: Clone by the runner
         uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Clone submodule
         run: git submodule update --init --recursive
       - name: Compile Minishell
