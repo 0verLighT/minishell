@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: Clone by the runner
         uses: actions/checkout@v4
+      - name: Clone submodule
+        run: git submodule update --init --recursive
       - name: Compile Minishell
         run: make -j
       - name: list file
