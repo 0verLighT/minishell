@@ -25,4 +25,5 @@ jobs:
       - name: Norminette "libft"
         run: norminette ${{ github.workspace }}/libft
       - name: Norminette "minishell"
+        shell: fish
         run: norminette ${{ github.workspace }}/src ${{ github.workspace }}/includes | ! grep "Error"
