@@ -16,8 +16,6 @@ jobs:
         with:
           submodules: true
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Clone submodule
-        run: git submodule update --init --recursive
       - name: Compile Minishell
         run: make -j
       - name: list file

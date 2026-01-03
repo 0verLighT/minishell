@@ -1,0 +1,25 @@
+name: Norminette 42
+
+on: [push]
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: Clone by the runner
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python3 -m pip install -U norminette
+      - name: Norminette "libft"
+        run: norminette ${{ github.workspace }}/libft
+      - name: Norminette "minishell"
+        run: norminette ${{ github.workspace }}/src ${{ github.workspace }}/includes
