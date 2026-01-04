@@ -3,3 +3,4 @@ a.out
 .build/
 docs/
 .DS_Store
+doxygen-awesome-css/

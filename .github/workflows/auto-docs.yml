@@ -26,6 +26,12 @@ jobs:
         run: git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Create folder docs and create header.html file
+        run: \
+          mdoxygen -w html header.html footer.html stylesheet.css
+          sed -i 's|</head>|<script type="text/javascript" src="$relpath^doxygen-awesome-darkmode-toggle.js"></script><script type="text/javascript">DoxygenAwesomeDarkModeToggle.init()</script></head>|' header.html
+          mv header.html docs/header.html
+          rm -f footer.html stylesheey.css
       - name: Run Doxygen
         run: doxygen Doxyfile
       - name: Create CNAME file

@@ -1,10 +1,17 @@
 PROJECT_NAME           = Minishell
 OUTPUT_DIRECTORY       = docs
-INPUT                  = includes src libft
+INPUT                  = includes src libft README.md
 RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = README.md
 HAVE_DOT               = YES
 CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
-HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \
+                        doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
+                        doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css
 GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_COLORSTYLE        = LIGHT
+HTML_EXTRA_FILES       = doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
+HTML_HEADER            = docs/header.html
