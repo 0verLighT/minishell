@@ -1,6 +1,11 @@
 name: submodules
 description: Clone submodules with ssh
 
+inputs:
+  ssh_private_key:
+    description: 'Private SSH key for submodules'
+    required: true
+
 runs:
   using: composite
   steps:

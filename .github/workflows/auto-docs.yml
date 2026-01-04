@@ -1,0 +1,39 @@
+name: Auto docs doxygen
+
+on: [push]
+permissions: 
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  auto-docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone by the runner
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Init submodules
+        uses: ./.github/actions/submodules
+        with:
+          ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: Clone Doxygen Awesome CSS
+        run: git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Run Doxygen
+        run: doxygen Doxyfile
+      - name: Create CNAME file
+        run: echo "minishell.0verlight.com" > docs/html/CNAME
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/html' 
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

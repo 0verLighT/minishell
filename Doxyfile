@@ -1,0 +1,10 @@
+PROJECT_NAME           = Minishell
+OUTPUT_DIRECTORY       = docs
+INPUT                  = includes src libft
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css
+GENERATE_TREEVIEW      = YES
