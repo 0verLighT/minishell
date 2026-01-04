@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
       - name: Insert script in header.html
-        run: \
+        run: |
           doxygen -w html header.html footer.html stylesheet.css
           sed -i 's|</head>|<script type="text/javascript" src="$relpath^doxygen-awesome-darkmode-toggle.js"></script><script type="text/javascript">DoxygenAwesomeDarkModeToggle.init()</script></head>|' header.html
           mv header.html docs/header.html
