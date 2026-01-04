@@ -5,13 +5,14 @@ jobs:
   testing-minishell:
     runs-on: ubuntu-latest
     steps:
-      - name: Call ssh setup actions
-        uses: ./.github/actions/ssh
       - name: Clone by the runner
         uses: actions/checkout@v4
         with:
           submodules: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.SSH_KEY_PRIVATE }}
+          ssh-known-hosts: 'git.0verlight.com'
+          persist-credentials: false
+          fetch-depth: 0
       - name: Compile Minishell
         run: make -j
       - name: list file
