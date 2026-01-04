@@ -1,3 +1,5 @@
 minishell
 a.out
 .build/
+docs/
+.DS_Store

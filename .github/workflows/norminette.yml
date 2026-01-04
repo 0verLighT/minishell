@@ -5,13 +5,8 @@ jobs:
   norminette:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-      - name: Add known hosts
-        run: ssh-keyscan git.0verlight.com >> ~/.ssh/known_hosts
-
+      - name: Call ssh setup actions
+        uses: ./.github/actions/ssh
       - name: Clone by the runner
         uses: actions/checkout@v4
         with:
