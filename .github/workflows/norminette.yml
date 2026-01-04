@@ -8,11 +8,13 @@ jobs:
       - name: Clone by the runner
         uses: actions/checkout@v4
         with:
-          submodules: true
-          ssh-key: ${{ secrets.SSH_KEY_PRIVATE }}
-          ssh-known-hosts: 'git.0verlight.com'
-          persist-credentials: false
+          submodules: false
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Init Submodules
+        uses: ./.github/actions/submodules
+        with:
+          ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
