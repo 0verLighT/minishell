@@ -4,3 +4,4 @@ a.out
 docs/
 .DS_Store
 doxygen-awesome-css/
+compile_commands.json
