@@ -1,7 +1,10 @@
 minishell
 a.out
 .build/
+builddir/
 docs/
 .DS_Store
 doxygen-awesome-css/
 compile_commands.json
+.vscode/
+subprojects/.wraplock

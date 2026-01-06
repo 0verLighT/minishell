@@ -1,11 +1,11 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-LIBFT= ./libft/libft.a
-LIBFT_DIR= ./libft
+LIBFT= ./subprojects/libft/libft.a
+LIBFT_DIR= ./subprojects/libft
 LDFLAGS = -L$(LIBFT_DIR)
 LDLIBS = -lft
 NAME = minishell
-INCLUDES = -Iincludes -I$(LIBFT_DIR)
+INCLUDES = -Iincludes -I$(LIBFT_DIR)/includes
 BUILD_DIR = .build
 SRC = main.c
 
