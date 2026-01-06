@@ -23,7 +23,7 @@ jobs:
       - name: Install fish
         run: sudo apt-get update && sudo apt install -y fish
       - name: Norminette "libft"
-        run: norminette ${{ github.workspace }}/libft
+        run: norminette ${{ github.workspace }}/subprojects/libft
       - name: Norminette "minishell"
         shell: fish {0}
         run: norminette ${{ github.workspace }}/src ${{ github.workspace }}/includes | ! grep "Error"
