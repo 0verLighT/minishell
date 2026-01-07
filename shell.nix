@@ -1,11 +1,15 @@
 { pkgs ? import <nixpkgs> {} }:
 (pkgs.mkShell.override { stdenv = pkgs.clangStdenv; }) {
-  packages = [ 
-    pkgs.doxygen
-    pkgs.graphviz
-    pkgs.meson
-    pkgs.zlib
-    pkgs.valgrind
+  packages = with pkgs; [
+    doxygen
+    graphviz
+    meson
+    zlib
+    ninja
+  ]
+  ++ lib.optionals stdenv.isLinux [
+    valgrind
+    gdb
   ];
   shellHook = ''echo nix-shell for minishell'';
 }
