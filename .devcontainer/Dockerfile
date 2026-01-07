@@ -23,4 +23,7 @@ RUN apt install -y \
 	python3-pip && \
 	python3 -m pip install -U norminette --break-system-packages
 
+# minishell dep
+RUN apt-get install -y libreadline-dev
+
 WORKDIR /workspaces/minishell

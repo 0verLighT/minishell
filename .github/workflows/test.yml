@@ -15,6 +15,10 @@ jobs:
         uses: ./.github/actions/submodules
         with:
           ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libreadline-dev
       - name: Compile Minishell
         run: make -j
       - name: list file
