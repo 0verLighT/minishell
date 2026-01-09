@@ -11,8 +11,7 @@
 		"extensions": [
 			"ms-vscode.cpptools",
 			"DoKca.42-ft-count-line",
-			"kube.42header",
-			"WakaTime.vscode-wakatime"
+			"kube.42header"
 			]
 		}
 	},

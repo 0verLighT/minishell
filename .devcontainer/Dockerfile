@@ -16,8 +16,12 @@ RUN apt update && \
 RUN apt install -y \
 	build-essential \
 	clang \
+	pkg-config \
 	gdb \
-	valgrind
+	valgrind \
+	python3 \
+	ninja-build \
+	meson
 
 RUN apt install -y \
 	python3-pip && \
