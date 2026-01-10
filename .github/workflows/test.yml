@@ -1,6 +1,12 @@
 name: Test Minishell
 
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'LICENSE'
+      - 'README.md'
+
 jobs:
   testing-minishell:
     runs-on: ubuntu-latest

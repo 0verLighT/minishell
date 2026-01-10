@@ -1,6 +1,14 @@
 name: Norminette 42
 
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'LICENSE'
+      - 'meson.build'
+      - 'Makefile'
+      - 'README.md'
+
 jobs:
   norminette:
     runs-on: ubuntu-latest
