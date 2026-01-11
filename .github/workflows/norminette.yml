@@ -28,10 +28,9 @@ jobs:
         with:
           python-version: '3.11'
       - run: python3 -m pip install -U norminette
-      - name: Install fish
-        run: sudo apt-get update && sudo apt install -y fish
       - name: Norminette "libft"
         run: norminette ${{ github.workspace }}/subprojects/libft
       - name: Norminette "minishell"
-        shell: fish {0}
-        run: norminette ${{ github.workspace }}/src ${{ github.workspace }}/includes | ! grep "Error"
+        shell: bash
+        run: |
+          ! norminette src/ includes/ | grep -E ".+\.[ch]: Error\!|^Error:"
