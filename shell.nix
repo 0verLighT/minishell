@@ -4,7 +4,6 @@
     doxygen
     graphviz
     meson
-    zlib
     ninja
   ]
   ++ lib.optionals stdenv.isLinux [

@@ -9,6 +9,7 @@ on:
       - 'meson.build'
       - 'Makefile'
       - 'README.md'
+      - 'shell.nix'
 permissions: 
   contents: write
   pages: write

@@ -6,6 +6,7 @@ on:
       - '.gitignore'
       - 'LICENSE'
       - 'README.md'
+      - 'shell.nix'
 
 jobs:
   testing-minishell:
