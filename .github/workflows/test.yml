@@ -10,23 +10,27 @@ on:
 
 jobs:
   testing-minishell:
+    if: ${{ ! contains(github.event.head_commit.message, 'skip ci') }}
     runs-on: ubuntu-latest
     steps:
       - name: Clone by the runner
         uses: actions/checkout@v4
         with:
-          submodules: false
+          submodules: true
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Init Submodules
-        uses: ./.github/actions/submodules
-        with:
-          ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libreadline-dev
+          sudo apt-get install libreadline-dev valac valgrind
       - name: Compile Minishell
         run: make -j
       - name: list file
         run: ls ${{ github.workspace }}
+      - name: Git clone tester
+        run: git clone https://gitlab.com/nda-cunh/minishell_tester.git
+      - name: compile tester and run
+        run: |
+          cd minishell_tester/
+          make
+          ./tester -v
