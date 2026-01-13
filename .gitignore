@@ -8,3 +8,4 @@ doxygen-awesome-css/
 compile_commands.json
 .vscode/
 subprojects/.wraplock
+minishell_tester/
