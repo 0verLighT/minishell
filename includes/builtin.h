@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/17 23:04:33 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/17 23:30:20 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file minishell.h
+ * @file builtin.h
  */
-#ifndef MINISHELL_H
-# define MINISHELL_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-# include <stdio.h>
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
 #endif

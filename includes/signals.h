@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/17 23:04:33 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/17 22:59:23 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/17 23:21:22 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file minishell.h
+ * @file signals.h
  */
-#ifndef MINISHELL_H
-# define MINISHELL_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-# include <stdio.h>
+#ifndef SIGNALS_H
+# define SIGNALS_H
 
 #endif

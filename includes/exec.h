@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/17 23:04:33 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/17 23:20:38 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file minishell.h
+ * @file exec.h
  */
-#ifndef MINISHELL_H
-# define MINISHELL_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-# include <stdio.h>
+#ifndef EXEC_H
+# define EXEC_H
 
 #endif
