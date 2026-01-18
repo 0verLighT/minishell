@@ -1,4 +1,10 @@
-project('minishell', 'c')
+project(
+	'minishell',
+	'c',
+	version : '0.1',
+	license : 'MIT',
+	default_options : ['warning_level=3']
+)
 
 includes = [include_directories('includes')]
 
