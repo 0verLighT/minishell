@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/17 23:17:48 by amartel          ###   ########.fr       */
+/*   Updated: 2026/01/18 02:06:43 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	main(int ac, char **av, char **envp)
 {
+	(void)ac;
+	(void)av;
+	(void)envp;
 	return (0);
 }
