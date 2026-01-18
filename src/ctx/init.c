@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/18 06:07:06 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/18 06:09:07 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/18 06:11:13 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file exec.h
- */
-
-#ifndef EXEC_H
-# define EXEC_H
-
 #include "minishell.h"
 
-#endif
+t_ctx	*init_ctx(t_ctx *ctx)
+{
+	
+	return(ctx);
+}
+
+static t_env	*init_env(t_env *env)
+{
+	
+	return (env);
+}
