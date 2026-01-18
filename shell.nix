@@ -5,6 +5,7 @@
     graphviz
     meson
     ninja
+    readline
   ]
   ++ lib.optionals stdenv.isLinux [
     valgrind
