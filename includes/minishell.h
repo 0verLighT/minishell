@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/19 01:12:37 by amartel          ###   ########.fr       */
+/*   Updated: 2026/01/19 01:21:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 	# endif
 # endif
 
-t_ctx	*init_ctx(t_ctx *ctx);
-
 typedef struct s_env
 {
 	char			*var;
@@ -43,8 +41,9 @@ typedef struct s_env
 
 typedef struct s_ctx
 {
-	t_env	env;
+	t_env	*env;
 }	t_ctx;
 
+t_ctx	*init_ctx(t_ctx *ctx, char **envp);
 
 #endif
