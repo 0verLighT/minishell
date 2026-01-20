@@ -7,6 +7,8 @@ on:
       - 'LICENSE'
       - 'README.md'
       - 'shell.nix'
+      - 'flake.nix'
+      - '.envrc'
 
 jobs:
   testing-minishell:

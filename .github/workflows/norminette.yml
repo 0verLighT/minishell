@@ -9,6 +9,8 @@ on:
       - 'Makefile'
       - 'README.md'
       - 'shell.nix'
+      - '.envrc'
+      - 'flake.nix'
 
 jobs:
   norminette:
