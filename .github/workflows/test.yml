@@ -2,12 +2,15 @@ name: Test Minishell
 
 on:
   push:
+    branches: 
+      - main
     paths-ignore:
       - '.gitignore'
       - 'LICENSE'
       - 'README.md'
       - 'shell.nix'
       - 'flake.nix'
+      - 'flake.lock'
       - '.envrc'
 
 jobs:

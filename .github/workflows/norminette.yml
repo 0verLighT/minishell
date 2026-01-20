@@ -11,6 +11,7 @@ on:
       - 'shell.nix'
       - '.envrc'
       - 'flake.nix'
+      - 'flake.lock'
 
 jobs:
   norminette:
