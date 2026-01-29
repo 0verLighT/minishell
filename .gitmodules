@@ -1,3 +1,4 @@
 [submodule "subprojects/libft"]
 	path = subprojects/libft
-	url = https://git.0verlight.com/42/custom_libft.git
+	url = https://github.com/0verLighT/libft.git
+	branch = main
