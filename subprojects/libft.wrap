@@ -1,4 +1,4 @@
 [wrap-git]
-url = https://git.0verlight.com/42/custom_libft.git
+url = https://github.com/0verLighT/libft.git
 revision = HEAD
 depth = 1
