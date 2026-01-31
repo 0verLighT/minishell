@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils_two.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 02:33:13 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/01/26 02:42:14 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/01/31 03:42:27 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
 //Get the length of a token starting at pos
-int	get_token_len(char *str, int pos)
+size_t	get_token_len(char *str, int pos)
 {
-	int	len;
-	
+	size_t	len;
+
 	len = 0;
-	while (!is_space(str[pos]) && str[pos])
+	while (!ft_isspace(str[pos]) && str[pos])
 	{
-		len++;
-		pos++;
+		++len;
+		++pos;
 	}
 	return (len);
 }
@@ -29,12 +29,12 @@ int	get_token_len(char *str, int pos)
 //Allocate and fill a token
 int	fill_token(t_token *token, char *str, int pos, int index)
 {
-	int	len;
-	
+	size_t	len;
+
 	len = get_token_len(str, pos);
 	token->index = index;
 	token->content.len = len;
-	token->content.ptr = malloc(len + 1);
+	token->content.ptr = ft_calloc((len + 1), sizeof(char));
 	if (!token->content.ptr)
 		return (0);
 	ft_memcpy(token->content.ptr, str + pos, len);
@@ -42,21 +42,12 @@ int	fill_token(t_token *token, char *str, int pos, int index)
 	return (1);
 }
 
-//Init a sentinel token at the end of the array
-//It's used to put an end to the string, like a 0
-void	init_sentinel(t_token *token)
-{
-	token->index = -1;
-	token->content.ptr = NULL;
-	token->content.len = 0;
-}
-
 // Fill the tokens one by one
-int	process_tokens(t_token *tokens, char *str, int token_count)
+size_t	process_tokens(t_token *tokens, char *str, size_t token_count)
 {
-	int	i;
-	int	pos;
-	
+	size_t	i;
+	size_t	pos;
+
 	i = 0;
 	pos = 0;
 	while (i < token_count)
@@ -67,8 +58,7 @@ int	process_tokens(t_token *tokens, char *str, int token_count)
 			free_tokens(tokens);
 			return (0);
 		}
-		pos += tokens[i].content.len;
-		i++;
+		pos += tokens[i++].content.len;
 	}
 	return (1);
 }
@@ -76,16 +66,15 @@ int	process_tokens(t_token *tokens, char *str, int token_count)
 t_token	*tokenizing(char *str)
 {
 	t_token	*tokens;
-	int		token_count;
-	
+	size_t	token_count;
+
 	if (!str)
 		return (NULL);
 	token_count = count_token(str);
-	tokens = malloc(sizeof(t_token) * (token_count + 1));
+	tokens = ft_calloc((token_count + 1), sizeof(t_token));
 	if (!tokens)
 		return (NULL);
 	if (!process_tokens(tokens, str, token_count))
 		return (NULL);
-	init_sentinel(&tokens[token_count]);
 	return (tokens);
 }

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/17 23:04:33 by amartel          ###   ########.fr       */
+/*   Updated: 2026/01/31 02:13:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # include <unistd.h>
 # include "libft.h"
 # include <stdio.h>
+# include "tokenizer.h"
 
 #endif

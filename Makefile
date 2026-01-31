@@ -4,14 +4,16 @@ LIBFT_DIR	:= ./subprojects/libft
 LDFLAGS		:= -L$(LIBFT_DIR)
 LDLIBS		:= -lft -lreadline
 NAME		:= minishell
-INCLUDES	:= -Iincludes -I$(LIBFT_DIR)/includes
+INCLUDES	:= -Iincludes -I$(LIBFT_DIR)/includes -Isrc/tokenizer
 BUILD_DIR	:= .build
 PREFIX		?= ~/.local/bin
 
 SRC			:= main.c
+TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
 
 SRCS = \
 	$(addprefix src/, $(SRC)) \
+	$(addprefix src/tokenizer/, $(TOKENIZER)) \
 
 OBJS		:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(SOURCES:$(SRCS_DIR)%.c=$(OBJ_DIR)%.d)
@@ -41,6 +43,7 @@ clean:
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
+	rm -f $(PREFIX)/$(NAME)
 
 install: 
 	$(MAKE) all

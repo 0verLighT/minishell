@@ -3,26 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/01/26 02:32:59 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/01/31 03:43:57 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
-int	is_space(char c)
+void	free_tokens(t_token *tokens)
 {
-	return ((c >= 9 && c <= 13) || c == 32);
+	size_t	i;
+
+	if (!tokens)
+		return ;
+	i = 0;
+	while (tokens[i].index)
+		free(tokens[i++].content.ptr);
+	free(tokens);
+	return ;
 }
 
-int	strskip(char *str, char *charset)
+size_t	strskip(char *str, char *charset)
 {
-	int i;
-	int j;
-	int found;
-	
+	size_t	i;
+	size_t	j;
+	size_t	found;
+
 	i = 0;
 	while (str[i])
 	{
@@ -33,66 +41,46 @@ int	strskip(char *str, char *charset)
 			if (charset[j] == str[i])
 			{
 				found = 1;
-				break;
+				break ;
 			}
 			j++;
 		}
 		if (!found)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
 }
 
-int	strfind(char *str, char *charset)
+size_t	count_token(char *str)
 {
-	int	i;
-	int	j;
-	
-	i = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (charset[j])
-		{
-			if (charset[j] == str[i])
-				return (i);
-			j++;
-		}
-		i++;
-	}
-	return (-1);
-}
+	size_t	i;
+	size_t	token_nb;
 
-int	count_token(char *str)
-{
-	int	i;
-	int	token_nb;
-	
 	i = 0;
 	token_nb = 0;
 	if (!str)
 		return (0);
 	while (str[i])
 	{
-		while (is_space(str[i]) && str[i])
+		while (ft_isspace(str[i]) && str[i])
 			i++;
 		if (str[i] != 0)
 		{
 			token_nb++;
-			while (!is_space(str[i]) && str[i])
+			while (!ft_isspace(str[i]) && str[i])
 				i++;
 		}
 	}
 	return (token_nb);
 }
 
-t_slice *token_maker(char *str)
+t_slice	*token_maker(char *str)
 {
 	t_slice	*token;
-	int 	token_start;
-	int		len;
-	
+	size_t	token_start;
+	size_t	len;
+
 	if (!str)
 		return (NULL);
 	token = malloc(sizeof(t_slice));
@@ -100,16 +88,15 @@ t_slice *token_maker(char *str)
 		return (NULL);
 	token_start = strskip(str, " \t\n");
 	len = token_start;
-	while (!is_space(str[len]) && str[len])
+	while (!ft_isspace(str[len]) && str[len])
 		len++;
 	token->len = len - token_start;
-	token->ptr = malloc(token->len + 1);
+	token->ptr = ft_calloc((token->len + 1), sizeof(char));
 	if (!token->ptr)
 	{
 		free(token);
 		return (NULL);
 	}
 	ft_memcpy(token->ptr, str + token_start, token->len);
-	token->ptr[token->len] = '\0';
 	return (token);
 }
