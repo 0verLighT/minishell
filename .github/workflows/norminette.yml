@@ -23,10 +23,6 @@ jobs:
           submodules: false
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Init Submodules
-        uses: ./.github/actions/submodules
-        with:
-          ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
