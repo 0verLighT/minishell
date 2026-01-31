@@ -1,12 +1,13 @@
 CC			:= cc
 CFLAGS		:= -MP -MMD -Wall -Werror -Wextra -g
-LIBFT		:= ./subprojects/libft/libft.a
 LIBFT_DIR	:= ./subprojects/libft
 LDFLAGS		:= -L$(LIBFT_DIR)
 LDLIBS		:= -lft -lreadline
 NAME		:= minishell
 INCLUDES	:= -Iincludes -I$(LIBFT_DIR)/includes
 BUILD_DIR	:= .build
+PREFIX		?= ~/.local/bin
+
 SRC			:= main.c
 
 SRCS = \
@@ -27,7 +28,7 @@ $(BUILD_DIR)/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) -j
+	$(MAKE) -C $(LIBFT_DIR) -j8
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 re: fclean
@@ -40,5 +41,9 @@ clean:
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
+
+install: 
+	$(MAKE) all
+	mv $(NAME) $(PREFIX)
 
 .PHONY: all re fclean clean
