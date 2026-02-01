@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 09:46:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/01 10:20:51 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/01 10:44:35 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static int	cd_process(t_token *tokens, int token_count, char *home, char *cwd)
 		return (result);
 	}
 	//todo: add if token_count == 2 here, for if a path is given
+	//that's where the token array will be used
 	free(cwd);
 	return (1);
 }
