@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/18 06:07:06 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:31:33 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 #ifndef EXEC_H
 # define EXEC_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 #endif

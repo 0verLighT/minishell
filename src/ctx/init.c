@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 06:09:07 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/19 03:57:20 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:31:04 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	envadd_back(t_env **env, t_env *new)
 	tmp->next = new;
 }
 
-static	t_env *new_node_env(char *env)
+static t_env	*new_node_env(char *env)
 {
 	t_env	*new_node;
 
@@ -68,7 +68,6 @@ static t_env	*init_env(char **envp)
 
 t_ctx	*init_ctx(t_ctx *ctx, char **envp)
 {
-	
 	ctx->env = init_env(envp);
-	return(ctx);
+	return (ctx);
 }

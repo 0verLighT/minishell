@@ -6,22 +6,22 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/07 18:17:31 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:29:29 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char *prompt_fish(char **envp)
+// usrename@hostanme:PWD$
+// line = ft_strjoin(line, getenv("HOSTNAME"));
+static char	*prompt_fish(char **envp)
 {
 	char	*line;
 	char	*tmp;
-	
-	// usrename@hostanme:PWD$
+
 	line = ft_strdup("");
 	line = ft_strjoin(line, getenv("USER"));
 	line = ft_strjoin(line, ":");
-	// line = ft_strjoin(line, getenv("HOSTNAME"));
 	if (ft_strcmp(getenv("HOME"), getenv("PWD")) == 0)
 		tmp = ft_strdup("~");
 	else
@@ -31,7 +31,7 @@ static char *prompt_fish(char **envp)
 	return (line);
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	char	*line;
 	t_ctx	*ctx;
@@ -47,6 +47,6 @@ int main(int ac, char **av, char **envp)
 		free(line);
 		line = readline(prompt_fish(envp));
 	}
-	ft_dprintf("")
+	ft_dprintf(1, "exit");
 	return (0);
 }

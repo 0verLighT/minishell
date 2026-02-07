@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/19 01:21:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:33:35 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # include <limits.h>
 
 # ifndef HOST_NAME_MAX
-	# ifdef __APPLE__
-		# define HOST_NAME_MAX 255
-	#else
-		# define HOST_NAME_MAX 64
-	# endif
+#  ifdef __APPLE__
+#   define HOST_NAME_MAX 255
+#  else
+#   define HOST_NAME_MAX 64
+#  endif
 # endif
 
 typedef struct s_env

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:00:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/18 06:06:50 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:33:49 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 #endif
