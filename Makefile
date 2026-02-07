@@ -9,11 +9,11 @@ BUILD_DIR	:= .build
 PREFIX		?= ~/.local/bin
 
 SRC			:= main.c
-TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
+#TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
 
 SRCS = \
 	$(addprefix src/, $(SRC)) \
-	$(addprefix src/tokenizer/, $(TOKENIZER)) \
+#	$(addprefix src/tokenizer/, $(TOKENIZER)) \
 
 OBJS		:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(SOURCES:$(SRCS_DIR)%.c=$(OBJ_DIR)%.d)

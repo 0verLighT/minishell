@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ctx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/07 17:49:34 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/20 01:48:44 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/20 01:49:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file minishell.h
- */
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef CTX_H
+# define CTX_H
 
-# include <stdlib.h>
-# include <unistd.h>
-#include "libft.h"
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdio.h>
-//# include "tokenizer.h"
+// utils commands ctx init destroy
 
 #endif
