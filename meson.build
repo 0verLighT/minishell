@@ -10,6 +10,8 @@ includes = [include_directories('includes')]
 
 files = [
 	'src/main.c',
+	'src/ctx/init.c',
+	'src/built-in/env.c',
 ]
 
 deps = [

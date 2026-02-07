@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:59:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/17 23:21:22 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:33:45 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 
 #ifndef SIGNALS_H
 # define SIGNALS_H
+
+# include "minishell.h"
 
 #endif

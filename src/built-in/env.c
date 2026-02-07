@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ctx.h                                              :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 01:48:44 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/07 18:36:07 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/18 05:54:40 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/19 03:48:58 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CTX_H
-# define CTX_H
+#include "builtin.h"
 
-// utils commands ctx init destroy
-
-# include "minishell.h"
-
-#endif
+int	env(t_env *env)
+{
+	while (env)
+	{
+		printf("%s\n", env->var);
+		env = env->next;
+	}
+	return (SUCCESS);
+}
