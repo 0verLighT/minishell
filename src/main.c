@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/19 01:49:20 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/07 18:17:31 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int main(int ac, char **av, char **envp)
 		free(line);
 		line = readline(prompt_fish(envp));
 	}
+	ft_dprintf("")
 	return (0);
 }
