@@ -10,3 +10,5 @@ compile_commands.json
 subprojects/.wraplock
 minishell_tester/
 .direnv/
+*.o
+*.d

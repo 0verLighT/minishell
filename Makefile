@@ -5,7 +5,6 @@ LDFLAGS		:= -L$(LIBFT_DIR)
 LDLIBS		:= -lft -lreadline
 NAME		:= minishell
 INCLUDES	:= -Iincludes -I$(LIBFT_DIR)/includes -Isrc/tokenizer
-BUILD_DIR	:= .build
 PREFIX		?= ~/.local/bin
 
 SRC			:= main.c
@@ -13,22 +12,18 @@ BUILTIN		:= env.c
 CTX			:= init.c
 #TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
 
-SRCS = \
+SOURCES = \
 	$(addprefix src/, $(SRC)) \
 	$(addprefix src/built-in/, $(BUILTIN)) \
 	$(addprefix src/ctx/, $(CTX)) \
 #	$(addprefix src/tokenizer/, $(TOKENIZER)) \
 
-OBJS		:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
-DEPS		:= $(SOURCES:$(SRCS_DIR)%.c=$(OBJ_DIR)%.d)
+OBJS		:= $(SOURCES:%.c=%.o)
+DEPS		:= $(SOURCES:%.c=%.d)
 
 -include $(DEPS)
 
-$(BUILD_DIR):
-	@mkdir -p $@
-
-$(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
+%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all: $(NAME)
@@ -42,15 +37,17 @@ re: fclean
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
-	rm -rf .build/
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
-	rm -f $(PREFIX)/$(NAME)
 
 install: 
 	$(MAKE) all
 	mv $(NAME) $(PREFIX)
 
-.PHONY: all re fclean clean
+uninstall:
+	rm -f $(PREFIX)/(NAME)
+
+.PHONY: all re fclean clean install uninstall
