@@ -1,4 +1,4 @@
 [submodule "subprojects/libft"]
 	path = subprojects/libft
 	url = https://github.com/0verLighT/libft.git
-	branch = main
+	branch = master

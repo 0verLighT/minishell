@@ -9,10 +9,14 @@ BUILD_DIR	:= .build
 PREFIX		?= ~/.local/bin
 
 SRC			:= main.c
+BUILTIN		:= env.c
+CTX			:= init.c
 #TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
 
 SRCS = \
 	$(addprefix src/, $(SRC)) \
+	$(addprefix src/built-in/, $(BUILTIN)) \
+	$(addprefix src/ctx/, $(CTX)) \
 #	$(addprefix src/tokenizer/, $(TOKENIZER)) \
 
 OBJS		:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
