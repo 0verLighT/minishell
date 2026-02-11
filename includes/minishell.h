@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/08 18:43:18 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/11 01:50:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <readline/history.h>
 # include <limits.h>
 # include "builtin.h"
+# include "signals.h"
 
 # ifndef HOST_NAME_MAX
 #  ifdef __APPLE__

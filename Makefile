@@ -10,18 +10,19 @@ PREFIX		?= ~/.local/bin
 SRC			:= main.c
 BUILTIN		:= env.c
 CTX			:= init.c
+SIGNALS		:= signal.c
 #TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
 
 SOURCES = \
 	$(addprefix src/, $(SRC)) \
 	$(addprefix src/built-in/, $(BUILTIN)) \
 	$(addprefix src/ctx/, $(CTX)) \
+	$(addprefix src/signals/, $(SIGNALS)) \
 #	$(addprefix src/tokenizer/, $(TOKENIZER)) \
 
 OBJS		:= $(SOURCES:%.c=%.o)
 DEPS		:= $(SOURCES:%.c=%.d)
 
--include $(DEPS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -51,3 +52,5 @@ uninstall:
 	rm -f $(PREFIX)/(NAME)
 
 .PHONY: all re fclean clean install uninstall
+
+-include $(DEPS)

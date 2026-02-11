@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/08 19:23:06 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/11 02:16:50 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
+	init_sig();
 	ctx = ft_calloc(1, sizeof(t_ctx));
 	line = readline(prompt_fish(envp));
 	init_ctx(ctx, envp);
@@ -50,6 +51,6 @@ int	main(int ac, char **av, char **envp)
 		free(line);
 		line = readline(prompt_fish(envp));
 	}
-	ft_dprintf(1, "exit");
+	ft_dprintf(1, "exit\n");
 	return (0);
 }
