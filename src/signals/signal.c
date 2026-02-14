@@ -6,10 +6,13 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:14:44 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/14 03:08:26 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/14 22:11:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef _POSIX_C_SOURCE
+# define _POSIX_C_SOURCE 199309L
+#endif
 #include "signals.h"
 
 static void	handle_sig(int sig, siginfo_t *info, void *c)
@@ -18,7 +21,7 @@ static void	handle_sig(int sig, siginfo_t *info, void *c)
 	(void)info;
 	if (sig == SIGINT)
 	{
-		ft_dprintf(0, "\n");
+		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
