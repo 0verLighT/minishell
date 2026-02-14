@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_core.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 09:46:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/01 10:44:35 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/14 04:40:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static char	*get_home_dir(void)
 	return (home);
 }
 
+//todo: update environment variables
 static int	handle_cd_no_args(char *home, char *cwd)
 {
 	if (chdir(home) != 0)
@@ -38,11 +39,12 @@ static int	handle_cd_no_args(char *home, char *cwd)
 		free(cwd);
 		return (1);
 	}
-	//todo: update environment variables
 	free(cwd);
 	return (0);
 }
 
+//todo: add if token_count == 2 here, for if a path is given
+//that's where the token array will be used
 static int	cd_process(t_token *tokens, int token_count, char *home, char *cwd)
 {
 	int	result;
@@ -52,8 +54,6 @@ static int	cd_process(t_token *tokens, int token_count, char *home, char *cwd)
 		result = handle_cd_no_args(home, cwd);
 		return (result);
 	}
-	//todo: add if token_count == 2 here, for if a path is given
-	//that's where the token array will be used
 	free(cwd);
 	return (1);
 }

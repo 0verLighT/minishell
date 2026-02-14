@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/11 02:13:46 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/14 04:37:31 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include "minishell.h"
 
-typedef struct s_env t_env;
+typedef struct s_env	t_env;
 
 # ifndef SUCCESS
 #  define SUCCESS 0
