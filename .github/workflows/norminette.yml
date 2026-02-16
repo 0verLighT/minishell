@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone by the runner
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: false
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - run: python3 -m pip install -U norminette
