@@ -6,13 +6,13 @@
 #    By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/14 01:27:27 by jdessoli          #+#    #+#              #
-#    Updated: 2026/02/14 03:21:20 by jdessoli         ###   ########.fr        #
+#    Updated: 2026/02/16 00:46:06 by jdessoli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 Parser logic:
 
-Step 1: Create a AST Nodes Data Structure (what will be returned)
+DONE: Step 1: Create a AST Nodes Data Structure (what will be returned)
 
 Step 2: Implement a Token Cursor (makes parsing logic cleaner)
 

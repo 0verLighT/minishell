@@ -6,9 +6,11 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/16 00:43:29 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/16 00:49:02 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 //CMD is for a command, like ls. Everything else is self explainatory
 typedef enum	s_node_type
