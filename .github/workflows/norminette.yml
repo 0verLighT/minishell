@@ -17,14 +17,12 @@ jobs:
   norminette:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone by the runner
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
         with:
           submodules: false
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Python 3.11
-        uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - run: python3 -m pip install -U norminette
@@ -33,4 +31,5 @@ jobs:
       - name: Norminette "minishell"
         shell: bash
         run: |
-          ! norminette src/ includes/ | grep -E ".+\.[ch]: Error\!|^Error:"
+          set -o pipefail
+          (norminette src/ includes/ || true) | grep -E ".+\.[ch]: Error\!|^Error:" && exit 1 || exit 0
