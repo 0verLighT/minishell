@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          submodules: false
+          submodules: true
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-python@v6
