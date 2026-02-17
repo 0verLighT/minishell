@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 06:09:07 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/07 18:31:04 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/17 03:12:01 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_env	*new_node_env(char *env)
 	new_node = ft_calloc(1, sizeof(t_env));
 	if (!new_node)
 		return (NULL);
-	new_node->var = env;
+	new_node->var = ft_strdup(env);
 	return (new_node);
 }
 
