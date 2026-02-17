@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/16 04:13:11 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/17 02:59:03 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ typedef enum	s_node_type
 	NODE_AND,
 	NODE_OR,
 }	t_node_type;
+
+//dless is >>, L and RPAREN are for subshells
+typedef enum e_token_type
+{
+	TOKEN_WORD,
+	TOKEN_PIPE,
+	TOKEN_LESS,
+	TOKEN_GREAT,
+	TOKEN_DLESS,
+	TOKEN_DGREAT,
+	TOKEN_AND,
+	TOKEN_OR,
+	TOKEN_LPAREN,
+	TOKEN_RPAREN,
+	TOKEN_EOF
+}	t_token_type;
 
 //Type is for the type of redirection, 
 //0: <, 1: >, 2: >>, 3: <<
