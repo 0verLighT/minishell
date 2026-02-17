@@ -1,5 +1,5 @@
 CC			:= cc
-CFLAGS		:= -MP -MMD -Wall -Werror -Wextra -g
+CFLAGS		:= -MP -MMD -Wall -Werror -Wextra -g #-fsanitize=address
 LIBFT_DIR	:= ./subprojects/libft
 LDFLAGS		:= -L$(LIBFT_DIR)
 LDLIBS		:= -lft -lreadline
@@ -11,13 +11,17 @@ SRC			:= main.c
 BUILTIN		:= env.c
 CTX			:= init.c
 SIGNALS		:= signal.c
+UTILS		:= ft_getenv.c free_env.c
+INPUT		:= fish.c
 #TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
 
-SOURCES = \
-	$(addprefix src/, $(SRC)) \
-	$(addprefix src/built-in/, $(BUILTIN)) \
-	$(addprefix src/ctx/, $(CTX)) \
-	$(addprefix src/signals/, $(SIGNALS)) \
+SOURCES =									\
+	$(addprefix src/, $(SRC))				\
+	$(addprefix src/built-in/, $(BUILTIN))	\
+	$(addprefix src/ctx/, $(CTX))			\
+	$(addprefix src/input/, $(INPUT))		\
+	$(addprefix src/signals/, $(SIGNALS))	\
+	$(addprefix src/utils/, $(UTILS))		\
 #	$(addprefix src/tokenizer/, $(TOKENIZER)) \
 
 OBJS		:= $(SOURCES:%.c=%.o)

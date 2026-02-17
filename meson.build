@@ -8,16 +8,24 @@ project(
 
 includes = [include_directories('includes')]
 
-files = [
+sources = files(
   'src/main.c',
   'src/ctx/init.c',
   'src/built-in/env.c',
   'src/signals/signal.c',
-]
+  'src/utils/ft_getenv.c',
+  'src/utils/free_env.c',
+  'src/input/fish.c',
+)
 
 deps = [
   dependency('libft'),
   dependency('readline')
 ]
 
-executable('minishell', files, include_directories : includes, dependencies: deps)
+executable(
+  'minishell',
+  sources,
+  include_directories : includes,
+  dependencies: deps
+)

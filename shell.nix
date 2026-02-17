@@ -5,6 +5,7 @@
     graphviz
     meson
     ninja
+    pkg-config
     readline
   ]
   ++ lib.optionals stdenv.isLinux [
