@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 03:47:24 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:00:04 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static t_ast_node	*finalize_command_node(t_ast_node *cmd_node,
 
 //Parses a simple command with args and redirections, then returns it
 //10 capacity is an arbitrary choice, realistic number of args for a word
+//If needed will be doubled (see simple_command_utils.c)
 t_ast_node	*parse_simple_command(t_parser *parser)
 {
 	t_ast_node	*cmd_node;
@@ -103,7 +104,7 @@ t_ast_node	*parse_simple_command(t_parser *parser)
 			break ;
 		if (result == -1)
 		{
-			cleanup_on_error(cmd_node, input, argc);
+			cleanup_on_error(cmd_node, input);
 			return (NULL);
 		}
 	}

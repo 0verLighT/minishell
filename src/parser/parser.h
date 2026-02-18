@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 03:38:01 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:04:12 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,3 +123,15 @@ t_ast_node	*parse_pipeline(t_parser *parser);
 void	free_string_array(char **array);
 void	free_redirects(t_redirect *redirects);
 void	free_ast_node(t_ast_node *node);
+
+//parse_simple_command.c
+int			handle_command_token(t_parser *parser, t_ast_node **cmd_node,
+						char ***input, int *argc, int *capacity);
+t_ast_node	*parse_simple_command(t_parser *parser);
+
+//simple_command_utils.c
+int			is_command_end(t_token *token);
+char		**expand_input_array(char **input, int *capacity);
+int			add_word_to_input(char ***input, int *argc, int *capacity, char *word);
+t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node);
+void		cleanup_on_error(t_ast_node *cmd_node, char **input);
