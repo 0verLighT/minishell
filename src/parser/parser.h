@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 00:02:58 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 03:38:01 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ struct	s_ast_node
 }
 
 //Array of token, nb of them and curr pos in the array
-typedef struct s_parser {
+typedef struct s_parser 
+{
     t_token *tokens;
     int token_count;
     int current;
@@ -111,3 +112,14 @@ int		token_to_redir_type(t_token_type type);
 //redirection_create.c
 t_redirect	*create_redirect(int type, char *file);
 void		add_redirection_to_cmd(t_ast_node *cmd_node, t_redirect *new_redir);
+
+//redirection_parse.c
+int	parse_redirection(t_parser *parser, t_ast_node *cmd_node);
+
+//pipe_parse.c
+t_ast_node	*parse_pipeline(t_parser *parser);
+
+//clean_up.c
+void	free_string_array(char **array);
+void	free_redirects(t_redirect *redirects);
+void	free_ast_node(t_ast_node *node);
