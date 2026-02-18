@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 02:59:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/17 03:11:38 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 00:03:28 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_redirection(t_token *token)
 }
 
 //Converts token type to redirection type for the .h struct
-size_t	token_to_redir_type(t_token_type type)
+int	token_to_redir_type(t_token_type type)
 {
 	if (type == TOKEN_LESS)
 		return (0);

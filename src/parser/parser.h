@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/17 02:59:03 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 00:02:58 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,3 +103,11 @@ t_token	*peek_token(t_parser *parser, int offset);
 t_token	*advance(t_parser *parser);
 int		match_token(t_parser *parser, t_token_type type, int consume);
 int		expect_token(t_parser *parser, t_token_type type, char *error_msg);
+
+//redirections_utils.c
+int		is_redirection(t_token *token);
+int		token_to_redir_type(t_token_type type);
+
+//redirection_create.c
+t_redirect	*create_redirect(int type, char *file);
+void		add_redirection_to_cmd(t_ast_node *cmd_node, t_redirect *new_redir);
