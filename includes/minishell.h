@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/11 01:50:51 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/17 02:53:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_env
 typedef struct s_ctx
 {
 	t_env	*env;
+	char	*prompt;
 }	t_ctx;
 
 t_ctx	*init_ctx(t_ctx *ctx, char **envp);
