@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 00:52:47 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/16 01:04:32 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:26:12 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,3 @@ t_ast_node *create_or_node(t_ast_node *left, t_ast_node *right)
     return (node);
 }
 
-//Create a redirection node
-t_redirect *create_redirect(int type, char *file)
-{
-    t_redirect *redir;
-
-    redir = malloc(sizeof(t_redirect));
-    if (!redir)
-        return (NULL);
-    redir->type = type;
-    redir->file = ft_strdup(file);
-    redir->next = NULL;
-    return (redir);
-}

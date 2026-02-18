@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:18:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/16 04:10:36 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:34:18 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ int expect_token(t_parser *parser, t_token_type type, char *error_msg)
     if (!current)
     {
         printf("Syntax error: unexpected end of input. %s\n", error_msg);
-        return (false);
+        return (0);
     }
     if (current->type != type)
     {
         printf("Syntax error: %s (got '%s')\n", error_msg, current->value);
-        return (false);
+        return (0);
     }
 
     advance(parser);
-    return (true);
+    return (1);
 }

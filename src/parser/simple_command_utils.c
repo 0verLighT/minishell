@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 04:44:46 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 05:00:45 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:33:42 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	is_command_end(t_token *token)
 {
 	if (!token)
 		return (1);
-	if (token->type == (TOKEN_PIPE || TOKEN_AND || TOKEN_OR || TOKEN_EOF))
+	if (token->type == TOKEN_PIPE || token->type == TOKEN_AND 
+			|| token->type == TOKEN_OR || token->type == TOKEN_EOF)
 		return (1);
 	return (0);
 }
@@ -62,9 +63,11 @@ int	add_word_to_input(char ***input, int *argc, int *capacity, char *word)
 //Needed in case a redirection appears first in input
 t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node)
 {
+	t_ast_node	returned_node;
 	if (cmd_node)
 		return (cmd_node);
-	t_ast_node	returned_node = create_cmd_node(NULL, NULL);
+	returned_node = create_cmd_node(NULL, NULL);
+	return (returned_node);
 }
 
 //Used to free if error occurs during command parsing

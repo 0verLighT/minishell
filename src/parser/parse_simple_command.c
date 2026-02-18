@@ -6,7 +6,7 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 05:00:04 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:15:57 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	handle_command_token(t_parser *parser, t_ast_node **cmd_node,
 	}
 	if (current->type == TOKEN_WORD)
 	{
-		returned_value = handle_word_token(parser, input, argc, capacity;
+		returned_value = handle_word_token(parser, input, argc, capacity);
 		return (returned_value);
 	}
 	advance(parser);
@@ -67,7 +67,7 @@ static t_ast_node	*finalize_command_node(t_ast_node *cmd_node,
 {
 	if (argc == 0)
 	{
-		cleanup_on_error(cmd_node, input, argc);
+		cleanup_on_error(cmd_node, input);
 		ft_putendl_fd("bash: syntax error: expected command", 2);
 		return (NULL);
 	}

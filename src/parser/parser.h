@@ -6,11 +6,13 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 05:04:12 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/18 05:36:45 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSER_H
+# define PARSER_H
+# include "libft.h"
 
 /***STRUCTURES***/
 
@@ -23,7 +25,7 @@ typedef enum	s_node_type
 	NODE_OR,
 }	t_node_type;
 
-//dless is >>, L and RPAREN are for subshells
+//dless is <<, L and RPAREN are for subshells
 typedef enum e_token_type
 {
 	TOKEN_WORD,
@@ -80,7 +82,16 @@ struct	s_ast_node
 {
 	t_node_type	type;
 	t_node_data	data;
-}
+};
+
+//token struct, representing each token in a similar fashion
+//than my tokenizer, to stay consistent with the logic
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*value;
+	int				index;
+}	t_token;
 
 //Array of token, nb of them and curr pos in the array
 typedef struct s_parser 
@@ -96,7 +107,6 @@ t_ast_node	*create_cmd_node(char **input, t_redirect *redirects);
 t_ast_node	*create_pipe_node(t_ast_node *left, t_ast_node *right);
 t_ast_node	*create_and_node(t_ast_node *left, t_ast_node *right);
 t_ast_node	*create_or_node(t_ast_node *left, t_ast_node *right);
-t_redirect	*create_redirect(int type, char *file);
 
 //token_cursor.c
 void	init_parser(t_parser *parser, t_token *tokens, int token_count);
@@ -135,3 +145,5 @@ char		**expand_input_array(char **input, int *capacity);
 int			add_word_to_input(char ***input, int *argc, int *capacity, char *word);
 t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node);
 void		cleanup_on_error(t_ast_node *cmd_node, char **input);
+
+#endif
