@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   check_sig.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/20 19:19:14 by amartel          ###   ########.fr       */
+/*   Created: 2026/02/20 22:49:57 by amartel           #+#    #+#             */
+/*   Updated: 2026/02/20 23:26:06 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file builtin.h
- */
+#include "signal.h"
+#include "minishell.h"
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-
-# include "minishell.h"
-
-typedef struct s_env	t_env;
-
-# ifndef SUCCESS
-#  define SUCCESS 0
-# endif
-# ifndef FAIL
-#  define FAIL 1
-# endif
-
-int	env(t_env *env);
-
-#endif
+void	check_sig(t_ctx *ctx)
+{
+	if (g_sig_code != 0)
+		ctx->return_code = 130;
+	g_sig_code = 0;
+}

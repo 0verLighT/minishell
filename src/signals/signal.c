@@ -6,14 +6,17 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:14:44 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/17 01:17:39 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/20 23:18:14 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// this define is needed by vscode ide
 #ifndef _POSIX_C_SOURCE
 # define _POSIX_C_SOURCE 199309L
 #endif
 #include "signals.h"
+
+volatile sig_atomic_t	g_sig_code = 0;
 
 static void	handle_sig(int sig, siginfo_t *info, void *c)
 {
@@ -23,6 +26,7 @@ static void	handle_sig(int sig, siginfo_t *info, void *c)
 	{
 		(void)write(1, "\n", 1);
 		rl_on_new_line();
+		g_sig_code = 130;
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
