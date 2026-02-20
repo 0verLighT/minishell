@@ -12,6 +12,7 @@ sources = files(
   'src/main.c',
   'src/ctx/init.c',
   'src/built-in/env.c',
+  'src/signals/check_sig.c',
   'src/signals/signal.c',
   'src/utils/ft_getenv.c',
   'src/utils/free_env.c',

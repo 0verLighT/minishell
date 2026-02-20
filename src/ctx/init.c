@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 06:09:07 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/17 03:12:01 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/20 20:31:52 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ static t_env	*init_env(char **envp)
 t_ctx	*init_ctx(t_ctx *ctx, char **envp)
 {
 	ctx->env = init_env(envp);
+	ctx->return_code = 0;
 	return (ctx);
 }
