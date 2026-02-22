@@ -3,17 +3,19 @@ name: Auto docs doxygen
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - 'meson.build'
-      - 'Makefile'
-      - 'README.md'
-      - 'shell.nix'
+    paths:
+      - 'src/**'
+      - 'includes/**'
+
 permissions: 
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   auto-docs:
     if: github.event_name == 'workflow_dispatch'  || contains(github.event.head_commit.message, 'docs')

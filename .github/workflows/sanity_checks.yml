@@ -1,0 +1,57 @@
+name: sanity_checks
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'includes/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python3 -m pip install -U norminette
+      - name: Norminette "libft"
+        run: norminette ${{ github.workspace }}/subprojects/libft
+      - name: Norminette "minishell"
+        shell: bash
+        run: |
+          set -o pipefail
+          (norminette src/ includes/ || true) | grep -E ".+\.[ch]: Error\!|^Error:" && exit 1 || exit 0
+  testing-minishell:
+    if: ${{ ! contains(github.event.head_commit.message, 'skip ci') }}
+    runs-on: ubuntu-latest
+    needs: norminette
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libreadline-dev valac valgrind
+      - name: Compile Minishell
+        run: make -j
+      - name: list file
+        run: ls ${{ github.workspace }}
+      - name: Git clone tester
+        run: git clone https://gitlab.com/nda-cunh/minishell_tester.git
+      - name: compile tester and run
+        run: |
+          cd minishell_tester/
+          make
+          ./tester -v
