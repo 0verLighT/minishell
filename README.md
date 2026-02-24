@@ -15,7 +15,7 @@
 - [ ] run into minishell `program recived SIGfault`
 - [ ] `echo "'$a' + "$a""` -> `echo '$a'`
 - [ ] strace (command)
-- [ ] Crtl + c return code -> 130
+- [x] Crtl + c return code -> 130
 
 
 ## parsing 
