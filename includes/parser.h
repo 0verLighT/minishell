@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/20 04:42:38 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/25 22:15:02 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # include "libft.h"
+# include "tokenizer.h"
 
 /***STRUCTURES***/
 
@@ -25,21 +26,10 @@ typedef enum s_node_type
 	NODE_OR,
 }	t_node_type;
 
-//dless is <<, L and RPAREN are for subshells
-typedef enum e_token_type
-{
-	TOKEN_WORD,
-	TOKEN_PIPE,
-	TOKEN_LESS,
-	TOKEN_GREAT,
-	TOKEN_DLESS,
-	TOKEN_DGREAT,
-	TOKEN_AND,
-	TOKEN_OR,
-	TOKEN_LPAREN,
-	TOKEN_RPAREN,
-	TOKEN_EOF
-}	t_token_type;
+typedef enum e_token_type t_token_type;
+//token struct, representing each token in a similar fashion
+//than my tokenizer, to stay consistent with the logic
+typedef struct s_token t_token;
 
 //Type is for the type of redirection, 
 //0: <, 1: >, 2: >>, 3: <<
@@ -83,15 +73,6 @@ struct	s_ast_node
 	t_node_type	type;
 	t_node_data	data;
 };
-
-//token struct, representing each token in a similar fashion
-//than my tokenizer, to stay consistent with the logic
-typedef struct s_token
-{
-	t_token_type	type;
-	char			*value;
-	int				index;
-}	t_token;
 
 //Array of token, nb of them and curr pos in the array
 typedef struct s_parser

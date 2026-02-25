@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 15:47:55 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/25 22:11:39 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,22 @@
 # define TOKENIZER_H
 
 # include "libft.h"
-# include <stdlib.h>
+
+//dless is <<, L and RPAREN are for subshells
+typedef enum e_token_type
+{
+	TOKEN_WORD,
+	TOKEN_PIPE,
+	TOKEN_LESS,
+	TOKEN_GREAT,
+	TOKEN_DLESS,
+	TOKEN_DGREAT,
+	TOKEN_AND,
+	TOKEN_OR,
+	TOKEN_LPAREN,
+	TOKEN_RPAREN,
+	TOKEN_EOF
+}	t_token_type;
 
 /**
  * @brief Allows to take chunks of the input, with a precise starting and ending 
@@ -40,6 +55,7 @@ typedef struct s_slice
 */
 typedef struct s_token
 {
+	t_token_type	type;
 	size_t	index;
 	t_slice	content;
 }	t_token;

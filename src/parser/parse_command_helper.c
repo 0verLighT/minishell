@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_command_helpers.c                            :+:      :+:    :+:   */
+/*   parse_command_helper.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/20 08:08:57 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/25 22:18:26 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	handle_word_token(t_parser *parser, char ***input,
 	t_token	*current;
 
 	current = peek_token(parser, 0);
-	if (add_word_to_input(input, argc, capacity, current->value) == -1)
+	if (add_word_to_input(input, argc, capacity, current->content.ptr) == -1)
 		return (-1);
 	advance(parser);
 	return (1);
@@ -43,7 +43,7 @@ t_ast_node	*finalize_command_node(t_ast_node *cmd_node,
 	if (argc == 0)
 	{
 		cleanup_on_error(cmd_node, input);
-		ft_putendl_fd("bash: syntax error: expected command", 2);
+		ft_dprintf(2 , "minishell: syntax error: expected command\n");
 		return (NULL);
 	}
 	input[argc] = NULL;

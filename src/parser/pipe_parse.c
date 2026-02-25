@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:06:01 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 01:20:26 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:58:28 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static int	validate_pipe_position(t_parser *parser, t_ast_node *left)
 
 	if (!left)
 	{
-		ft_putendl_fd("bash: syntax error near unexpected token `|'", 2);
+		ft_dprintf(2, "minishell: syntax error near unexpected token `|'\n");
 		return (0);
 	}
 	next = peek_token(parser, 1);
 	if (!next || next->type == TOKEN_EOF || next->type == TOKEN_PIPE)
 	{
-		ft_putendl_fd("bash: syntax error near unexpected token `|'", 2);
+		ft_dprintf(2, "minishell: syntax error near unexpected token `|'\n");
 		return (0);
 	}
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_parse.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:06:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 00:54:18 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/25 22:17:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,20 @@ static int	validate_redir_filename(t_token *file_token)
 //Shows what unexpected token was found after redirection
 static void	print_redir_error(t_token *file_token)
 {
+	const char *line_error = "minishel: syntax error near unexpected token";
+	
 	if (!file_token || file_token->type == TOKEN_EOF)
-		ft_putendl_fd("bash: syntax error near unexpected token `newline'", 2);
+		ft_dprintf(2, "%s 'newline'", line_error);
 	else if (file_token->type == TOKEN_PIPE)
-		ft_putendl_fd("bash: syntax error near unexpected token `|'", 2);
-	else if (file_token->type == TOKEN_AND)
-		ft_putendl_fd("bash: syntax error near unexpected token `&&'", 2);
-	else if (file_token->type == TOKEN_OR)
-		ft_putendl_fd("bash: syntax error near unexpected token `||'", 2);
+		ft_dprintf(2, "%s '|'", line_error);
 	else if (file_token->type == TOKEN_LESS)
-		ft_putendl_fd("bash: syntax error near unexpected token `<'", 2);
+		ft_dprintf(2, "%s '<'", line_error);
 	else if (file_token->type == TOKEN_GREAT)
-		ft_putendl_fd("bash: syntax error near unexpected token `>'", 2);
+		ft_dprintf(2, "%s '>'", line_error);
 	else if (file_token->type == TOKEN_DLESS)
-		ft_putendl_fd("bash: syntax error near unexpected token `<<'", 2);
+		ft_dprintf(2, "%s '<<'", line_error);
 	else if (file_token->type == TOKEN_DGREAT)
-		ft_putendl_fd("bash: syntax error near unexpected token `>>'", 2);
+		ft_dprintf(2, "%s '>>'", line_error);
 	else
 		return ;
 }
@@ -52,7 +50,7 @@ static int	append_redir(t_parser *parser, t_ast_node *cmd_node,
 {
 	t_redirect	*new_redir;
 
-	new_redir = create_redirect(redir_type, file_token->value);
+	new_redir = create_redirect(redir_type, file_token->content.ptr);
 	if (!new_redir)
 		return (-1);
 	add_redirection_to_cmd(cmd_node, new_redir);

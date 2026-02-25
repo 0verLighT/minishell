@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   token_cursor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:18:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/20 03:00:13 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/02/25 22:20:23 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include <stdio.h>
 
 // Initialize the parser with tokens
 void	init_parser(t_parser *parser, t_token *tokens, int token_count)
@@ -68,6 +69,7 @@ int	match_token(t_parser *parser, t_token_type type, int consume)
 int	expect_token(t_parser *parser, t_token_type type, char *error_msg)
 {
 	t_token	*current;
+	char	*content;
 
 	current = peek_token(parser, 0);
 	if (!current)
@@ -77,7 +79,8 @@ int	expect_token(t_parser *parser, t_token_type type, char *error_msg)
 	}
 	if (current->type != type)
 	{
-		printf("Syntax error: %s (got '%s')\n", error_msg, current->value);
+		content = current->content.ptr;
+		printf("Syntax error: %s (got '%s')\n", error_msg, content);
 		return (0);
 	}
 	advance(parser);
