@@ -25,6 +25,8 @@ sources = files(
   'src/parser/token_cursor.c',
   'src/signals/check_sig.c',
   'src/signals/signal.c',
+  'src/tokenizer/tokenizer.c',
+  'src/tokenizer/tokenizer_utils.c',
   'src/utils/free_env.c',
   'src/utils/ft_getenv.c',
 )

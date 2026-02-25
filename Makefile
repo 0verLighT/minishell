@@ -19,17 +19,17 @@ PARSER		:=																		\
 				redirection_parse.c simple_command_utils.c simple_command_utils.c	\
 				token_cursor.c
 
-#TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
+TOKENIZER	:= tokenizer.c tokenizer_utils.c
 
-SOURCES =									\
-	$(addprefix src/, $(SRC))				\
-	$(addprefix src/built-in/, $(BUILTIN))	\
-	$(addprefix src/ctx/, $(CTX))			\
-	$(addprefix src/input/, $(INPUT))		\
-	$(addprefix src/signals/, $(SIGNALS))	\
-	$(addprefix src/utils/, $(UTILS))		\
-	$(addprefix src/parser/, $(PARSER))		\
-#	$(addprefix src/tokenizer/, $(TOKENIZER)) \
+SOURCES =										\
+	$(addprefix src/, $(SRC))					\
+	$(addprefix src/built-in/, $(BUILTIN))		\
+	$(addprefix src/ctx/, $(CTX))				\
+	$(addprefix src/input/, $(INPUT))			\
+	$(addprefix src/signals/, $(SIGNALS))		\
+	$(addprefix src/utils/, $(UTILS))			\
+	$(addprefix src/parser/, $(PARSER))			\
+	$(addprefix src/tokenizer/, $(TOKENIZER))	\
 
 OBJS		:= $(SOURCES:%.c=%.o)
 DEPS		:= $(SOURCES:%.c=%.d)

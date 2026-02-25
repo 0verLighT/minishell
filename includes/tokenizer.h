@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/01/31 03:41:40 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/25 15:47:55 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * @param ptr TODO
  * @param len TODO
  */
-typedef struct slice
+typedef struct s_slice
 {
 	char	*ptr;
 	size_t	len;
@@ -38,19 +38,19 @@ typedef struct slice
  * @param index TODO
  * @param content TODO
 */
-typedef struct token
+typedef struct s_token
 {
 	size_t	index;
 	t_slice	content;
 }	t_token;
 
-//tokenizer_utils.c
+//tokenizer.c
 size_t	strskip(char *str, char *charset);
 size_t	count_token(char *str);
 t_slice	*token_maker(char *str);
 void	free_tokens(t_token *tokens);
 
-//tokenizer_utils_two.c
+//tokenizer_utils.c
 size_t	get_token_len(char *str, int pos);
 int		fill_token(t_token *token, char *str, int pos, int index);
 size_t	process_tokens(t_token *tokens, char *str, size_t token_count);
