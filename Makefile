@@ -11,7 +11,7 @@ SRC			:= main.c
 BUILTIN		:= env.c
 CTX			:= init.c
 SIGNALS		:= check_sig.c signal.c
-UTILS		:= ft_getenv.c free_env.c
+UTILS		:= ft_getenv.c free_env.c ft_isoperator.c
 INPUT		:= fish.c
 PARSER		:=																		\
 				ast_node_helper.c clean_up.c parse_command_helper.c					\

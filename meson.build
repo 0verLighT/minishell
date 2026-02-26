@@ -29,6 +29,7 @@ sources = files(
   'src/tokenizer/tokenizer_utils.c',
   'src/utils/free_env.c',
   'src/utils/ft_getenv.c',
+  'src/utils/ft_isoperator.c',
 )
 
 deps = [

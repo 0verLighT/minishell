@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 02:33:13 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 15:52:00 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/26 02:33:3 by jdessoli          #+#    #+#             */
+/*   Updated: 2026/02/26 01:47:34 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ size_t	get_token_len(char *str, int pos)
 	size_t	len;
 
 	len = 0;
-	while (!ft_isspace(str[pos]) && str[pos])
-	{
-		++len;
-		++pos;
-	}
+	if (isdoubleop(str + pos))
+		return (2);
+	if (isoperator(str[pos]))
+		return (1);
+	while (str[pos + len] && !ft_isspace(str[pos + len]) && 
+		!isoperator(str[pos + len]))
+		len++;
 	return (len);
 }
 
@@ -52,7 +54,7 @@ size_t	process_tokens(t_token *tokens, char *str, size_t token_count)
 	pos = 0;
 	while (i < token_count)
 	{
-		pos += strskip(str + pos, " \t\n");
+		pos += strskip(str + pos);
 		if (!fill_token(&tokens[i], str, pos, i))
 		{
 			free_tokens(tokens);

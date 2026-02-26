@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 22:11:39 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/26 03:46:26 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define TOKENIZER_H
 
 # include "libft.h"
+# include "utils.h"
 
 //dless is <<, L and RPAREN are for subshells
 typedef enum e_token_type
@@ -61,7 +62,7 @@ typedef struct s_token
 }	t_token;
 
 //tokenizer.c
-size_t	strskip(char *str, char *charset);
+size_t	strskip(char *str);
 size_t	count_token(char *str);
 t_slice	*token_maker(char *str);
 void	free_tokens(t_token *tokens);

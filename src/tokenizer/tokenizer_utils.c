@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 15:52:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/26 03:49:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,13 @@ void	free_tokens(t_token *tokens)
 	return ;
 }
 
-size_t	strskip(char *str, char *charset)
+size_t	strskip(char *str)
 {
 	size_t	i;
-	size_t	j;
-	size_t	found;
 
 	i = 0;
-	while (str[i])
-	{
-		j = 0;
-		found = 0;
-		while (charset[j])
-		{
-			if (charset[j] == str[i])
-			{
-				found = 1;
-				break ;
-			}
-			j++;
-		}
-		if (!found)
-			break ;
-		i++;
-	}
+	while (str[i] && ft_isspace(str[i]))
+		++i;
 	return (i);
 }
 
@@ -64,12 +47,18 @@ size_t	count_token(char *str)
 	while (str[i])
 	{
 		while (ft_isspace(str[i]) && str[i])
-			i++;
-		if (str[i] != 0)
+			++i;
+		if (!str[i])
+			break ;
+		token_nb++;
+		if (isdoubleop(str + i))
+			i += 2;
+		else if (isoperator(str[i]))
+			++i;
+		else
 		{
-			token_nb++;
-			while (!ft_isspace(str[i]) && str[i])
-				i++;
+			while (!ft_isspace(str[i]) && str[i] && !isoperator(str[i]))
+				++i;
 		}
 	}
 	return (token_nb);
@@ -86,7 +75,7 @@ t_slice	*token_maker(char *str)
 	token = malloc(sizeof(t_slice));
 	if (!token)
 		return (NULL);
-	token_start = strskip(str, " \t\n");
+	token_start = strskip(str);
 	len = token_start;
 	while (!ft_isspace(str[len]) && str[len])
 		len++;
