@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/26 03:49:05 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/01 20:23:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ size_t	count_token(char *str)
 	{
 		while (ft_isspace(str[i]) && str[i])
 			++i;
-		if (!str[i])
-			break ;
 		token_nb++;
 		if (isdoubleop(str + i))
 			i += 2;
