@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+
 static char	*get_current_dir(void)
 {
 	char	*cwd;
@@ -43,22 +45,34 @@ static int	handle_cd_no_args(char *home, char *cwd)
 	return (0);
 }
 
-//todo: add if token_count == 2 here, for if a path is given
-//that's where the token array will be used
-static int	cd_process(t_token *tokens, int token_count, char *home, char *cwd)
+//Process cd command based on argument count
+static int	cd_process(char **argv, char *home, char *cwd)
 {
 	int	result;
+	int	argc;
 
-	if (token_count == 1)
+	argc = 0;
+	while (argv[argc])
+		argc++;
+	if (argc == 1)
 	{
 		result = handle_cd_no_args(home, cwd);
 		return (result);
 	}
+	if (argc == 2)
+	{
+		result = handle_cd_with_path(argv[1], cwd);
+		return (result);
+	}
+	ft_putendl_fd("cd: too many arguments", 2);
 	free(cwd);
 	return (1);
 }
 
-int	cd_core(t_token *tokens, int token_count)
+//Main cd built-in function
+//Takes the command arguments from the AST node
+//args[0] = cd, args[1] = path, more args means error
+int	builtin_cd(char **argv)
 {
 	char	*home;
 	char	*cwd;
@@ -73,6 +87,6 @@ int	cd_core(t_token *tokens, int token_count)
 		free(cwd);
 		return (1);
 	}
-	result = cd_process(tokens, token_count, home, cwd);
+	result = cd_process(argv, home, cwd);
 	return (result);
 }
