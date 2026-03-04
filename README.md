@@ -58,7 +58,7 @@ pkg-config --libs readline
 If it returns something like `-L/opt/homebrew/Cellar/readline/8.3.3/lib -lreadline` then you can add libreadline to your PKG_CONFIG_PATH:
 
 ```bash
-export PKG_CONFIG_PATH="/opt/homebrew/Cellar/readline/8.3.3/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH=$(brew --prefix readline)/8.3.3/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
 otherwise, you can install it with Homebrew:

@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   norminette:
+    name: Norminette 42
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -36,7 +37,7 @@ jobs:
         run: |
           set -o pipefail
           (norminette src/ includes/ || true) | grep -E ".+\.[ch]: Error\!|^Error:" && exit 1 || exit 0
-  meson:
+  meson-ubuntu:
     name: Meson Ubuntu (${{ matrix.platform }}) 
     runs-on: ${{ matrix.runner }}
     needs: norminette
@@ -68,8 +69,39 @@ jobs:
         run: |
           meson setup build
           meson compile -C build/
+  meson-macos:
+    name: Meson Macos (${{matrix.platform}})
+    runs-on: ${{matrix.runner}}
+    needs: norminette
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: arm64
+            runner: macos-latest
+          - platform: x86_64
+            runner: macos-15-intel
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+      - run: brew update
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install packages
+        run: |
+          brew install --quiet ninja readline
+          python3 -m pip install meson
+      - name: build ${{env.bin}}
+        run: |
+          export PKG_CONFIG_PATH="$(brew --prefix readline)/lib/pkgconfig:$PKG_CONFIG_PATH"
+          meson setup build
+          meson compile -C build/
+
   make:
-    name: Make Ubuntu ${{ matrix.platform }}
+    name: Make Ubuntu (${{ matrix.platform }})
     needs: norminette
     runs-on: ${{matrix.runner}}
     strategy: 
