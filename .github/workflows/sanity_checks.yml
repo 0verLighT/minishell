@@ -1,0 +1,133 @@
+name: sanity_checks
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'includes/**'
+      - 'Makefile'
+      - 'meson.build'
+
+env:
+  bin: minishell
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python3 -m pip install -U norminette
+      - name: Norminette "libft"
+        run: norminette ${{ github.workspace }}/subprojects/libft
+      - name: Norminette "minishell"
+        shell: bash
+        # Patching the return code to ignore global variable errors
+        run: |
+          set -o pipefail
+          (norminette src/ includes/ || true) | grep -E ".+\.[ch]: Error\!|^Error:" && exit 1 || exit 0
+  meson:
+    name: Meson Ubuntu (${{ matrix.platform }}) 
+    runs-on: ${{ matrix.runner }}
+    needs: norminette
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: aarch64
+            runner: ubuntu-24.04-arm
+            python: 3.8
+          - platform: x86_64
+            runner: ubuntu-latest
+            python: 3.13
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Install Python ${{ matrix.python }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install build-essential ninja-build libreadline-dev
+          python3 -m pip install meson
+      - name: Build ${{ env.bin }}
+        run: |
+          meson setup build
+          meson compile -C build/
+  make:
+    name: Make Ubuntu ${{ matrix.platform }}
+    needs: norminette
+    runs-on: ${{matrix.runner}}
+    strategy: 
+      fail-fast: false
+      matrix:
+        include:
+          - platform: aarch64
+            runner: ubuntu-24.04-arm
+          - platform: x86_64
+            runner: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Install packages
+        run: | 
+          sudo apt-get update
+          sudo apt-get -y install build-essential libreadline-dev
+      - name: Build ${{ github.repository }}
+        run: |
+          make
+      - name: Create artifact
+        if: (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, 'testing')) && matrix.platform == 'x86_64'
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{env.bin}}-${{matrix.platform}}
+          path: ${{ env.bin }}
+          retention-days: 1
+
+  testing-minishell:
+    name: Test minishell
+    runs-on: ${{matrix.runner}}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: x86_64
+            runner: ubuntu-latest
+    needs: make
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, 'testing')
+    steps:
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install libreadline-dev valac valgrind
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{env.bin}}-${{matrix.platform}}
+          path: .
+      - name : Chmod ${{env.bin}} BIN
+        run: |
+          chmod u+x ${{env.bin}}
+      - name: Git clone tester
+        run: git clone https://gitlab.com/nda-cunh/minishell_tester.git
+      - name: compile tester and run
+        run: |
+          cd minishell_tester/
+          make
+          ./tester -v

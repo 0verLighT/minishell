@@ -1,15 +1,7 @@
 name: Auto docs doxygen
 
-on:
-  workflow_dispatch:
-  push:
-    paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - 'meson.build'
-      - 'Makefile'
-      - 'README.md'
-      - 'shell.nix'
+on: [ workflow_dispatch, push]
+
 permissions: 
   contents: write
   pages: write
