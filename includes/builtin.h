@@ -28,6 +28,22 @@ typedef struct s_env	t_env;
 #  define FAIL 1
 # endif
 
-int	env(t_env *env);
+//env.c
+int		env(t_env *env);
+
+//builtin_utils.c
+int		count_args(char **argv);
+void	builtin_error(char *builtin, char *arg, char *msg);
+int		is_valid_identifier(char *str);
+int		is_numeric(char *str);
+
+//env_utils.c
+void	set_env_value(t_env **env, char *key, char *value);
+
+//cd_core.c
+int		builtin_cd(char **argv);
+
+//pwd_core.c
+int		pwd_core(void);
 
 #endif

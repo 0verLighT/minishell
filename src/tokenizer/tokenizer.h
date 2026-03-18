@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/01/31 03:41:40 by amartel          ###   ########.fr       */
+/*   Updated: 2026/02/16 00:49:29 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # define TOKENIZER_H
 
 # include "libft.h"
-# include <stdlib.h>
 
 /**
  * @brief Allows to take chunks of the input, with a precise starting and ending 
