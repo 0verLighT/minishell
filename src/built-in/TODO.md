@@ -1,7 +1,7 @@
 echo <-n>
-cd
-pwd
+cd : WORK IN PROGRESS
+pwd : WORK IN PROGRESS
 env
-exit
+exit : WORK IN PROGRESS
 export
 unset
