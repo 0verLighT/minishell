@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 22:15:02 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/21 16:01:30 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,60 @@ typedef enum e_token_type t_token_type;
 //than my tokenizer, to stay consistent with the logic
 typedef struct s_token t_token;
 
-//Type is for the type of redirection, 
-//0: <, 1: >, 2: >>, 3: <<
-//file points to either a file or a heredoc
+/**
+ * @brief Type is for the type of redirection
+ * @details 0: <, 1: >, 2: >>, 3: <<
+ * file points to either a file or a heredoc
+ */
 typedef struct s_redirect
 {
 	size_t				type;
 	char				*file;
 	struct s_redirect	*next;
 }	t_redirect;
-
-//This is for NODE_CMD, input[0] is for the cmd
-//input[1] and more are for args
+/**
+ * @brief struct for NODE_CMD
+ * @details input[0] is for the command, and input[1] and more is for args
+ */
 typedef struct s_cmd_data
 {
 	char		**input;
 	t_redirect	*redirects;
 }	t_cmd_data;
 
-//We declare t_ast_node here, in order to use it for what's next
 typedef struct s_ast_node	t_ast_node;
 
-//Used for pipe, and, or. Pair left and right token
+/**
+ * @brief Used for pipe, and, or. Pair left and right token
+ */
 typedef struct s_pair_data
 {
 	t_ast_node	*left;
 	t_ast_node	*right;
 }	t_pair_data;
 
-//Used to hold command or pipes, and, or
+/**
+ * @brief Used to hold command or pipes, and, or
+ */
 typedef union u_node_data
 {
 	t_cmd_data	cmd;
 	t_pair_data	pair;
 }	t_node_data;
 
-//Type idenfifies which union member is active
-//Data is for what it contains
+/**
+ * @brief Type idenfifies which union member is active
+ * @warning Data is for what it contains
+ */
 struct	s_ast_node
 {
 	t_node_type	type;
 	t_node_data	data;
 };
 
-//Array of token, nb of them and curr pos in the array
+/**
+ * @brief Array of token, nb of them and curr pos in the array
+ */
 typedef struct s_parser
 {
 	t_token	*tokens;
@@ -84,10 +94,44 @@ typedef struct s_parser
 
 /***FUNCTIONS***/
 //ast_node_helper.c
+
+/**
+ * @brief Create a command node with its type, args and redir
+ * @param input
+ * @param redirects
+ * @return 
+ */
 t_ast_node	*create_cmd_node(char **input, t_redirect *redirects);
+/**
+ * @brief Create a pipe node
+ * @param left
+ * @param right
+ * @return
+ */
 t_ast_node	*create_pipe_node(t_ast_node *left, t_ast_node *right);
+/**
+ * @brief Create an AND (type) node
+ * @param left
+ * @param right
+ * @return
+ */
 t_ast_node	*create_and_node(t_ast_node *left, t_ast_node *right);
+/**
+ * @brief Create an OR (type) node
+ * @param left
+ * @param right
+ * @return
+ */
 t_ast_node	*create_or_node(t_ast_node *left, t_ast_node *right);
+
+//clean_up.c
+/**
+ * @brief 
+ */
+void		free_string_array(char **array);
+void		free_redirects(t_redirect *redirects);
+void		free_ast_node(t_ast_node *node);
+
 
 //token_cursor.c
 void		init_parser(t_parser *parser, t_token *tokens, int token_count);
@@ -109,11 +153,6 @@ int			parse_redirection(t_parser *parser, t_ast_node *cmd_node);
 
 //pipe_parse.c
 t_ast_node	*parse_pipeline(t_parser *parser);
-
-//clean_up.c
-void		free_string_array(char **array);
-void		free_redirects(t_redirect *redirects);
-void		free_ast_node(t_ast_node *node);
 
 //parse_simple_command.c
 int			handle_command_token(t_parser *parser);

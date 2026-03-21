@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ast_node_helper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 00:52:47 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/20 02:57:53 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:45:09 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Create a command node with its type, args and redir
 t_ast_node	*create_cmd_node(char **input, t_redirect *redirects)
 {
 	t_ast_node	*node;
@@ -26,7 +25,6 @@ t_ast_node	*create_cmd_node(char **input, t_redirect *redirects)
 	return (node);
 }
 
-//Create a pipe node
 t_ast_node	*create_pipe_node(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*node;
@@ -40,7 +38,6 @@ t_ast_node	*create_pipe_node(t_ast_node *left, t_ast_node *right)
 	return (node);
 }
 
-//Create an AND node
 t_ast_node	*create_and_node(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*node;
@@ -54,7 +51,6 @@ t_ast_node	*create_and_node(t_ast_node *left, t_ast_node *right)
 	return (node);
 }
 
-//Create an OR node
 t_ast_node	*create_or_node(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*node;
