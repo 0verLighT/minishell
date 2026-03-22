@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/20 19:19:14 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/22 19:49:51 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,28 @@ typedef struct s_env	t_env;
 #  define FAIL 1
 # endif
 
+//needed for dispatching the built-ins
+typedef enum e_builtin_id
+{
+	BUILTIN_NONE = 0,
+	BUILTIN_ECHO,
+	BUILTIN_CD,
+	BUILTIN_PWD,
+	BUILTIN_EXIT,
+	BUILTIN_ENV,
+	BUILTIN_EXPORT,
+	BUILTIN_UNSET,
+	BUILTIN_HISTORY,
+}	t_builtin_id;
+
+//needed for a dispatch table, maping built-in name to func
+typedef struct s_builtin_entry
+{
+	const char	*name;
+	t_builtin_id	id;
+	int		(*func)(char **argv, t_ctx *ctx);
+}	t_builtin_entry;
+
 //env.c
 int		env(t_env *env);
 
@@ -45,5 +67,8 @@ int		builtin_cd(char **argv);
 
 //pwd_core.c
 int		pwd_core(void);
+
+//exit_utils.c
+int		parse_exitcode(char *str, int *err_flag);
 
 #endif
