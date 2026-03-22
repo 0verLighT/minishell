@@ -6,18 +6,19 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/20 23:18:57 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/22 19:50:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "input.h"
 #include "signals.h"
+#include "tokenizer.h"
 
 static void	content_loop(t_ctx *ctx)
 {
 	char	*line;
 	char	*prompt;
+	t_token	*t;
 
 	while (1)
 	{
@@ -27,17 +28,33 @@ static void	content_loop(t_ctx *ctx)
 		if (!line)
 			break ;
 		free(prompt);
-		if (ft_strcmp(line, "env") == 0)
-			ctx->return_code = env(ctx->env);
-		if (ft_strcmp(line, "$?") == 0)
-		{
-			ft_dprintf(0, "%d\n", ctx->return_code);
-			ctx->return_code = 0;
-		}
+		t = tokenizing(line);
+		free(t->content.ptr);
+		free(t);
 		if (line[0] != '\0')
 			add_history(line);
 		free(line);
 	}
+}
+/**
+ * @brief generate shell prompt
+ * @details fish 🐟
+ * @param env struct env
+ * @return the format prompt for readline
+ */
+static char	*prompt_fish(t_ctx *ctx)
+{
+	char	*tmp;
+
+	ctx->prompt = ft_strjoin(NULL, ft_getenv(ctx->env, "USER"));
+	ctx->prompt = ft_strjoin(ctx->prompt, ":");
+	if (ft_strcmp(ft_getenv(ctx->env, "HOME"), ft_getenv(ctx->env, "PWD")) == 0)
+		tmp = "~";
+	else
+		tmp = ft_getenv(ctx->env, "PWD");
+	ctx->prompt = ft_strjoin(ctx->prompt, tmp);
+	ctx->prompt = ft_strjoin(ctx->prompt, "$ ");
+	return (ctx->prompt);
 }
 
 int	main(int ac, char **av, char **envp)
