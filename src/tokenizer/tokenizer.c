@@ -12,7 +12,6 @@
 
 #include "tokenizer.h"
 
-//Get the length of a token starting at pos
 size_t	get_token_len(char *str, int pos)
 {
 	size_t	len;
@@ -28,7 +27,6 @@ size_t	get_token_len(char *str, int pos)
 	return (len);
 }
 
-//Allocate and fill a token
 int	fill_token(t_token *token, char *str, int pos, int index)
 {
 	size_t	len;
@@ -44,8 +42,7 @@ int	fill_token(t_token *token, char *str, int pos, int index)
 	return (1);
 }
 
-// Fill the tokens one by one
-size_t	process_tokens(t_token *tokens, char *str, size_t token_count)
+int	process_tokens(t_token *tokens, char *str, size_t token_count)
 {
 	size_t	i;
 	size_t	pos;

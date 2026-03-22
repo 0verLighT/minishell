@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/26 03:46:26 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/22 23:52:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include "libft.h"
 # include "utils.h"
 
-//dless is <<, L and RPAREN are for subshells
+/**
+ * @brief enum of type for token
+ */
 typedef enum e_token_type
 {
 	TOKEN_WORD,
@@ -39,38 +41,82 @@ typedef enum e_token_type
 /**
  * @brief Allows to take chunks of the input, with a precise starting and ending 
  * point
- * @param ptr TODO
- * @param len TODO
+ * @param ptr
+ * @param len
  */
-typedef struct s_slice
+typedef struct s_node_token
 {
 	char	*ptr;
 	size_t	len;
-}	t_slice;
+}	t_node_token;
 
 /**
  * @brief A token is a chunk of the input with an index That way, we can  
  * work on isolated chunks by giving the index
- * @param index TODO
- * @param content TODO
+ * @param index
+ * @param content
 */
 typedef struct s_token
 {
 	t_token_type	type;
 	size_t	index;
-	t_slice	content;
+	t_node_token	content;
 }	t_token;
 
 //tokenizer.c
-size_t	strskip(char *str);
-size_t	count_token(char *str);
-t_slice	*token_maker(char *str);
-void	free_tokens(t_token *tokens);
+/**
+ * @brief Get the length of a token starting at pos
+ * @param str
+ * @param pos
+ * @return length of token starting at pos
+ */
+size_t			get_token_len(char *str, int pos);
+/**
+ * @brief Allocate and fill a token
+ * @param token
+ * @param str
+ * @param pos
+ * @param index
+ * @return 0 on error, 1 on succesfully
+ */
+int				fill_token(t_token *token, char *str, int pos, int index);
+/**
+ * @brief Fill the token one by one
+ * @param token
+ * @param str
+ * @param token_count
+ * @return 0 on error, 1 sucessfully
+ */
+int				process_tokens(t_token *tokens, char *str, size_t token_count);
+/**
+ * @brief Main function of tokenzier
+ * @param str
+ * @return prompt in token struct
+ */
+t_token			*tokenizing(char *str);
 
 //tokenizer_utils.c
-size_t	get_token_len(char *str, int pos);
-int		fill_token(t_token *token, char *str, int pos, int index);
-size_t	process_tokens(t_token *tokens, char *str, size_t token_count);
-t_token	*tokenizing(char *str);
+/**
+ * @brief Skip space in string
+ * @param str
+ * @return lenght of speace in the start of str
+ */
+size_t			strskip(char *str);
+/**
+ * @brief Count number of token
+ * @param str
+ * @return number of token
+ */
+size_t			count_token(char *str);
+/**
+ * @brief create an node of token
+ * @param str
+ * @return node of token
+ */
+t_node_token	*token_maker(char *str);
+/**
+ * @brief Free the token struct
+ */
+void			free_tokens(t_token *tokens);
 
 #endif

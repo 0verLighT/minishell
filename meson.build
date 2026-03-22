@@ -11,7 +11,6 @@ includes = include_directories('includes')
 sources = files(
   'src/built-in/env.c',
   'src/ctx/init.c',
-  'src/input/fish.c',
   'src/main.c',
   'src/parser/ast_node_helper.c',
   'src/parser/clean_up.c',
