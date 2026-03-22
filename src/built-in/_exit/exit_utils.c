@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:18:24 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/21 18:19:49 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:08:35 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void	error_handling(char *str, int *index_flag, int *sign,
     index_flag[2] = 1;
 }
 
-//the %256 is to imitate shell exit code
-static int	parse_exitcode(char *str, int *err_flag)
+//the modulo is to imitate shell exit code
+int	parse_exitcode(char *str, int *err_flag)
 {
 	int					*i;
 	int					*j;
@@ -73,5 +73,3 @@ static int	parse_exitcode(char *str, int *err_flag)
 	error_handling(str, index_flag, sign, result);
 	return ((int)((*result * sign) % 256));
 }
-
-//exit_core is left to do
