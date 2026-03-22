@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   simple_command_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 04:44:46 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/20 04:43:15 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:30:02 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Checks if token is a binary operator or EOF, to know if another cmd is next
 int	is_command_end(t_token *token)
 {
 	if (!token)
@@ -23,7 +22,6 @@ int	is_command_end(t_token *token)
 	return (0);
 }
 
-//Used to double the capacity of the input array, and strdup in the new array
 char	**expand_input_array(char **input, int *capacity)
 {
 	char	**new_input;
@@ -43,7 +41,6 @@ char	**expand_input_array(char **input, int *capacity)
 	return (new_input);
 }
 
-//Adds a word token to the input array, if needed expanded
 int	add_word_to_input(char ***input, int *argc, int *capacity, char *word)
 {
 	if (*argc >= *capacity - 1)
@@ -59,8 +56,6 @@ int	add_word_to_input(char ***input, int *argc, int *capacity, char *word)
 	return (0);
 }
 
-//Used to initializes a command node if not yet created
-//Needed in case a redirection appears first in input
 t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node)
 {
 	t_ast_node	*returned_node;
@@ -71,7 +66,6 @@ t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node)
 	return (returned_node);
 }
 
-//Used to free if error occurs during command parsing
 void	cleanup_on_error(t_ast_node *cmd_node, char **input)
 {
 	if (cmd_node)

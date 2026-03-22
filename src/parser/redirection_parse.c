@@ -6,13 +6,17 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:06:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 22:17:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/22 19:40:41 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Used to check if next token after redir is a valid filename
+/**
+ * @brief check if next token after redir is a valid filename
+ * @param file_token
+ * @return 0 on error, 1 on succesfully
+ */
 static int	validate_redir_filename(t_token *file_token)
 {
 	if (!file_token)
@@ -22,12 +26,15 @@ static int	validate_redir_filename(t_token *file_token)
 	return (1);
 }
 
-//Prints syntax error matching bash's format
-//Shows what unexpected token was found after redirection
+/**
+ * @brief Prints syntax error matching bash's format
+ * @details Shows what unexpected token was found after redirection
+ * @param file_token
+ */
 static void	print_redir_error(t_token *file_token)
 {
-	const char *line_error = "minishel: syntax error near unexpected token";
-	
+	const char	*line_error = "minishel: syntax error near unexpected token";
+
 	if (!file_token || file_token->type == TOKEN_EOF)
 		ft_dprintf(2, "%s 'newline'", line_error);
 	else if (file_token->type == TOKEN_PIPE)
@@ -44,7 +51,14 @@ static void	print_redir_error(t_token *file_token)
 		return ;
 }
 
-//Append a redirection to the command node
+/**
+ * @brief Append a redirection to the command node
+ * @param parser
+ * @param cmd_node
+ * @param redir_type
+ * @param file_token
+ * @return -1 on error, 0 on succesfully
+ */
 static int	append_redir(t_parser *parser, t_ast_node *cmd_node,
 									int redir_type, t_token *file_token)
 {
@@ -58,8 +72,6 @@ static int	append_redir(t_parser *parser, t_ast_node *cmd_node,
 	return (0);
 }
 
-//Parses a single redir (operator + filename)
-//Get cursor beyond them if success
 int	parse_redirection(t_parser *parser, t_ast_node *cmd_node)
 {
 	t_token		*redir_token;

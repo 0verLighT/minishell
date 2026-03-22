@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 02:59:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 00:03:28 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:16:23 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Checks if a token represents a redirection operator
 int	is_redirection(t_token *token)
 {
 	if (!token)
@@ -28,7 +27,6 @@ int	is_redirection(t_token *token)
 	return (0);
 }
 
-//Converts token type to redirection type for the .h struct
 int	token_to_redir_type(t_token_type type)
 {
 	if (type == TOKEN_LESS)

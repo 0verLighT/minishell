@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_simple_command.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/20 04:45:20 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/22 18:42:21 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Store pointers in static variables for use by handle_command_token
 void	set_command_context(t_ast_node **cmd_node, char ***input,
 								int *argc, int *capacity)
 {
@@ -27,7 +26,10 @@ void	set_command_context(t_ast_node **cmd_node, char ***input,
 	g_capacity = capacity;
 }
 
-//Get the stored cmd_node pointer
+/**
+ * @brief Get the stored cmd_node pointer
+ * @return the command in the node
+ */
 static t_ast_node	**get_cmd_node(void)
 {
 	static t_ast_node	**g_cmd_node;
@@ -35,7 +37,9 @@ static t_ast_node	**get_cmd_node(void)
 	return (g_cmd_node);
 }
 
-//Get all input-related pointers at once
+/**
+ * @brief Get all input-related pointers at once
+ */
 static void	get_input_context(char ****input, int **argc, int **capacity)
 {
 	static char	***g_input;
@@ -47,7 +51,10 @@ static void	get_input_context(char ****input, int **argc, int **capacity)
 	*capacity = g_capacity;
 }
 
-//Process token based on type (redirection or word)
+/**
+ * @brief Process token based on type (redirection or word)
+ * @return 
+ */
 static int	process_token(t_parser *parser, t_token *current)
 {
 	char	***input;
@@ -70,7 +77,6 @@ static int	process_token(t_parser *parser, t_token *current)
 	return (1);
 }
 
-//We check what kind of token it is, and call the according func
 int	handle_command_token(t_parser *parser)
 {
 	t_token	*current;

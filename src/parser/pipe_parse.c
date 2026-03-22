@@ -6,13 +6,17 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:06:01 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/25 15:58:28 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/22 18:59:22 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Checks if current token is a pipe operator
+/**
+ * @brief Checks if current token is a pipe operator
+ * @param parser
+ * @return The type code of token
+ */
 static int	is_pipe_operator(t_parser *parser)
 {
 	t_token	*token;
@@ -23,7 +27,13 @@ static int	is_pipe_operator(t_parser *parser)
 	return (token->type == TOKEN_PIPE);
 }
 
-//Check if pipe's at valid pos (neither at start nor end of input)
+/**
+ * @brief Check if pipe's at valid pos
+ * @details (neither at start nor end of input)
+ * @param parser
+ * @param left
+ * @return 0 on error, 1 on successfully
+ */
 static int	validate_pipe_position(t_parser *parser, t_ast_node *left)
 {
 	t_token	*next;
@@ -42,14 +52,23 @@ static int	validate_pipe_position(t_parser *parser, t_ast_node *left)
 	return (1);
 }
 
-//Parses what's after the pipe
+/**
+ * @brief Pares content after the pipe
+ * @param parser
+ * @return node with content after the pipe
+ */
 static t_ast_node	*parse_pipe_right_side(t_parser *parser)
 {
 	advance(parser);
 	return (parse_pipeline(parser));
 }
 
-//Creates a pipeline node connecting left and right commands
+/**
+ * @brief Creates a pipeline node connecting left and right commands
+ * @param left
+ * @param right
+ * @return node with new pipe
+ */
 static t_ast_node	*create_pipeline(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*result;
@@ -62,8 +81,6 @@ static t_ast_node	*create_pipeline(t_ast_node *left, t_ast_node *right)
 	return (result);
 }
 
-//Parses an input with multiple pipes
-//Returns root of pipeline tree
 t_ast_node	*parse_pipeline(t_parser *parser)
 {
 	t_ast_node	*left;
