@@ -24,16 +24,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Clone by the runner
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
-          submodules: false
+          submodules: true
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Init submodules
-        uses: ./.github/actions/submodules
-        with:
-          ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: Clone Doxygen Awesome CSS
         run: git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
       - name: Install dependencies
