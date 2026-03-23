@@ -19,7 +19,7 @@ sources = files(
   'src/parser/pipe_parse.c',
   'src/parser/redirection_create.c',
   'src/parser/redirection_parse.c',
-  'src/parser/redirections_utils.c',
+  'src/parser/redirection_utils.c',
   'src/parser/simple_command_utils.c',
   'src/parser/token_cursor.c',
   'src/signals/check_sig.c',

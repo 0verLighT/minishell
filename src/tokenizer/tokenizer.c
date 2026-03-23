@@ -69,7 +69,7 @@ t_token	*tokenizing(char *str)
 
 	if (!str)
 		return (NULL);
-	token_count = count_token(str);
+	token_count = count_token(str, 0);
 	tokens = ft_calloc((token_count + 1), sizeof(t_token));
 	if (!tokens)
 		return (NULL);

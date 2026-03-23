@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 23:50:13 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/23 18:34:11 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,18 @@ size_t	strskip(char *str)
 	return (i);
 }
 
-size_t	count_token(char *str)
+
+void	isquote(char *str, size_t *i)
 {
-	size_t	i;
+	++*i;
+	while (str[*i] != '"')
+		++*i;
+}
+
+size_t	count_token(char *str, size_t i)
+{
 	size_t	token_nb;
 
-	i = 0;
 	token_nb = 0;
 	if (!str)
 		return (0);
@@ -49,6 +55,8 @@ size_t	count_token(char *str)
 		while (ft_isspace(str[i]) && str[i])
 			++i;
 		token_nb++;
+		// if (str[i] == '"')
+		// 	isquote(str, &i);
 		if (isdoubleop(str + i))
 			i += 2;
 		else if (isoperator(str[i]))
@@ -61,6 +69,7 @@ size_t	count_token(char *str)
 	}
 	return (token_nb);
 }
+
 
 t_node_token	*token_maker(char *str)
 {

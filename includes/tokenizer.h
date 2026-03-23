@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 23:52:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/23 18:40:35 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,11 @@ size_t			strskip(char *str);
  * @param str
  * @return number of token
  */
-size_t			count_token(char *str);
+size_t			count_token(char *str, size_t i);
 /**
  * @brief create an node of token
  * @param str
+ * @param i
  * @return node of token
  */
 t_node_token	*token_maker(char *str);
