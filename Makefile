@@ -1,5 +1,5 @@
 CC			:= cc
-CFLAGS		:= -MP -MMD -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS		:= -MP -MMD -Wall -g #-Werror -Wextra #-fsanitize=address
 LIBFT_DIR	:= ./subprojects/libft
 LDFLAGS		:= -L$(LIBFT_DIR)
 LDLIBS		:= -lft -lreadline
@@ -12,12 +12,11 @@ BUILTIN		:= env.c
 CTX			:= init.c
 SIGNALS		:= check_sig.c signal.c
 UTILS		:= ft_getenv.c free_env.c ft_isoperator.c
-INPUT		:= fish.c
 PARSER		:=																		\
 				ast_node_helper.c clean_up.c parse_command_helper.c					\
-				parse_simple_command.c parse_pipe_parse.c redirection_create.c 		\
-				redirection_parse.c simple_command_utils.c simple_command_utils.c	\
-				token_cursor.c
+				parse_simple_command.c pipe_parse.c redirection_create.c 			\
+				redirection_parse.c redirection_utils.c simple_command_utils.c		\
+				token_cursor.c														\
 
 TOKENIZER	:= tokenizer.c tokenizer_utils.c
 
@@ -25,7 +24,6 @@ SOURCES =										\
 	$(addprefix src/, $(SRC))					\
 	$(addprefix src/built-in/, $(BUILTIN))		\
 	$(addprefix src/ctx/, $(CTX))				\
-	$(addprefix src/input/, $(INPUT))			\
 	$(addprefix src/signals/, $(SIGNALS))		\
 	$(addprefix src/utils/, $(UTILS))			\
 	$(addprefix src/parser/, $(PARSER))			\
