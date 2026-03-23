@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:18:24 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/23 16:22:26 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/23 18:01:48 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ static void	error_handling(char *str, int *tab, unsigned long long *result)
 //the modulo is to imitate shell exit code
 int	parse_exitcode(char *str, int *err_flag)
 {
-	int			tab[4];
+	int			*tab;
 	int			exitcode;
 	unsigned long long	*result;
 
 	tab = malloc(sizeof(int) * 4);
 	if (!tab)
-		return 0;
+		return (0);
 	result = malloc(sizeof(unsigned long long));
 	if (!result)
 	{
 		free(tab);
-		return 0;
+		return (0);
 	}
 	handle_whitespaces_sign(str, tab);
 	tab[1] = tab[0];
