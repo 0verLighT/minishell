@@ -19,7 +19,7 @@ static void	handle_whitespaces_sign(char *str, int *tab)
 
 	idx = 0;
 	tab[3] = 1;
-	while ((str[idx] => 9 && str[idx] <= 13) || str[idx] == 32)
+	while ((str[idx] >= 9 && str[idx] <= 13) || str[idx] == 32)
 		idx++;
 	if (str[idx] == '+' || str[idx] == '-')
 		if (str[idx] == '-')
@@ -58,7 +58,7 @@ static void	error_handling(char *str, int *tab, unsigned long long *result)
 //the modulo is to imitate shell exit code
 int	parse_exitcode(char *str, int *err_flag)
 {
-	int			*tab[4];
+	int			tab[4];
 	int			exitcode;
 	unsigned long long	*result;
 
@@ -71,12 +71,13 @@ int	parse_exitcode(char *str, int *err_flag)
 		free(tab);
 		return 0;
 	}
-	handle_whitespaces_sign(str, tab, sign);
+	handle_whitespaces_sign(str, tab);
 	tab[1] = tab[0];
 	parse_digit(str, tab, result);
 	error_handling(str, tab, result);
+	*err_flag = tab[2];
 	exitcode = (int)((*result * tab[3]) % 256);
 	free(tab);
-	fee(result);
+	free(result);
 	return (exitcode);
 }
