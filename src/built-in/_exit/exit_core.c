@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_core.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:07 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:09:31 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/23 17:58:15 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	handle_exit(int exicode, t_ctx *ctx)
+static int	handle_exit(int exitcode, t_ctx *ctx)
 {
 	exitcode = ctx->return_code;
 	free_ctx(ctx);

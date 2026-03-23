@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/23 17:22:57 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/23 17:57:06 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "builtin.h"
 
 void	builtin_error(char *builtin, char *arg, char *msg)
 {
