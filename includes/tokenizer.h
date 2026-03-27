@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/23 18:40:35 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/27 20:40:38 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_token
  * @param pos
  * @return length of token starting at pos
  */
-size_t			get_token_len(char *str, int pos);
+size_t			get_token_len(char *str, size_t pos, size_t *content_len);
 /**
  * @brief Allocate and fill a token
  * @param token
@@ -79,7 +79,7 @@ size_t			get_token_len(char *str, int pos);
  * @param index
  * @return 0 on error, 1 on succesfully
  */
-int				fill_token(t_token *token, char *str, int pos, int index);
+int				fill_token(t_token *token, char *str, size_t *pos, int index);
 /**
  * @brief Fill the token one by one
  * @param token
@@ -107,7 +107,7 @@ size_t			strskip(char *str);
  * @param str
  * @return number of token
  */
-size_t			count_token(char *str, size_t i);
+size_t			count_token(char *str);
 /**
  * @brief create an node of token
  * @param str
@@ -118,6 +118,6 @@ t_node_token	*token_maker(char *str);
 /**
  * @brief Free the token struct
  */
-void			free_tokens(t_token *tokens);
+void			free_tokens(t_token *tokens, size_t token_nb);
 
 #endif

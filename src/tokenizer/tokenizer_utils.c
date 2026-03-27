@@ -6,20 +6,20 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/23 18:34:11 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/27 20:39:23 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
-void	free_tokens(t_token *tokens)
+void	free_tokens(t_token *tokens, size_t token_nb)
 {
 	size_t	i;
 
 	if (!tokens)
 		return ;
 	i = 0;
-	while (tokens[i].index)
+	while (i < token_nb)
 		free(tokens[i++].content.ptr);
 	free(tokens);
 	return ;
@@ -35,36 +35,26 @@ size_t	strskip(char *str)
 	return (i);
 }
 
-
-void	isquote(char *str, size_t *i)
-{
-	++*i;
-	while (str[*i] != '"')
-		++*i;
-}
-
-size_t	count_token(char *str, size_t i)
+size_t	count_token(char *str)
 {
 	size_t	token_nb;
+	size_t	i;
+	size_t	len;
+	size_t	_;
 
 	token_nb = 0;
+	i = 0;
 	if (!str)
 		return (0);
 	while (str[i])
 	{
 		while (ft_isspace(str[i]) && str[i])
 			++i;
-		token_nb++;
-		// if (str[i] == '"')
-		// 	isquote(str, &i);
-		if (isdoubleop(str + i))
-			i += 2;
-		else if (isoperator(str[i]))
-			++i;
-		else
+		if (str[i])
 		{
-			while (!ft_isspace(str[i]) && str[i] && !isoperator(str[i]))
-				++i;
+			token_nb++;
+			len = get_token_len(str, i, &_);
+			i += len;
 		}
 	}
 	return (token_nb);
