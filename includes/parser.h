@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:38:37 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/28 00:27:40 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_token		t_token;
  */
 typedef struct s_redirect
 {
-	size_t				type;
 	char				*file;
+	size_t				type;
 	struct s_redirect	*next;
 }	t_redirect;
 /**

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/27 20:40:38 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/28 00:28:47 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ typedef struct s_node_token
  * @brief A token is a chunk of the input with an index That way, we can  
  * work on isolated chunks by giving the index
  * @param index
+ * @param type
  * @param content
 */
 typedef struct s_token
 {
+	size_t			index;
 	t_token_type	type;
-	size_t	index;
 	t_node_token	content;
 }	t_token;
 
