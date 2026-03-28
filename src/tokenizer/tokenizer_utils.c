@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/27 20:39:23 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/28 17:10:59 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ size_t	count_token(char *str)
 	return (token_nb);
 }
 
-
 t_node_token	*token_maker(char *str)
 {
 	t_node_token	*token;
-	size_t	token_start;
-	size_t	len;
+	size_t			token_start;
+	size_t			len;
 
 	if (!str)
 		return (NULL);
@@ -84,5 +83,33 @@ t_node_token	*token_maker(char *str)
 		return (NULL);
 	}
 	ft_memcpy(token->ptr, str + token_start, token->len);
+	return (token);
+}
+
+char	*create_token(char *str, size_t pos, size_t len, size_t content_len)
+{
+	size_t	i;
+	size_t	j;
+	int		quote;
+	char	*token;
+
+	quote = 0;
+	i = 0;
+	j = 0;
+	token = ft_calloc((content_len + 1), sizeof(char));
+	if (!token)
+		return (0);
+	while (i < len)
+	{
+		if ((str[pos + i] == '"' || str[pos + i] == '\'') && !quote)
+			quote = str[pos + i++];
+		else if (quote && str[pos + i] == quote)
+		{
+			quote = 0;
+			i++;
+		}
+		else
+			token[j++] = str[pos + i++];
+	}
 	return (token);
 }

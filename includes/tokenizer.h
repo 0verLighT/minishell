@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/28 00:28:47 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/28 17:25:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,14 @@ t_node_token	*token_maker(char *str);
  * @brief Free the token struct
  */
 void			free_tokens(t_token *tokens, size_t token_nb);
+/**
+ * @brief create a new token
+ * @param str
+ * @param pos
+ * @param len
+ * @param content_len
+ * @return token to add in t_token->content.ptr
+ */
+char *create_token(char *str, size_t pos, size_t len, size_t content_len);
 
 #endif

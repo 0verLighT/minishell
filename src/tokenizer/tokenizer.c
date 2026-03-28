@@ -12,10 +12,10 @@
 
 #include "tokenizer.h"
 
-
-static size_t get_token_len_helper(char *str, size_t pos, size_t len, size_t *content_len)
+static size_t	get_token_len_helper(char *str, size_t pos,
+	size_t len, size_t *content_len)
 {
-	char quote;
+	char	quote;
 
 	quote = 0;
 	while (str[pos + len])
@@ -24,15 +24,15 @@ static size_t get_token_len_helper(char *str, size_t pos, size_t len, size_t *co
 			quote = str[pos + len];
 		else if (quote && str[pos + len] == quote)
 			quote = 0;
-		else if (!quote && (ft_isspace(str[pos + len]) || isoperator(str[pos + len])))
-			break;
+		else if (!quote && (ft_isspace(str[pos + len])
+				|| isoperator(str[pos + len])))
+			break ;
 		else
 			++(*content_len);
 		++len;
 	}
 	return (len);
 }
-
 
 size_t	get_token_len(char *str, size_t pos, size_t *content_len)
 {
@@ -48,37 +48,10 @@ size_t	get_token_len(char *str, size_t pos, size_t *content_len)
 	if (isoperator(str[pos]))
 	{
 		*content_len = 1;
-		return (1);	}
+		return (1);
+	}
 	len += get_token_len_helper(str, pos, len, content_len);
 	return (len);
-}
-
-static char *create_token(char *str, size_t pos, size_t len, size_t content_len)
-{
-	size_t	i;
-	size_t	j;
-	int		quote;
-	char	*token;
-
-	quote = 0;
-	i = 0;
-	j = 0;
-	token = ft_calloc((content_len + 1), sizeof(char));
-	if (!token)
-		return (0);
-	while (i < len)
-	{
-		if ((str[pos + i] == '"' || str[pos + i] == '\'') && !quote)
-			quote = str[pos + i++];
-		else if (quote && str[pos + i] == quote)
-		{
-			quote = 0;
-			i++;
-		}
-		else
-			token[j++] = str[pos + i++];
-	}
-	return (token);
 }
 
 int	fill_token(t_token *token, char *str, size_t *pos, int index)
