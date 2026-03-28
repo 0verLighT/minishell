@@ -22,7 +22,6 @@ sources = files(
   'src/parser/redirection_utils.c',
   'src/parser/simple_command_utils.c',
   'src/parser/token_cursor.c',
-  'src/signals/check_sig.c',
   'src/signals/signal.c',
   'src/tokenizer/tokenizer.c',
   'src/tokenizer/tokenizer_utils.c',
