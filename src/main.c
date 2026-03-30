@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/29 22:46:29 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:22:56 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	content_loop(t_ctx *ctx)
 		if (!line)
 			break ;
 		free(prompt);
-		if(!tokenizing(line))
+		if (!tokenizing(line))
 			return ;
 		if (line[0] != '\0')
 			add_history(line);

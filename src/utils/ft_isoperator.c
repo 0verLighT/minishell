@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 01:05:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/26 01:55:53 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:22:28 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	isdoubleop(char *str)
 {
 	int	i;
 
-	i = 0; 
+	i = 0;
 	if (!str)
 		return (0);
 	if (isoperator(str[i]))

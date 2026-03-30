@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 20:49:11 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:32:24 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int				init_tokens(t_token *tokens, char *str, size_t token_count);
  * @param str
  * @return prompt in token struct
  */
-int			tokenizing(char *str);
+int				tokenizing(char *str);
 
 //tokenizer_utils.c
 /**
@@ -129,6 +129,7 @@ void			free_tokens(t_token *tokens, size_t token_nb);
  * @param content_len
  * @return token to add in t_token->content.ptr
  */
-char *create_token(char *str, size_t pos, size_t len, size_t content_len);
+char			*create_token(char *str, size_t pos, size_t len,
+					size_t content_len);
 
 #endif

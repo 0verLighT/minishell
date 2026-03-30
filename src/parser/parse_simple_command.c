@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 22:48:20 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:21:20 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_ast_node	**get_cmd_node(void)
  */
 static int	process_token(t_parser *parser, t_token *current, t_cmd_ctx *ctx)
 {
-	int result;
+	int	result;
 
 	if (is_redirection(current))
 	{

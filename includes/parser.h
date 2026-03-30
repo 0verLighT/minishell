@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 23:17:42 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:33:40 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,13 @@ typedef struct s_parser
 /**
  * @brief 
  */
-typedef struct s_cmd_ctx {
+typedef struct s_cmd_ctx
+{
 	t_ast_node	*cmd_node;
 	char		**input;
 	int			argc;
 	int			capacity;
-} t_cmd_ctx;
+}	t_cmd_ctx;
 
 /***FUNCTIONS***/
 //ast_node_helper.c

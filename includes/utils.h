@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:59:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/26 01:39:45 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:30:20 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	free_ctx(t_ctx *ctx);
  * @param c one character
  * @return true or false
  */
-int	isoperator(char c);
+int		isoperator(char c);
 /**
  * @brief check heredoc
  * @param str the string
  * @return true or false
  */
-int isdoubleop(char *str);
+int		isdoubleop(char *str);
 #endif
