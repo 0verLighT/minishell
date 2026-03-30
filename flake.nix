@@ -19,6 +19,7 @@
             clang-tools
             pkg-config
             readline
+            lldb_22
           ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             valgrind
             gdb
