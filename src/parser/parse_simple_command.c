@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 20:22:19 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 22:48:20 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,12 @@ static t_ast_node	**get_cmd_node(void)
 }
 
 /**
- * @brief Get all input-related pointers at once
- */
-static void	get_input_context(char ****input, int **argc, int **capacity)
-{
-	static char	***g_input;
-	static int	*g_argc;
-	static int	*g_capacity;
-
-	*input = g_input;
-	*argc = g_argc;
-	*capacity = g_capacity;
-}
-
-/**
  * @brief Process token based on type (redirection or word)
  * @return 
  */
-static int	process_token(t_parser *parser, t_token *current)
+static int	process_token(t_parser *parser, t_token *current, t_cmd_ctx *ctx)
 {
-	char	***input;
-	int		*argc;
-	int		*capacity;
-	int		result;
+	int result;
 
 	if (is_redirection(current))
 	{
@@ -55,15 +38,14 @@ static int	process_token(t_parser *parser, t_token *current)
 	}
 	if (current->type == TOKEN_WORD)
 	{
-		get_input_context(&input, &argc, &capacity);
-		result = handle_word_token(parser, input, argc, capacity);
+		result = handle_word_token(parser, ctx);
 		return (result);
 	}
 	advance(parser);
 	return (1);
 }
 
-int	handle_command_token(t_parser *parser)
+int	handle_command_token(t_parser *parser, t_cmd_ctx *ctx)
 {
 	t_token	*current;
 	int		result;
@@ -71,6 +53,6 @@ int	handle_command_token(t_parser *parser)
 	current = peek_token(parser, 0);
 	if (is_command_end(current))
 		return (0);
-	result = process_token(parser, current);
+	result = process_token(parser, current, ctx);
 	return (result);
 }

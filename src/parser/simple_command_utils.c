@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 04:44:46 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:30:02 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:17:54 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,37 @@ int	is_command_end(t_token *token)
 	return (0);
 }
 
-char	**expand_input_array(char **input, int *capacity)
+char	**expand_input_array(char **input, int capacity)
 {
 	char	**new_input;
 	int		i;
 
-	new_input = malloc(sizeof(char *) * (*capacity * 2));
+	new_input = malloc(sizeof(char *) * (capacity * 2));
 	if (!new_input)
 		return (NULL);
 	i = 0;
-	while (i < *capacity)
+	while (i < capacity)
 	{
 		new_input[i] = input[i];
 		i++;
 	}
 	free(input);
-	*capacity *= 2;
+	capacity *= 2;
 	return (new_input);
 }
 
-int	add_word_to_input(char ***input, int *argc, int *capacity, char *word)
+int	add_word_to_input(char **input, int argc, int capacity, char *word)
 {
-	if (*argc >= *capacity - 1)
+	if (argc >= capacity - 1)
 	{
-		*input = expand_input_array(*input, capacity);
-		if (!*input)
+		input = expand_input_array(input, capacity);
+		if (!input)
 			return (-1);
 	}
-	(*input)[*argc] = ft_strdup(word);
-	if (!(*input)[*argc])
+	input[argc] = ft_strdup(word);
+	if (!input[argc])
 		return (-1);
-	(*argc)++;
+	++argc;
 	return (0);
 }
 
@@ -66,10 +66,11 @@ t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node)
 	return (returned_node);
 }
 
-void	cleanup_on_error(t_ast_node *cmd_node, char **input)
+void	free_cmd_ctx(t_cmd_ctx *ctx)
 {
-	if (cmd_node)
-		free_ast_node(cmd_node);
-	if (input)
-		free_string_array(input);
+	if (ctx->cmd_node)
+		free_ast_node(ctx->cmd_node);
+	if (ctx->input)
+		free_array(ctx->input);
+	free(ctx);
 }

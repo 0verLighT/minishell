@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 20:38:51 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:17:53 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,47 +22,46 @@ int	handle_redirection_token(t_parser *parser, t_ast_node **cmd_node)
 	return (1);
 }
 
-int	handle_word_token(t_parser *parser, char ***input,
-						int *argc, int *capacity)
+int	handle_word_token(t_parser *parser, t_cmd_ctx *ctx)
 {
 	t_token	*current;
 
 	current = peek_token(parser, 0);
-	if (add_word_to_input(input, argc, capacity, current->content.ptr) == -1)
+	if (add_word_to_input(ctx->input, ctx->argc, ctx->capacity, current->content.ptr) == -1)
 		return (-1);
 	advance(parser);
 	return (1);
 }
 
-t_ast_node	*finalize_command_node(t_ast_node *cmd_node,
-									char **input, int argc)
+t_ast_node	*finalize_command_node(t_cmd_ctx *ctx)
 {
-	if (argc == 0)
+	if (ctx->argc == 0)
 	{
-		cleanup_on_error(cmd_node, input);
+		free_cmd_ctx(ctx);
 		ft_dprintf(2, "minishell: syntax error: expected command\n");
 		return (NULL);
 	}
-	input[argc] = NULL;
-	if (!cmd_node)
-		return (create_cmd_node(input, NULL));
-	cmd_node->data.cmd.input = input;
-	return (cmd_node);
+	ctx->input[ctx->argc] = NULL;
+	if (!ctx->cmd_node)
+		return (create_cmd_node(ctx->input, NULL));
+	ctx->cmd_node->data.cmd.input = ctx->input;
+	return (ctx->cmd_node);
 }
 
 //Used to build the command structure
 /**
  * @brief Build the command struture
  * @param paser
+ * @param ctx context of command
  * @return -1 on error, 0 on successfully
  */
-static int	process_command_tokens(t_parser *parser)
+static int	process_command_tokens(t_parser *parser, t_cmd_ctx *ctx)
 {
 	int	result;
 
 	while (parser->current < parser->token_count)
 	{
-		result = handle_command_token(parser);
+		result = handle_command_token(parser, ctx);
 		if (result == 0)
 			break ;
 		if (result == -1)
@@ -85,10 +84,10 @@ t_ast_node	*parse_simple_command(t_parser *parser)
 	if (!ctx->input)
 		return (NULL);
 		
-	if (process_command_tokens(parser) == -1)
+	if (process_command_tokens(parser, ctx) == -1)
 	{
-		cleanup_on_error(ctx->cmd_node, ctx->input);
+		free_cmd_ctx(ctx);
 		return (NULL);
 	}
-	return (finalize_command_node(ctx->cmd_node, ctx->input, ctx->argc));
+	return (finalize_command_node(ctx));
 }

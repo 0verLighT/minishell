@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 20:50:11 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 23:17:42 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ t_ast_node	*create_or_node(t_ast_node *left, t_ast_node *right);
  * @brief Like free split
  * @param array
  */
-void		free_string_array(char **array);
+void		free_array(char **array);
 /**
  * @brief Free a linked list of redir
  * @param redirects
@@ -168,17 +168,13 @@ int			handle_redirection_token(t_parser *parser, t_ast_node **cmd_node);
  * @param input
  * @return -1 on error, 1 on successfully
  */
-int			handle_word_token(t_parser *parser, char ***input,
-				int *argc, int *capacity);
+int			handle_word_token(t_parser *parser, t_cmd_ctx *ctx);
 /**
  * @brief Gives the input to the cmd_node, finalizing it for exec use
- * @param cmd_node
- * @param input
- * @param argc
+ * @param ctx
  * @return AST node
  */
-t_ast_node	*finalize_command_node(t_ast_node *cmd_node,
-				char **input, int argc);
+t_ast_node	*finalize_command_node(t_cmd_ctx *ctx);
 /**
  * @brief Parses a simple command with args and redirections
  * @param parser
@@ -193,9 +189,11 @@ t_ast_node	*parse_simple_command(t_parser *parser);
 
 /**
  * @brief Check the type of token and call the according function
- * @return 
+ * @param parser
+ * @param ctx
+ * @return -1 on error, 0 on succesfully
  */
-int			handle_command_token(t_parser *parser);
+int			handle_command_token(t_parser *parser, t_cmd_ctx *ctx);
 
 //pipe_parse.c
 /**
@@ -258,7 +256,7 @@ int			is_command_end(t_token *token);
  * @param capacity
  * @return the new array
  */
-char		**expand_input_array(char **input, int *capacity);
+char		**expand_input_array(char **input, int capacity);
 /**
  * @brief Adds a word token to the input array, if needed expanded
  * @param input
@@ -267,8 +265,7 @@ char		**expand_input_array(char **input, int *capacity);
  * @param word
  * @return -1 on error, 0 on successfully
  */
-int			add_word_to_input(char ***input, int *argc,
-				int *capacity, char *word);
+int			add_word_to_input(char **input, int argc, int capacity, char *word);
 /**
  * @brief Initializes a command node if not yet created
  * @details Needed in case a redirection appears first in input
@@ -278,10 +275,9 @@ int			add_word_to_input(char ***input, int *argc,
 t_ast_node	*ensure_cmd_node_exists(t_ast_node *cmd_node);
 /**
  * @brief Free if error occues during command parsing
- * @param cmd_node
- * @param input
+ * @param ctx
  */
-void		cleanup_on_error(t_ast_node *cmd_node, char **input);
+void		free_cmd_ctx(t_cmd_ctx *ctx);
 
 //token_cursor.c
 /**
