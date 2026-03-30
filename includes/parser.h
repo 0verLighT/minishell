@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/28 00:27:40 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 20:50:11 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,16 @@ typedef struct s_parser
 	int		token_count;
 	int		current;
 }	t_parser;
+
+/**
+ * @brief 
+ */
+typedef struct s_cmd_ctx {
+	t_ast_node	*cmd_node;
+	char		**input;
+	int			argc;
+	int			capacity;
+} t_cmd_ctx;
 
 /***FUNCTIONS***/
 //ast_node_helper.c
@@ -186,15 +196,6 @@ t_ast_node	*parse_simple_command(t_parser *parser);
  * @return 
  */
 int			handle_command_token(t_parser *parser);
-/**
- * @brief Store pointers in static variables for use by handle_command_token
- * @param cmd_node
- * @param input
- * @param argc
- * @param capacity
- */
-void		set_command_context(t_ast_node **cmd_node, char ***input,
-				int *argc, int *capacity);
 
 //pipe_parse.c
 /**
@@ -321,6 +322,6 @@ int			match_token(t_parser *parser, t_token_type type, int consume);
  * @param error_msg
  * @return 0 on error, 1 on succesfully and cusume the token
  */
-int			expect_token(t_parser *parser, t_token_type type, char *error_msg);
+int			expect_token(t_parser *parser, t_token_type type, char *err_msg);
 
 #endif

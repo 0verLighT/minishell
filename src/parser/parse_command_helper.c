@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:40:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 20:38:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,14 @@ t_ast_node	*finalize_command_node(t_ast_node *cmd_node,
 /**
  * @brief Build the command struture
  * @param paser
- * @param cmd_node
- * @param input
- * @param counters
  * @return -1 on error, 0 on successfully
  */
-static int	process_command_tokens(t_parser *parser, t_ast_node **cmd_node,
-									char ***input, int **counters)
+static int	process_command_tokens(t_parser *parser)
 {
 	int	result;
 
 	while (parser->current < parser->token_count)
 	{
-		set_command_context(cmd_node, input, counters[0], counters[1]);
 		result = handle_command_token(parser);
 		if (result == 0)
 			break ;
@@ -78,23 +73,22 @@ static int	process_command_tokens(t_parser *parser, t_ast_node **cmd_node,
 
 t_ast_node	*parse_simple_command(t_parser *parser)
 {
-	t_ast_node	*cmd_node;
-	char		**input;
-	int			counters[2];
-	int			*counter_ptrs[2];
+	t_cmd_ctx *ctx;
 
-	cmd_node = NULL;
-	counters[0] = 0;
-	counters[1] = 10;
-	counter_ptrs[0] = &counters[0];
-	counter_ptrs[1] = &counters[1];
-	input = malloc(sizeof(char *) * counters[1]);
-	if (!input)
+	ctx = malloc(sizeof(t_cmd_ctx));
+	if (!ctx)
 		return (NULL);
-	if (process_command_tokens(parser, &cmd_node, &input, counter_ptrs) == -1)
+	ctx->cmd_node = NULL;
+	ctx->argc = 0;
+	ctx->capacity = 10;
+	ctx->input = malloc(sizeof(char *) * ctx->capacity);
+	if (!ctx->input)
+		return (NULL);
+		
+	if (process_command_tokens(parser) == -1)
 	{
-		cleanup_on_error(cmd_node, input);
+		cleanup_on_error(ctx->cmd_node, ctx->input);
 		return (NULL);
 	}
-	return (finalize_command_node(cmd_node, input, counters[0]));
+	return (finalize_command_node(ctx->cmd_node, ctx->input, ctx->argc));
 }

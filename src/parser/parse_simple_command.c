@@ -6,25 +6,11 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 18:42:21 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 20:22:19 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-void	set_command_context(t_ast_node **cmd_node, char ***input,
-								int *argc, int *capacity)
-{
-	static t_ast_node	**g_cmd_node;
-	static char			***g_input;
-	static int			*g_argc;
-	static int			*g_capacity;
-
-	g_cmd_node = cmd_node;
-	g_input = input;
-	g_argc = argc;
-	g_capacity = capacity;
-}
 
 /**
  * @brief Get the stored cmd_node pointer

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/22 23:55:59 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/29 22:46:29 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	content_loop(t_ctx *ctx)
 {
 	char	*line;
 	char	*prompt;
-	t_token	*t;
 
 	while (1)
 	{
@@ -49,19 +48,8 @@ static void	content_loop(t_ctx *ctx)
 		if (!line)
 			break ;
 		free(prompt);
-		t = tokenizing(line);
-		if (t)
-		{
-		int i = 0;
-			while (t[i].content.ptr != NULL)
-			{
-				printf("Token [%d] : content = {%s}, len = %zu\n",
-					i, t[i].content.ptr, t[i].content.len);
-			++i;
-			}
-		}
-		free(t->content.ptr);
-		free(t);
+		if(!tokenizing(line))
+			return ;
 		if (line[0] != '\0')
 			add_history(line);
 		free(line);

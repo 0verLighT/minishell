@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/28 17:25:05 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/30 20:49:11 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "libft.h"
 # include "utils.h"
+# include "parser.h"
 
 /**
  * @brief enum of type for token
@@ -88,13 +89,13 @@ int				fill_token(t_token *token, char *str, size_t *pos, int index);
  * @param token_count
  * @return 0 on error, 1 sucessfully
  */
-int				process_tokens(t_token *tokens, char *str, size_t token_count);
+int				init_tokens(t_token *tokens, char *str, size_t token_count);
 /**
  * @brief Main function of tokenzier
  * @param str
  * @return prompt in token struct
  */
-t_token			*tokenizing(char *str);
+int			tokenizing(char *str);
 
 //tokenizer_utils.c
 /**

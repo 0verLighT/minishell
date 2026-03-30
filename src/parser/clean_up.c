@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:19:51 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 17:14:10 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/29 01:59:48 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_string_array(char **array)
 	while (array[i])
 	{
 		free(array[i]);
-		i++;
+		++i;
 	}
 	free(array);
 }

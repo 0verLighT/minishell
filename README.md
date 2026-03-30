@@ -58,7 +58,8 @@ pkg-config --libs readline
 If it returns something like `-L/opt/homebrew/Cellar/readline/8.3.3/lib -lreadline` then you can add libreadline to your PKG_CONFIG_PATH:
 
 ```bash
-export PKG_CONFIG_PATH="/opt/homebrew/Cellar/readline/8.3.3/lib/pkgconfig:$PKG_CONFIG_PATH"
+echo 'export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.zshrc
+source ~/.zshrc
 ```
 
 otherwise, you can install it with Homebrew:

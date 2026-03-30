@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:18:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:37:44 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/29 03:08:09 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_token	*advance(t_parser *parser)
 	if (parser->current >= parser->token_count)
 		return (NULL);
 	consumed = &parser->tokens[parser->current];
-	parser->current++;
+	++parser->current;
 	return (consumed);
 }
 
@@ -56,7 +56,7 @@ int	match_token(t_parser *parser, t_token_type type, int consume)
 	return (1);
 }
 
-int	expect_token(t_parser *parser, t_token_type type, char *error_msg)
+int	expect_token(t_parser *parser, t_token_type type, char *err_msg)
 {
 	t_token	*current;
 	char	*content;
@@ -64,13 +64,13 @@ int	expect_token(t_parser *parser, t_token_type type, char *error_msg)
 	current = peek_token(parser, 0);
 	if (!current)
 	{
-		printf("Syntax error: unexpected end of input. %s\n", error_msg);
+		ft_dprintf(2, "Syntax error: unexpected end of input. %s\n", err_msg);
 		return (0);
 	}
 	if (current->type != type)
 	{
 		content = current->content.ptr;
-		printf("Syntax error: %s (got '%s')\n", error_msg, content);
+		ft_dprintf(2, "Syntax error: %s (got '%s')\n", err_msg, content);
 		return (0);
 	}
 	advance(parser);
