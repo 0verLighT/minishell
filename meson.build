@@ -23,12 +23,15 @@ sources = files(
   'src/parser/simple_command_utils.c',
   'src/parser/token_cursor.c',
   'src/signals/signal.c',
+  'src/tokenizer/init_type_tokens.c',
   'src/tokenizer/tokenizer.c',
   'src/tokenizer/tokenizer_utils.c',
   'src/utils/free_env.c',
   'src/utils/ft_getenv.c',
   'src/utils/ft_isoperator.c',
 )
+
+add_global_arguments('-g3', language : 'c')
 
 deps = [
   dependency('libft'),

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 23:22:03 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/31 20:45:59 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	handle_word_token(t_parser *parser, t_cmd_ctx *ctx)
 	t_token	*current;
 
 	current = peek_token(parser, 0);
-	if (add_word_to_input(ctx->input, ctx->argc,
-			ctx->capacity, current->content.ptr) == -1)
+	if (add_word_to_input(ctx, current->content.ptr) == -1)
 		return (-1);
 	advance(parser);
 	return (1);

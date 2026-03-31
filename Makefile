@@ -18,7 +18,7 @@ PARSER		:=																		\
 				redirection_parse.c redirection_utils.c simple_command_utils.c		\
 				token_cursor.c														\
 
-TOKENIZER	:= tokenizer.c tokenizer_utils.c
+TOKENIZER	:= tokenizer.c tokenizer_utils.c init_type_tokens.c
 
 SOURCES =										\
 	$(addprefix src/, $(SRC))					\

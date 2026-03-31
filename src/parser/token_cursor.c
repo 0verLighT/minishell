@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:18:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/29 03:08:09 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/31 23:30:47 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_parser(t_parser *parser, t_token *tokens, int token_count)
 {
+	init_type_tokens(tokens, token_count);
 	parser->tokens = tokens;
 	parser->token_count = token_count;
 	parser->current = 0;

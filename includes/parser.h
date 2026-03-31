@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 23:33:40 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/31 23:30:02 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,20 +253,17 @@ int			token_to_redir_type(t_token_type type);
 int			is_command_end(t_token *token);
 /**
  * @brief Double the capacity of the array
- * @param input
- * @param capacity
+ * @param ctx
  * @return the new array
  */
-char		**expand_input_array(char **input, int capacity);
+char		**expand_input_array(t_cmd_ctx *ctx);
 /**
  * @brief Adds a word token to the input array, if needed expanded
- * @param input
- * @param argc
- * @param capacity
+ * @param ctx
  * @param word
  * @return -1 on error, 0 on successfully
  */
-int			add_word_to_input(char **input, int argc, int capacity, char *word);
+int			add_word_to_input(t_cmd_ctx *ctx, char *word);
 /**
  * @brief Initializes a command node if not yet created
  * @details Needed in case a redirection appears first in input
@@ -320,5 +317,6 @@ int			match_token(t_parser *parser, t_token_type type, int consume);
  * @return 0 on error, 1 on succesfully and cusume the token
  */
 int			expect_token(t_parser *parser, t_token_type type, char *err_msg);
+
 
 #endif
