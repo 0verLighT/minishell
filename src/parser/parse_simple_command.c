@@ -6,22 +6,11 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 23:21:20 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:06:46 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-/**
- * @brief Get the stored cmd_node pointer
- * @return the command in the node
- */
-static t_ast_node	**get_cmd_node(void)
-{
-	static t_ast_node	**g_cmd_node;
-
-	return (g_cmd_node);
-}
 
 /**
  * @brief Process token based on type (redirection or word)
@@ -33,7 +22,7 @@ static int	process_token(t_parser *parser, t_token *current, t_cmd_ctx *ctx)
 
 	if (is_redirection(current))
 	{
-		result = handle_redirection_token(parser, get_cmd_node());
+		result = handle_redirection_token(parser, ctx->cmd_node);
 		return (result);
 	}
 	if (current->type == TOKEN_WORD)

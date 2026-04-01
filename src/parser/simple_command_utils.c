@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 04:44:46 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/31 20:17:50 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:15:31 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**expand_input_array(t_cmd_ctx *ctx)
 	while (i < ctx->capacity)
 	{
 		new_input[i] = ctx->input[i];
-		i++;
+		++i;
 	}
 	free(ctx->input);
 	ctx->capacity *= 2;

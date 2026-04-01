@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:06:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:40:41 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:09:06 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	print_redir_error(t_token *file_token)
 		ft_dprintf(2, "%s '>>'", line_error);
 	else
 		return ;
+	ft_dprintf(2, "\n");
 }
 
 /**

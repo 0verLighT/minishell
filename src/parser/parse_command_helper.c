@@ -6,18 +6,18 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/31 20:45:59 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:07:20 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	handle_redirection_token(t_parser *parser, t_ast_node **cmd_node)
+int	handle_redirection_token(t_parser *parser, t_ast_node *cmd_node)
 {
-	*cmd_node = ensure_cmd_node_exists(*cmd_node);
-	if (!*cmd_node)
+	cmd_node = ensure_cmd_node_exists(cmd_node);
+	if (!cmd_node)
 		return (-1);
-	if (parse_redirection(parser, *cmd_node) == -1)
+	if (parse_redirection(parser, cmd_node) == -1)
 		return (-1);
 	return (1);
 }
