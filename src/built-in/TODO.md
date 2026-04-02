@@ -3,7 +3,7 @@ cd : DONE
 pwd : DONE
 env : DONE
 exit : DONE
-export
+export : DONE
 unset
 
 .h : NEED TO UPDATE WITH :
@@ -11,9 +11,7 @@ unset
     - pwd functions : DONE
     - env functions : DONE
     - exit functions : DONE
-    - export functions : 
-        - export-utils : DONE
-        - export-core : WORK IN PROGRESS 
+    - export functions : DONE
     - unset functions : 
 
 norminette : WORK IN PROGRESS
