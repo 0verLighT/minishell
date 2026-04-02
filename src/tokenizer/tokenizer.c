@@ -105,7 +105,6 @@ int	tokenizing(char *str)
 		return (0);
 	if (!init_tokens(tokens, str, token_count))
 		return (0);
-	tokens[0].type = 1;
 	for (int i = 0; tokens[i].content.ptr; i++)
 	{
 		printf("Token [%d] : content = {%s}, len = %zu, type = %d\n",

@@ -6,11 +6,43 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:05:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/31 23:29:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/02 04:17:35 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
+
+/**
+ * @brief get index in enum of token type
+ * @param token
+ * @param i
+ * @return index of token type
+ */
+static int	get_type_of_token(t_token *token, size_t i)
+{
+	if (ft_strncmp(token[i].content.ptr, "<<", 2) == 0)
+		return (4);
+	else if (ft_strncmp(token[i].content.ptr, ">>", 2) == 0)
+		return (5);
+	else if (*token[i].content.ptr == '&' || ft_strncmp(token[i].content.ptr, "&&",2) == 0)
+		return (6);
+	else if (ft_strncmp(token[i].content.ptr, "||", 2) == 0)
+		return (7);
+	else if (*token[i].content.ptr == '|')
+		return (1);
+	else if (*token[i].content.ptr == '<')
+		return (2);
+	else if (*token[i].content.ptr == '>')
+		return (3);
+	else if (*token[i].content.ptr == '(')
+		return (8);
+	else if (*token[i].content.ptr == ')')
+		return (9);
+	else if (*token[i].content.ptr == '\0')
+		return (10);
+	else
+		return (0);
+}
 
 void	init_type_tokens(t_token *tokens, size_t token_count)
 {
@@ -20,18 +52,8 @@ void	init_type_tokens(t_token *tokens, size_t token_count)
 	while (i < token_count)
 	{
 		printf("%s\n", tokens[i].content.ptr);
-		if (*tokens[i].content.ptr == '|')
-			tokens[i].type = 1;
-		else if (*tokens[i].content.ptr == '<')
-			tokens[i].type = 2;
-		else if (*tokens[i].content.ptr == '>')
-			tokens[i].type = 3;
-		else if (ft_strncmp(tokens[i].content.ptr, "<<", 2))
-			tokens[i].type = 4;
-		else if (ft_strncmp(tokens[i].content.ptr, ">>", 2))
-			tokens[i].type = 5;
-		else
-			tokens[i].type = 0;
+		tokens[i].type = get_type_of_token(tokens, i);
+		printf("type of token : %d\n", tokens[i].type);
 		++i;
 	}
 }
