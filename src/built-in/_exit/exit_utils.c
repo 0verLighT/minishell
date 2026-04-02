@@ -6,11 +6,11 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:18:24 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/23 18:01:48 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/02 15:44:19 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "minishell.h"
  
 //skip inital whitespace and check for sign, atoi-like
 static void	handle_whitespaces_sign(char *str, int *tab)

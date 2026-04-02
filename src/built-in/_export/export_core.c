@@ -1,23 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   export_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
+/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/18 05:54:40 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/02 15:43:48 by jdessoli         ###   ########.fr       */
+/*   Created: 2026/04/02 16:47:06 by jdessoli          #+#    #+#             */
+/*   Updated: 2026/04/02 16:47:10 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 
-int	env(t_env *env)
-{
-	while (env)
-	{
-		printf("%s\n", env->var);
-		env = env->next;
-	}
-	return (SUCCESS);
-}

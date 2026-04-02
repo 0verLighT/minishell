@@ -6,11 +6,11 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/24 18:52:27 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/02 15:43:33 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "minishell.h"
 
 void	builtin_error(char *builtin, char *arg, char *msg)
 {

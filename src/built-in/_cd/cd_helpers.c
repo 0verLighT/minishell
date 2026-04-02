@@ -6,10 +6,11 @@
 /*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 14:45:53 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 15:12:16 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/02 15:43:08 by jdessoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 //fetch $HOME from env
 static char	*resolve_home(t_ctx *ctx)
