@@ -19,6 +19,11 @@
 
 # include "minishell.h"
 
-
+//used to save the fds, so it doesn't get lost with dup2 calls
+typedef struct s_fdsave
+{
+    int    stdin_fd;
+    int    stdout_fd;
+}    t_fdsave;
 
 #endif
