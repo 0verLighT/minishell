@@ -26,6 +26,11 @@
 # include <limits.h>
 # include "builtin.h"
 # include "signals.h"
+# include <sys/wait.h>
+# include <sys/types.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <string.h>
 
 # ifndef HOST_NAME_MAX
 #  ifdef __APPLE__

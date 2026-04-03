@@ -32,6 +32,13 @@ char	*ft_getenv(t_env *env, char *var);
  * @brief free context variable of minishell
  * @param ctx context
  */
+ 
+//free_ctx.c
 void	free_ctx(t_ctx *ctx);
+
+//init.c
+t_env	*envlast(t_env *env);
+void	envadd_back(t_env **env, t_env *new);
+t_ctx	*init_ctx(t_ctx *ctx, char **envp)
 
 #endif
