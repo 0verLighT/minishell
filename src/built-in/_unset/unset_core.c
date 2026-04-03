@@ -16,8 +16,7 @@
 //match the key in env list
 static int	is_matching_key(const char *var, const char *key, size_t key_len)
 {
-
-	int key_check;
+	int	key_check;
 
 	if (ft_strncmp(var, key, key_len) == 0
 		&& (var[key_len] == '=' || var[key_len] == '\0'))

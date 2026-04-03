@@ -17,7 +17,7 @@ static int	export_one(char *arg, t_ctx *ctx)
 {
 	char	*val_assign;
 	char	*key;
-	int	setenv_success_check;
+	int		setenv_success_check;
 
 	val_assign = ft_strchr(arg, '=');
 	if (!val_assign)

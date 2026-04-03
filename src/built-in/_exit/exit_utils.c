@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
- 
+
 //skip inital whitespace and check for sign, atoi-like
 static void	handle_whitespaces_sign(char *str, int *tab)
 {
@@ -46,20 +46,19 @@ static void	parse_digit(char *str, int *tab, unsigned long long *result)
 //negative overflow, positive overflow
 static void	error_handling(char *str, int *tab, unsigned long long *result)
 {
-
 	if (str[tab[0]]
-    || tab[0] - tab[1] > 20
-    || (tab[3] == -1 && (*result - 1) > LONG_MAX)
-    || (tab[3] == 1  && *result > LONG_MAX))
-    tab[2] = 1;
+		|| tab[0] - tab[1] > 20
+		|| (tab[3] == -1 && (*result - 1) > LONG_MAX)
+		|| (tab[3] == 1 && *result > LONG_MAX))
+		tab[2] = 1;
 }
 
 //in tab, 0 is for i, 1 for j, 2 for err_flag, 3 for sign
 //the modulo is to imitate shell exit code
 int	parse_exitcode(char *str, int *err_flag)
 {
-	int			*tab;
-	int			exitcode;
+	int					*tab;
+	int					exitcode;
 	unsigned long long	*result;
 
 	tab = malloc(sizeof(int) * 4);

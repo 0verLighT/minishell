@@ -18,7 +18,7 @@ static int	update_env(t_ctx *ctx, char *old_cwd)
 {
 	char	*new_cwd;
 	int		ret;
- 
+
 	new_cwd = getcwd(NULL, 0);
 	if (!new_cwd)
 	{
@@ -78,8 +78,8 @@ int	cd_core(t_token *tokens, int token_count, t_ctx *ctx)
 {
 	char	*old_cwd;
 	char	*target;
-	int	tab[2];
-	int	update_flag;
+	int		tab[2];
+	int		update_flag;
 
 	tab[0] = token_count;
 	tab[1] = 0;
