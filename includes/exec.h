@@ -26,4 +26,7 @@ typedef struct s_fdsave
     int    stdout_fd;
 }    t_fdsave;
 
+//exec_core.c
+int	exec_node(t_ast_node *node, t_ctx *ctx);
+
 #endif

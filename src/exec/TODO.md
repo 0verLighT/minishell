@@ -1,4 +1,4 @@
-- exec-core (AST walker) :
+- exec-core (AST walker) : DONE
 
 - exec-cmd (Node-cmd handler, forks and dispatches) :
 
@@ -21,7 +21,7 @@
 - exec-error (handle command not found, permission denied and such) :
 
     - exec.h:
-        - exec-core :
+        - exec-core : DONE
         - exec-cmd :
         - exec-pipe :
         - exec-logical :
