@@ -13,7 +13,7 @@ CTX			:= init.c
 SIGNALS		:= signal.c
 UTILS		:= ft_getenv.c free_env.c ft_isoperator.c
 PARSER		:=																		\
-				ast_node_helper.c clean_up.c parse_command_helper.c					\
+				ast_node_helper.c parser_free.c parse_command_helper.c				\
 				parse_simple_command.c pipe_parse.c redirection_create.c 			\
 				redirection_parse.c redirection_utils.c simple_command_utils.c		\
 				token_cursor.c														\

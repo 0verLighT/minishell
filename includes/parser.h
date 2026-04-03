@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/01 16:07:45 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/03 03:19:01 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,9 +173,10 @@ int			handle_word_token(t_parser *parser, t_cmd_ctx *ctx);
 /**
  * @brief Gives the input to the cmd_node, finalizing it for exec use
  * @param ctx
+ * @param parser
  * @return AST node
  */
-t_ast_node	*finalize_command_node(t_cmd_ctx *ctx);
+t_ast_node	*finalize_command_node(t_cmd_ctx *ctx, t_parser *parser);
 /**
  * @brief Parses a simple command with args and redirections
  * @param parser
@@ -317,6 +318,17 @@ int			match_token(t_parser *parser, t_token_type type, int consume);
  * @return 0 on error, 1 on succesfully and cusume the token
  */
 int			expect_token(t_parser *parser, t_token_type type, char *err_msg);
-
-
+/**
+ * @brief Prints syntax error matching bash's format
+ * @details Shows what unexpected token was found after redirection
+ * @param file_token
+ */
+void		print_redir_error(t_token *file_token);
+/**
+ * @brief Build the command struture
+ * @param paser
+ * @param ctx context of command
+ * @return -1 on error, 0 on successfully
+ */
+int			process_command_tokens(t_parser *parser, t_cmd_ctx *ctx);
 #endif

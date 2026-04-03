@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 04:44:46 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/01 16:15:31 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/03 03:10:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ int	is_command_end(t_token *token)
 {
 	if (!token)
 		return (1);
-	if (token->type == TOKEN_PIPE || token->type == TOKEN_AND
-		|| token->type == TOKEN_OR || token->type == TOKEN_EOF)
+	if (token->type == TOKEN_PIPE
+		|| token->type == TOKEN_AND
+		|| token->type == TOKEN_OR
+		|| token->type == TOKEN_EOF
+		|| token->type == TOKEN_RPAREN
+	)
 		return (1);
 	return (0);
 }

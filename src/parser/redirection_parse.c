@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:06:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/01 16:09:06 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/03 01:04:18 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	validate_redir_filename(t_token *file_token)
  * @details Shows what unexpected token was found after redirection
  * @param file_token
  */
-static void	print_redir_error(t_token *file_token)
+void	print_redir_error(t_token *file_token)
 {
 	const char	*line_error = "minishel: syntax error near unexpected token";
 

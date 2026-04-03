@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:06:01 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 18:59:22 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/03 03:22:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	is_pipe_operator(t_parser *parser)
 		return (0);
 	return (token->type == TOKEN_PIPE);
 }
-
+//! next is always NULL atfer -> `ls |` OR `ls &`
 /**
  * @brief Check if pipe's at valid pos
  * @details (neither at start nor end of input)
@@ -46,7 +46,7 @@ static int	validate_pipe_position(t_parser *parser, t_ast_node *left)
 	next = peek_token(parser, 1);
 	if (!next || next->type == TOKEN_EOF || next->type == TOKEN_PIPE)
 	{
-		ft_dprintf(2, "minishell: syntax error near unexpected token `|'\n");
+		ft_dprintf(2, "minishell: syntax error :(\n");
 		return (0);
 	}
 	return (1);
