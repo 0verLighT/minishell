@@ -17,6 +17,15 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+//.h of the different minishell parts
+# include "builtin.h"
+# include "exec.h"
+# include "input.h"
+# include "parser.h"
+# include "signals.h"
+# include "tokenizer.h"
+# include "utils.h"
+//lib needed for the whole project
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
@@ -24,8 +33,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <limits.h>
-# include "builtin.h"
-# include "signals.h"
 # include <sys/wait.h>
 # include <sys/types.h>
 # include <fcntl.h>
