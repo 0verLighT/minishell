@@ -5,47 +5,31 @@
 
 [![wakatime](https://wakatime.com/badge/user/1c291166-2001-49b1-85d5-2e496934f6a6/project/3fa2f1f8-5f97-41ca-8fae-14543d4f8c45.svg)](https://wakatime.com/badge/user/1c291166-2001-49b1-85d5-2e496934f6a6/project/3fa2f1f8-5f97-41ca-8fae-14543d4f8c45)
 
-
-# Dev
-
-
 ## to check
 
-- [ ] `env -i`
 - [ ] run into minishell `program recived SIGfault`
 - [ ] `echo "'$a' + "$a""` -> `echo '$a'`
 - [ ] strace (command)
-- [x] Crtl + c return code -> 130
 
+## parsing
 
-## parsing 
-
-- [ ] `|` first word return an error
 - [ ] make redirection
 - [ ] make heredoc
-- [ ] 
-
 
 ## expand
 
+## built-in
 
-
-
-
-## built-in 
-
-- [ ] env
+- [x] env
 - [ ] pwd
 - [ ] cd
 - [ ] export
 - [ ] unset
 - [ ] exit
 - [ ] echo
-    - [ ] `-n`
-
+  - [ ] `-n`
 
 ## built-in logic
-
 
 ### Macos issue (Meson)
 
@@ -59,6 +43,8 @@ If it returns something like `-L/opt/homebrew/Cellar/readline/8.3.3/lib -lreadli
 
 ```bash
 echo 'export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.zshrc
+echo 'export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig:$PKG_CONFIG_PATH"' >> ~/.bashrc
+source ~/.bashrc
 source ~/.zshrc
 ```
 
