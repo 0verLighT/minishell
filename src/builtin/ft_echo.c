@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 15:15:23 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 20:17:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/05 01:07:49 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_echo(char **argv, t_ctx *ctx)
 	i = skip_n_flags(argv, &newline);
 	while (argv[i])
 	{
-		ft_dprintf(1,"%s", argv[i]);
+		ft_dprintf(1, "%s", argv[i]);
 		if (argv[i + 1])
 			ft_dprintf(1, " ");
 		++i;

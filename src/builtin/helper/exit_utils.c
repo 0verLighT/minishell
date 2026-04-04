@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:18:24 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 20:53:46 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/05 01:08:57 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	handle_whitespaces_sign(char *str, int *tab)
 			tab[3] = -1;
 	tab[0] = idx;
 }
+
 /**
  * @brief increment result with str, atio-like
  * @param str

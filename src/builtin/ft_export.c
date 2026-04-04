@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 16:47:06 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 20:30:24 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/05 01:08:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	export_one(char *arg, t_ctx *ctx)
  */
 static int	handle_arg(char *arg, t_ctx *ctx)
 {
-	int export_one_check;
+	int	export_one_check;
 
 	if (!is_valid_identifier(arg))
 	{

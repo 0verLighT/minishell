@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/04 21:01:32 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/05 01:09:54 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ typedef enum e_builtin_id
 //needed for a dispatch table, maping built-in name to func
 typedef struct s_builtin_entry
 {
-	const char	*name;
+	const char		*name;
 	t_builtin_id	id;
-	int		(*func)(char **argv, t_ctx *ctx);
+	int				(*func)(char **argv, t_ctx *ctx);
 }	t_builtin_entry;
 
 /**
@@ -118,7 +118,7 @@ int		parse_exitcode(char *str, int *err_flag);/**
  * @param must_free
  */
 char	*resolve_target(t_token *tokens, int token_count, t_ctx *ctx,
-				int *must_free);
+			int *must_free);
 /**
  * @brief Updates key=value node, creates the node if needed
  * @param env
