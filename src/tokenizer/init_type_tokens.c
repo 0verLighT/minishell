@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:05:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/05 00:45:53 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/05 00:50:56 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	get_type_of_token(t_token *token, size_t i)
 		return (4);
 	else if (ft_strncmp(token[i].content.ptr, ">>", 2) == 0)
 		return (5);
-	else if (*token[i].content.ptr == '&' || ft_strncmp(token[i].content.ptr, "&&",2) == 0)
+	else if (*token[i].content.ptr == '&'
+		|| ft_strncmp(token[i].content.ptr, "&&", 2) == 0)
 		return (6);
 	else if (ft_strncmp(token[i].content.ptr, "||", 2) == 0)
 		return (7);
