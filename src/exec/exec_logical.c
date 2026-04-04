@@ -44,7 +44,7 @@ static int	exec_or(t_ast_node *node, t_ctx *ctx)
 int	exec_logical(t_ast_node *node, t_ctx *ctx)
 {
 	int	ret_and;
-	int ret_or;
+	int	ret_or;
 
 	if (node->type == NODE_AND)
 	{
