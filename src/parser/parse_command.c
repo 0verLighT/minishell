@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 03:21:59 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/04 03:43:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	process_command_tokens(t_parser *parser, t_cmd_ctx *ctx)
 	while (parser->current < parser->token_count)
 	{
 		result = handle_command_token(parser, ctx);
-		printf("%d, %s\n", result, parser->tokens->content.ptr);
 		if (result == 0)
 			break ;
 		if (result == -1)

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:05:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/04 03:25:23 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/04 03:43:31 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ void	init_type_tokens(t_token *tokens, size_t token_count)
 	i = 0;
 	while (i < token_count)
 	{
-		printf("%s\n", tokens[i].content.ptr);
 		tokens[i].type = get_type_of_token(tokens[i].content.ptr);
-		printf("type of token : %d\n", tokens[i].type);
 		++i;
 	}
 }
