@@ -1,11 +1,21 @@
 name: Auto docs doxygen
 
-on: [ workflow_dispatch, push]
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'includes/**'
 
 permissions: 
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   auto-docs:
     if: github.event_name == 'workflow_dispatch'  || contains(github.event.head_commit.message, 'docs')
@@ -14,16 +24,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Clone by the runner
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
-          submodules: false
+          submodules: true
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Init submodules
-        uses: ./.github/actions/submodules
-        with:
-          ssh_private_key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: Clone Doxygen Awesome CSS
         run: git clone https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
       - name: Install dependencies

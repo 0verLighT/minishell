@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:19:51 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 03:04:59 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:42:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Like free Split
-void	free_string_array(char **array)
+void	free_array(char **array)
 {
 	int	i;
 
@@ -23,12 +22,11 @@ void	free_string_array(char **array)
 	while (array[i])
 	{
 		free(array[i]);
-		i++;
+		++i;
 	}
 	free(array);
 }
 
-//Used to free a linked list of redir
 void	free_redirects(t_redirect *redirects)
 {
 	t_redirect	*tmp;
@@ -42,21 +40,26 @@ void	free_redirects(t_redirect *redirects)
 	}
 }
 
-//Used to free the data in a command node
+/**
+ * @brief Free the data in a command node
+ * @param node the AST
+ */
 static void	free_cmd_node(t_ast_node *node)
 {
-	free_string_array(node->data.cmd.input);
+	free_array(node->data.cmd.input);
 	free_redirects(node->data.cmd.redirects);
 }
 
-//Used to free a pipe, and, or node
+/**
+ * @brief Free a pipe, and, or node
+ * @param node the AST
+ */
 static void	free_binary_node(t_ast_node *node)
 {
 	free_ast_node(node->data.pair.left);
 	free_ast_node(node->data.pair.right);
 }
 
-//Used to free the entire AST
 void	free_ast_node(t_ast_node *node)
 {
 	if (!node)

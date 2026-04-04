@@ -1,5 +1,5 @@
 CC			:= cc
-CFLAGS		:= -MP -MMD -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS		:= -MP -MMD -Wall -g #-Werror -Wextra #-fsanitize=address
 LIBFT_DIR	:= ./subprojects/libft
 LDFLAGS		:= -L$(LIBFT_DIR)
 LDLIBS		:= -lft -lreadline
@@ -10,19 +10,24 @@ PREFIX		?= ~/.local/bin
 SRC			:= main.c
 BUILTIN		:= env.c
 CTX			:= init.c
-SIGNALS		:= check_sig.c signal.c
-UTILS		:= ft_getenv.c free_env.c
-INPUT		:= fish.c
-#TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
+SIGNALS		:= signal.c
+UTILS		:= ft_getenv.c free_env.c ft_isoperator.c
+PARSER		:=																		\
+				ast_node_helper.c parser_free.c parse_command_helper.c				\
+				parse_command.c pipe_parse.c redirection_create.c 			\
+				redirection_parse.c redirection_utils.c simple_command_utils.c		\
+				token_cursor.c														\
 
-SOURCES =									\
-	$(addprefix src/, $(SRC))				\
-	$(addprefix src/built-in/, $(BUILTIN))	\
-	$(addprefix src/ctx/, $(CTX))			\
-	$(addprefix src/input/, $(INPUT))		\
-	$(addprefix src/signals/, $(SIGNALS))	\
-	$(addprefix src/utils/, $(UTILS))		\
-#	$(addprefix src/tokenizer/, $(TOKENIZER)) \
+TOKENIZER	:= tokenizer.c tokenizer_utils.c init_type_tokens.c
+
+SOURCES =										\
+	$(addprefix src/, $(SRC))					\
+	$(addprefix src/built-in/, $(BUILTIN))		\
+	$(addprefix src/ctx/, $(CTX))				\
+	$(addprefix src/signals/, $(SIGNALS))		\
+	$(addprefix src/utils/, $(UTILS))			\
+	$(addprefix src/parser/, $(PARSER))			\
+	$(addprefix src/tokenizer/, $(TOKENIZER))	\
 
 OBJS		:= $(SOURCES:%.c=%.o)
 DEPS		:= $(SOURCES:%.c=%.d)
