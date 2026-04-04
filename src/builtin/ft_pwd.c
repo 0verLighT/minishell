@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd_core.c                                         :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:24:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/01 10:42:45 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 20:30:55 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "builtin.h"
+
+/**
+ * @brief 
+ */
 static char	*get_current_dir_pwd(void)
 {
 	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		perror("pwd");
+		builtin_error("pwd", NULL, strerror(errno));
 	return (cwd);
 }
 
-int	pwd_core(void)
+int	ft_pwd(void)
 {
 	char	*cwd;
-	size_t	len;
 
-	len = 0;
 	cwd = get_current_dir_pwd();
 	if (!cwd)
 		return (1);
-	while (cwd[len])
-		len++;
-	write(1, cwd, len);
-	write(1, "\n", 1);
+	ft_dprintf(1, "%s\n", cwd);
 	free(cwd);
-	return (0);
+	return (SUCCESS);
 }
