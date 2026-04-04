@@ -28,5 +28,9 @@ typedef struct s_fdsave
 
 //exec_core.c
 int	exec_node(t_ast_node *node, t_ctx *ctx);
+//exec_logical.c
+int	exec_logical(t_ast_node *node, t_ctx *ctx);
+//exec_cmd.c
+int	exec_cmd(t_ast_node *node, t_ctx *ctx);
 
 #endif

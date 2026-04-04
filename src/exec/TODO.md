@@ -1,10 +1,10 @@
 - exec-core (AST walker) : DONE
 
-- exec-cmd (Node-cmd handler, forks and dispatches) :
+- exec-cmd (Node-cmd handler, forks and dispatches) : DONE
 
 - exec-pipe (Node-pipe handle) :
 
-- exec-logical (Node-and Node-or handler) :
+- exec-logical (Node-and Node-or handler) : DONE
 
 - exec-builtin (builtin detection and dispatch through table) :
 
@@ -22,9 +22,9 @@
 
     - exec.h:
         - exec-core : DONE
-        - exec-cmd :
+        - exec-cmd : DONE
         - exec-pipe :
-        - exec-logical :
+        - exec-logical : DONE
         - exec-builtin :
         - exec-external :
         - exec-redir :
