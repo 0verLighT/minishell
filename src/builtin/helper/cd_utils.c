@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_helpers.c                                       :+:      :+:    :+:   */
+/*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 14:45:53 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 15:43:08 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 20:56:03 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
-//fetch $HOME from env
+/**
+ * @brief fetch $HOME from env
+ * @param ctx
+ */
 static char	*resolve_home(t_ctx *ctx)
 {
 	char	*target;
@@ -23,7 +26,10 @@ static char	*resolve_home(t_ctx *ctx)
 	return (target);
 }
 
-//fetch $OLDPWD and print it
+/**
+ * @brief fetch $OLDPWD and print it
+ * @param ctx
+ */
 static char	*resolve_oldpwd(t_ctx *ctx)
 {
 	char	*target;
@@ -34,11 +40,15 @@ static char	*resolve_oldpwd(t_ctx *ctx)
 		builtin_error("cd", NULL, "OLDPWD not set");
 		return (NULL);
 	}
-	ft_putendl_fd(target, STDOUT_FILENO);
+	ft_dprintf(1, "%s\n", target);
 	return (target);
 }
 
-//Fetch the arg for cd and activate a must_free flag
+/**
+ * @brief Fetch the arg for cd and activate a must_free flag
+ * @param tokens
+ * @param must_free
+ */
 static char	*resolve_arg(t_token *tokens, int *must_free)
 {
 	char	*arg;
@@ -50,7 +60,11 @@ static char	*resolve_arg(t_token *tokens, int *must_free)
 	return (arg);
 }
 
-//Handle ~ and - arg for cd
+/**
+ * @brief Handle ~ and - arg for cd 
+ * @param arg
+ * @param ctx
+ */
 static char	*resolve_tilde_or_dash(char *arg, t_ctx *ctx)
 {
 	if (ft_strcmp(arg, "~") == 0)
@@ -66,8 +80,6 @@ static char	*resolve_tilde_or_dash(char *arg, t_ctx *ctx)
 	return (arg);
 }
 
-//handle no arg hypothesis, call previous functions, 
-//set must_free flag to 0 if it was a tilde or dash arg
 char	*resolve_target(t_token *tokens, int token_count, t_ctx *ctx,
 				int *must_free)
 {

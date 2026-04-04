@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 15:53:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 16:46:37 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 20:46:43 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//Help check for a valid variable name, so alpha or underscore for 1st char
-//and alphanum or underscore for the following chars
-//_VAR123 is a valid var name, 1VAR isn't
+/**
+ * @brief check for a valid variable name, so alpha or underscore
+ * for 1st char and alphanum or underscore for the following chars
+ * @details _VAR123 is a valid var name, 1VAR isn't
+ * @param c
+ * @param first
+ */
 static int	is_valid_identifier_char(char c, int first)
 {
 	int	is_first_char;
@@ -29,7 +33,6 @@ static int	is_valid_identifier_char(char c, int first)
 	return (isnt_first_char);
 }
 
-//Check if KEY and KEY=value form are proper export format
 int	is_valid_identifier(const char *str)
 {
 	int	i;
@@ -48,9 +51,12 @@ int	is_valid_identifier(const char *str)
 	return (1);
 }
 
-//Search for a value assignment, if there's none it's just a key declaration
-//therefore gives the bash-like output
-//If there is, isolate the key, print what must be, free key
+/**
+ * @brief Search for a value assignment
+ * @details If there's none it's just a key declaration 
+ * therefore gives the bash-like output.
+ * If there is, isolate the key, print what must be, free key
+ */
 static void	print_export_entry(const char *var)
 {
 	const char	*val_assign;
@@ -59,18 +65,13 @@ static void	print_export_entry(const char *var)
 	val_assign = ft_strchr(var, '=');
 	if (!val_assign)
 	{
-		ft_putstr_fd("declare -x ", STDOUT_FILENO);
-		ft_putendl_fd(var, STDOUT_FILENO);
+		ft_dprintf(1, "declare -x %s\n", var);
 		return ;
 	}
 	key = ft_substr(var, 0, val_assign - var);
 	if (!key)
 		return ;
-	ft_putstr_fd("declare -x ", STDOUT_FILENO);
-	ft_putstr_fd(key, STDOUT_FILENO);
-	ft_putstr_fd("=\"", STDOUT_FILENO);
-	ft_putstr_fd(eq + 1, STDOUT_FILENO);
-	ft_putendl_fd("\"", STDOUT_FILENO);
+	ft_dprintf(1, "declare -x %s=\"%s\"", key, val_assign + 1);
 	free(key);
 }
 

@@ -17,6 +17,17 @@ sources = files(
   'src/utils/ft_getenv.c',
   'src/utils/free_env.c',
   'src/input/fish.c',
+  'src/builtin/helper/builtin_utils.c',
+  'src/builtin/helper/cd_utils.c',
+  'src/builtin/helper/exit_utils.c',
+  'src/builtin/helper/export_utils.c',
+  'src/builtin/ft_cd.c',
+  'src/builtin/ft_echo.c',
+  'src/builtin/ft_env.c',
+  'src/builtin/ft_exit.c',
+  'src/builtin/ft_export.c',
+  'src/builtin/ft_pwd.c',
+  'src/builtin/ft_unset.c',
 )
 
 deps = [

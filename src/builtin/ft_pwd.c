@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd_core.c                                         :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:24:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 15:46:16 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 20:30:55 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
+/**
+ * @brief 
+ */
 static char	*get_current_dir_pwd(void)
 {
 	char	*cwd;
@@ -22,14 +25,14 @@ static char	*get_current_dir_pwd(void)
 	return (cwd);
 }
 
-int	pwd_core(void)
+int	ft_pwd(void)
 {
 	char	*cwd;
 
 	cwd = get_current_dir_pwd();
 	if (!cwd)
 		return (1);
-	ft_putendl_fd(cwd, STDOUT_FILENO);
+	ft_dprintf(1, "%s\n", cwd);
 	free(cwd);
 	return (SUCCESS);
 }
