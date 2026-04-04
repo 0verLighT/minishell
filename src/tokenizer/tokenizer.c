@@ -105,11 +105,6 @@ int	tokenizing(char *str)
 		return (0);
 	if (!init_tokens(tokens, str, token_count))
 		return (0);
-	for (int i = 0; tokens[i].content.ptr; i++)
-	{
-		printf("Token [%d] : content = {%s}, len = %zu, type = %d\n",
-			i, tokens[i].content.ptr, tokens[i].content.len, tokens[i].type);
-	}
 	parser = malloc(sizeof(t_parser));
 	ast = malloc(sizeof(t_ast_node));
 	if (!ast || !parser)

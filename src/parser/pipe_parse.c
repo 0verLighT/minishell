@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:06:01 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 03:22:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/04 03:22:12 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	is_pipe_operator(t_parser *parser)
 		return (0);
 	return (token->type == TOKEN_PIPE);
 }
+
 //! next is always NULL atfer -> `ls |` OR `ls &`
 /**
  * @brief Check if pipe's at valid pos

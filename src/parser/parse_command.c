@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 03:19:05 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/04 03:21:59 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ int	handle_word_token(t_parser *parser, t_cmd_ctx *ctx)
 
 t_ast_node	*finalize_command_node(t_cmd_ctx *ctx, t_parser *parser)
 {
+	const char	*line_error = "minishel: syntax error near unexpected token";
+
 	if (ctx->argc == 0)
 	{
 		free_cmd_ctx(ctx);
 		if (parser->tokens->type == TOKEN_PIPE)
-			ft_dprintf(2, "minishell: syntax error near unexpected token `|'\n");
+			ft_dprintf(2, "%s `|'\n", line_error);
 		else if (parser->tokens->type == TOKEN_AND)
-			ft_dprintf(2, "minishell: syntax error near unexpected token `&'\n");
+			ft_dprintf(2, "%s `&'\n", line_error);
 		else if (parser->tokens->type == TOKEN_RPAREN)
-			ft_dprintf(2, "minishell: syntax error near unexpected token `)'\n");
+			ft_dprintf(2, "%s `)'\n", line_error);
 		return (NULL);
 	}
 	ctx->input[ctx->argc] = NULL;

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/31 23:29:11 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/04 03:25:35 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ char			*create_token(char *str, size_t pos, size_t len,
  * @param tokens
  * @param token_count
  */
-void		init_type_tokens(t_token *tokens, size_t token_count);
+void			init_type_tokens(t_token *tokens, size_t token_count);
 
 #endif
