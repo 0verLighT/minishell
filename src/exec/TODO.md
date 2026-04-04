@@ -6,7 +6,7 @@
 
 - exec-logical (Node-and Node-or handler) : DONE
 
-- exec-builtin (builtin detection and dispatch through table) :
+- exec-builtin (builtin detection and dispatch through table) : DONE
 
 - exec-external (execve + PATH resolution) :
 
@@ -25,7 +25,7 @@
         - exec-cmd : DONE
         - exec-pipe :
         - exec-logical : DONE
-        - exec-builtin :
+        - exec-builtin : DONE
         - exec-external :
         - exec-redir :
         - exec-heredoc :
