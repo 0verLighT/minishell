@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 15:53:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 20:46:43 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/06 01:37:09 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	is_valid_identifier_char(char c, int first)
 	return (isnt_first_char);
 }
 
-int	is_valid_identifier(const char *str)
+int	is_valid_identifier(char *str)
 {
 	int	i;
 

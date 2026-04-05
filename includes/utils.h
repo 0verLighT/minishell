@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:59:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/30 23:30:20 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/05 01:16:57 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "minishell.h"
 
 typedef struct s_ctx	t_ctx;
+typedef struct s_env	t_env;
 
 /**
  * @brief get content of environement variable

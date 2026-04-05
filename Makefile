@@ -17,7 +17,7 @@ PARSER			:=																	\
 				ast_node_helper.c parser_free.c parse_command_helper.c				\
 				parse_command.c pipe_parse.c redirection_create.c 					\
 				redirection_parse.c redirection_utils.c simple_command_utils.c		\
-				token_cursor.c														\
+				token_cursor.c
 TOKENIZER		:= tokenizer.c tokenizer_utils.c init_type_tokens.c
 
 SOURCES =													\

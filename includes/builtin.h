@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/05 01:09:54 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/06 01:36:31 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_env	t_env;
 # ifndef FAIL
 #  define FAIL 1
 # endif
+
+typedef struct s_ctx	t_ctx;
+typedef struct s_token	t_token;
 
 //needed for dispatching the built-ins
 typedef enum e_builtin_id
