@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/06 01:36:31 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 00:47:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "minishell.h"
 # include "tokenizer.h"
 # include <sys/errno.h>
+# include <string.h>
 
 typedef struct s_env	t_env;
 

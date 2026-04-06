@@ -11,7 +11,7 @@ SRC				:= main.c
 BUILTIN			:= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c
 BUILTIN_HELPER	:= builtin_utils.c cd_utils.c exit_utils.c export_utils.c
 CTX				:= init.c
-SIGNALS			:= check_sig.c signal.c
+SIGNALS			:= signal.c
 UTILS			:= ft_getenv.c free_env.c
 PARSER			:=																	\
 				ast_node_helper.c parser_free.c parse_command_helper.c				\
@@ -23,7 +23,7 @@ TOKENIZER		:= tokenizer.c tokenizer_utils.c init_type_tokens.c
 SOURCES =													\
 	$(addprefix src/, $(SRC))								\
 	$(addprefix src/builtin/, $(BUILTIN))					\
-	$(addprefix src/builtin/helper, $(BUILTIN_HELPER))		\
+	$(addprefix src/builtin/helper/, $(BUILTIN_HELPER))		\
 	$(addprefix src/ctx/, $(CTX))							\
 	$(addprefix src/signals/, $(SIGNALS))					\
 	$(addprefix src/utils/, $(UTILS))						\

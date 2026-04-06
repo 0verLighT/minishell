@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:07 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 19:59:13 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 00:48:21 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_exit(char **argv, t_ctx *ctx)
 	int	err_flag;
 	int	exitcode;
 
+	exitcode = 0;
 	ft_dprintf(1, "exit");
 	if (!argv[1])
 	{
