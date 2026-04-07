@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:02:09 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 21:03:29 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/07 03:32:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "exec.h"
 //Basically a dic with key value pairs, being name and enum
 //the NULL serves as a sentinel, just like \0 on a string
 void	init_builtins(t_builtin_entry *builtins)

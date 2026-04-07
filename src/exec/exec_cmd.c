@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 20:01:53 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 20:03:50 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/07 03:34:07 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exec.h"
 
 //Saves the current fd, run the builtin, then restore fd
 //The saving is needed because some bultin like export modify

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_core.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 21:49:48 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 21:55:27 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/07 03:34:49 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exec.h"
 
 //asses what to call depending on the node type
 static int	exec_dispatch(t_ast_node *node, t_ctx *ctx)

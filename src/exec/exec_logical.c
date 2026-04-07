@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_logical.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 19:37:32 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 19:44:08 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/07 03:34:58 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exec.h"
 
 //Mimic && by executing left node first, even if right fail
 //if both succeed right is returned

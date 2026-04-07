@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:33:52 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 01:34:16 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/07 03:38:36 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exec.h"
 
 //wrap pipe with perror, same logic as cd_core in builtin folder
 static int	open_pipe(int fd[2])

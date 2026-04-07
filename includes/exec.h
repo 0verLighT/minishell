@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/07 18:31:33 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 03:36:41 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@
 # define EXEC_H
 
 # include "minishell.h"
+# include "builtin.h"
 
 //used to save the fds, so it doesn't get lost with dup2 calls
 typedef struct s_fdsave
 {
-    int    stdin_fd;
-    int    stdout_fd;
-}    t_fdsave;
+	int	stdin_fd;
+	int	stdout_fd;
+}	t_fdsave;
+
+typedef struct s_builtin_entry	t_builtin_entry;
 
 //exec_core.c
 int				exec_node(t_ast_node *node, t_ctx *ctx);
