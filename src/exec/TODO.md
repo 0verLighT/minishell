@@ -14,7 +14,7 @@
 
 - exec-expand : WORK IN PROGRESS (see TODO in the file)
 
-- exec-heredoc (<< handling) :
+- exec-heredoc (<< handling) : DONE
 
 - exec-fd (save, restore fds for builtin running in parent process) :
 
@@ -31,7 +31,7 @@
         - exec-external : DONE
         - exec-redir : DONE
         - exec-expand : WORK IN PROGRESS (see TODO in the file)
-        - exec-heredoc :
+        - exec-heredoc : DONE
         - exec-fd :
         - exec-wait :
         - exec-error :
