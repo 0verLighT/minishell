@@ -10,7 +10,9 @@
 
 - exec-external (execve + PATH resolution) : DONE
 
-- exec-redir (apply < > >> before execution) :
+- exec-redir (apply < > >> before execution) : DONE
+
+- exec-expand : WORK IN PROGRESS (see TODO in the file)
 
 - exec-heredoc (<< handling) :
 
@@ -27,7 +29,8 @@
         - exec-logical : DONE
         - exec-builtin : DONE
         - exec-external : DONE
-        - exec-redir :
+        - exec-redir : DONE
+        - exec-expand : WORK IN PROGRESS (see TODO in the file)
         - exec-heredoc :
         - exec-fd :
         - exec-wait :
