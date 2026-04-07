@@ -45,5 +45,7 @@ t_builtin_id	resolve_builtin_id(const char *name);
 int				exec_pipe(t_ast_node *node, t_ctx *ctx);
 //exec_external.c
 int				exec_external(char **argv, t_ctx *ctx);
-
+//exec_redir.c
+int				apply_redirections(t_redirect *redirs, t_fdsave *save);
+	
 #endif
