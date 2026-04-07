@@ -38,5 +38,9 @@ int				exec_builtin(char **argv, t_ctx *ctx);
 void			init_builtins(t_builtin_entry *builtins);
 int				is_builtin(const char *name);
 t_builtin_id	resolve_builtin_id(const char *name);
+//exec_pipe.c
+int				exec_pipe(t_ast_node *node, t_ctx *ctx);
+//exec_external.c
+int				exec_external(char **argv, t_ctx *ctx);
 
 #endif

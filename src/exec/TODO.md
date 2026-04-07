@@ -2,13 +2,13 @@
 
 - exec-cmd (Node-cmd handler, forks and dispatches) : DONE
 
-- exec-pipe (Node-pipe handle) :
+- exec-pipe (Node-pipe handle) : DONE
 
 - exec-logical (Node-and Node-or handler) : DONE
 
 - exec-builtin (builtin detection and dispatch through table) : DONE
 
-- exec-external (execve + PATH resolution) :
+- exec-external (execve + PATH resolution) : DONE
 
 - exec-redir (apply < > >> before execution) :
 
@@ -23,10 +23,10 @@
     - exec.h:
         - exec-core : DONE
         - exec-cmd : DONE
-        - exec-pipe :
+        - exec-pipe : DONE
         - exec-logical : DONE
         - exec-builtin : DONE
-        - exec-external :
+        - exec-external : DONE
         - exec-redir :
         - exec-heredoc :
         - exec-fd :
