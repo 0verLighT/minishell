@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:59:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/17 04:57:14 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 03:50:44 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "minishell.h"
 
 typedef struct s_ctx	t_ctx;
+typedef struct s_env	t_env;
 
 /**
  * @brief get content of environement variable
@@ -35,10 +36,16 @@ char	*ft_getenv(t_env *env, char *var);
  
 //free_ctx.c
 void	free_ctx(t_ctx *ctx);
-
-//init.c
-t_env	*envlast(t_env *env);
-void	envadd_back(t_env **env, t_env *new);
-t_ctx	*init_ctx(t_ctx *ctx, char **envp)
-
+/**
+ * @brief return if it's a shell operator
+ * @param c one character
+ * @return true or false
+ */
+int		isoperator(char c);
+/**
+ * @brief check heredoc
+ * @param str the string
+ * @return true or false
+ */
+int		isdoubleop(char *str);
 #endif

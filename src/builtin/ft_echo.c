@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo_core.c                                        :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 15:15:23 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 15:25:56 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/05 01:07:49 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-//search for a -n flag after echo
+/**
+ * @brief search for a -n flag after echo
+ * @param arg
+ */
 static int	is_n_flag(const char *arg)
 {
 	int	i;
@@ -26,13 +29,17 @@ static int	is_n_flag(const char *arg)
 	{
 		if (arg[i] != 'n')
 			return (0);
-		i++;
+		++i;
 	}
 	return (1);
 }
 
-//Skip all consecutive -n flags, because in Bash
-//echo -n -n -n -n "hi" == echo -n "hi"
+/**
+ * @brief Skip all consecutive -n flags, because in Bash
+ * @details (e.g) echo -n -n -n -n "hi" == echo -n "hi"
+ * @param argv
+ * @param newline
+ */
 static int	skip_n_flags(char **argv, int *newline)
 {
 	int	i;
@@ -41,15 +48,17 @@ static int	skip_n_flags(char **argv, int *newline)
 	while (argv[i] && is_n_flag(argv[i]))
 	{
 		*newline = 0;
-		i++;
+		++i;
 	}
 	return (i);
 }
 
-//We have to cast ctx as void, so the args of echo core
-//still match the dispatch table of builtin.h
-//To see more, check the struct under the enum in the .h
-int	echo_core(char **argv, t_ctx *ctx)
+/**
+ * @brief render echo command
+ * @param argv
+ * @param ctx
+ */
+int	ft_echo(char **argv, t_ctx *ctx)
 {
 	int	i;
 	int	newline;
@@ -59,12 +68,12 @@ int	echo_core(char **argv, t_ctx *ctx)
 	i = skip_n_flags(argv, &newline);
 	while (argv[i])
 	{
-		ft_putstr_fd(argv[i], STDOUT_FILENO);
+		ft_dprintf(1, "%s", argv[i]);
 		if (argv[i + 1])
-			ft_putstr_fd(" ", STDOUT_FILENO);
-		i++;
+			ft_dprintf(1, " ");
+		++i;
 	}
 	if (newline)
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		ft_dprintf(1, "\n");
 	return (SUCCESS);
 }

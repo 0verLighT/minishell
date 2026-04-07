@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_core.c                                          :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 09:46:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 15:33:30 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 19:47:39 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "builtin.h"
+#include "tokenizer.h"
 
-//after a cd, save old PWD, set cwd (current working directory) as the new PWD
-//if unclear, check builtin_utils.c
+/**
+ * @brief after a cd, save old PWD, set cwd (current working directory)
+ * as the new PWD
+ * @details if unclear, check builtin_utils.c
+ * @param ctx
+ * @param old_cwd
+ */
 static int	update_env(t_ctx *ctx, char *old_cwd)
 {
 	char	*new_cwd;
@@ -34,7 +41,10 @@ static int	update_env(t_ctx *ctx, char *old_cwd)
 	return (ret);
 }
 
-//wrap getcwd with error management
+/**
+ * @brief wrap getcwd with error management
+ * @param old_cwd
+ */
 static int	get_cwd(char **old_cwd)
 {
 	*old_cwd = getcwd(NULL, 0);
@@ -46,9 +56,15 @@ static int	get_cwd(char **old_cwd)
 	return (0);
 }
 
-//wrap resolve_target to return an error if it's a cd had no target situation
-//if needed, check cd_helper's last function to better understand
-//tab [0] correspond to token_count, tab[1] correspond to must free 
+/**
+ * @brief wrap resolve_target to return an error
+ * if it's a cd had no target situation
+ * @details if needed, check cd_helper's last function to better understand
+ * @param tokens
+ * @param ctx
+ * @param target
+ * @param tab tab [0] correspond to token_count, tab[1] correspond to must free
+ */
 static int	get_target(t_token *tokens, t_ctx *ctx, char **target, int *tab)
 {
 	*target = resolve_target(tokens, tab[0], ctx, &tab[1]);
@@ -57,8 +73,12 @@ static int	get_target(t_token *tokens, t_ctx *ctx, char **target, int *tab)
 	return (0);
 }
 
-//wrap chdir to both handles errors and free what must be on failure
-//this static is meant to simplify the cd_core function
+/**
+ * @brief wrap chdir to both handles errors and free what must be on failure
+ * @param target
+ * @param old_cwd
+ * @param tab
+ */
 static int	change_dir(char *target, char *old_cwd, int *tab)
 {
 	if (chdir(target) != 0)
@@ -74,7 +94,7 @@ static int	change_dir(char *target, char *old_cwd, int *tab)
 	return (0);
 }
 
-int	cd_core(t_token *tokens, int token_count, t_ctx *ctx)
+int	ft_cd(t_token *tokens, int token_count, t_ctx *ctx)
 {
 	char	*old_cwd;
 	char	*target;

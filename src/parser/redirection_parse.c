@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_parse.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:06:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/18 00:54:18 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/03 01:04:18 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Used to check if next token after redir is a valid filename
+/**
+ * @brief check if next token after redir is a valid filename
+ * @param file_token
+ * @return 0 on error, 1 on succesfully
+ */
 static int	validate_redir_filename(t_token *file_token)
 {
 	if (!file_token)
@@ -22,37 +26,46 @@ static int	validate_redir_filename(t_token *file_token)
 	return (1);
 }
 
-//Prints syntax error matching bash's format
-//Shows what unexpected token was found after redirection
-static void	print_redir_error(t_token *file_token)
+/**
+ * @brief Prints syntax error matching bash's format
+ * @details Shows what unexpected token was found after redirection
+ * @param file_token
+ */
+void	print_redir_error(t_token *file_token)
 {
+	const char	*line_error = "minishel: syntax error near unexpected token";
+
 	if (!file_token || file_token->type == TOKEN_EOF)
-		ft_putendl_fd("bash: syntax error near unexpected token `newline'", 2);
+		ft_dprintf(2, "%s 'newline'", line_error);
 	else if (file_token->type == TOKEN_PIPE)
-		ft_putendl_fd("bash: syntax error near unexpected token `|'", 2);
-	else if (file_token->type == TOKEN_AND)
-		ft_putendl_fd("bash: syntax error near unexpected token `&&'", 2);
-	else if (file_token->type == TOKEN_OR)
-		ft_putendl_fd("bash: syntax error near unexpected token `||'", 2);
+		ft_dprintf(2, "%s '|'", line_error);
 	else if (file_token->type == TOKEN_LESS)
-		ft_putendl_fd("bash: syntax error near unexpected token `<'", 2);
+		ft_dprintf(2, "%s '<'", line_error);
 	else if (file_token->type == TOKEN_GREAT)
-		ft_putendl_fd("bash: syntax error near unexpected token `>'", 2);
+		ft_dprintf(2, "%s '>'", line_error);
 	else if (file_token->type == TOKEN_DLESS)
-		ft_putendl_fd("bash: syntax error near unexpected token `<<'", 2);
+		ft_dprintf(2, "%s '<<'", line_error);
 	else if (file_token->type == TOKEN_DGREAT)
-		ft_putendl_fd("bash: syntax error near unexpected token `>>'", 2);
+		ft_dprintf(2, "%s '>>'", line_error);
 	else
 		return ;
+	ft_dprintf(2, "\n");
 }
 
-//Append a redirection to the command node
+/**
+ * @brief Append a redirection to the command node
+ * @param parser
+ * @param cmd_node
+ * @param redir_type
+ * @param file_token
+ * @return -1 on error, 0 on succesfully
+ */
 static int	append_redir(t_parser *parser, t_ast_node *cmd_node,
 									int redir_type, t_token *file_token)
 {
 	t_redirect	*new_redir;
 
-	new_redir = create_redirect(redir_type, file_token->value);
+	new_redir = create_redirect(redir_type, file_token->content.ptr);
 	if (!new_redir)
 		return (-1);
 	add_redirection_to_cmd(cmd_node, new_redir);
@@ -60,8 +73,6 @@ static int	append_redir(t_parser *parser, t_ast_node *cmd_node,
 	return (0);
 }
 
-//Parses a single redir (operator + filename)
-//Get cursor beyond them if success
 int	parse_redirection(t_parser *parser, t_ast_node *cmd_node)
 {
 	t_token		*redir_token;

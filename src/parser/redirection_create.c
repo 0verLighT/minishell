@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_create.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 03:12:06 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/02/17 03:37:35 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:04:36 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-//Used to init a redirection node
 t_redirect	*create_redirect(int type, char *file)
 {
 	t_redirect	*redir;
@@ -33,8 +32,12 @@ t_redirect	*create_redirect(int type, char *file)
 	return (redir);
 }
 
-//Points to last redirection in a linked list
-//Needed in case of multiple redir
+/**
+ * @brief Points to last redirection in a linked list
+ * @details Needed in case of multiple redir
+ * @param head
+ * @return the last redirect in the param head
+ */
 static t_redirect	*get_last_redirect(t_redirect *head)
 {
 	t_redirect	*current;
@@ -47,8 +50,6 @@ static t_redirect	*get_last_redirect(t_redirect *head)
 	return (current);
 }
 
-//Appends a redirection to the end of command's redirection list
-//While preservesing order of redirections
 void	add_redirection_to_cmd(t_ast_node *cmd_node, t_redirect *new_redir)
 {
 	t_redirect	*last;

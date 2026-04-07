@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_core.c                                       :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 21:15:07 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 21:42:43 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 20:14:06 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
-//Helper function for the next one, check if the key of the node
-//match the key in env list
+/**
+ * @brief Check if the key of the node match the key in env list
+ * @param var
+ * @param key
+ * @param key_len
+ */
 static int	is_matching_key(const char *var, const char *key, size_t key_len)
 {
 	int	key_check;
@@ -26,7 +30,10 @@ static int	is_matching_key(const char *var, const char *key, size_t key_len)
 	return (key_check);
 }
 
-//Remove the node matching key from the env list
+/**
+ * @brief Remove the node matching key from the env list
+ * @param env
+ */
 static void	remove_env_node(t_env **env, const char *key)
 {
 	t_env	*cur;
@@ -53,8 +60,11 @@ static void	remove_env_node(t_env **env, const char *key)
 	}
 }
 
-//The next two functions have the same logic than export_core, 
-//so check export_core.c if needed
+/**
+ * @brief
+ * @param arg
+ * @param ctx
+ */
 static int	unset_one(char *arg, t_ctx *ctx)
 {
 	if (!is_valid_identifier(arg))
@@ -66,7 +76,7 @@ static int	unset_one(char *arg, t_ctx *ctx)
 	return (SUCCESS);
 }
 
-int	unset_core(char **argv, t_ctx *ctx)
+int	ft_unset(char **argv, t_ctx *ctx)
 {
 	int	i;
 	int	final_result_code;

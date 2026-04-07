@@ -6,27 +6,21 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 15:31:36 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/07 01:53:30 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
 void	builtin_error(char *builtin, char *arg, char *msg)
 {
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(builtin, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_dprintf(2, "minishell: %s:", builtin);
 	if (arg)
-	{
-		ft_putstr_fd(arg, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-	}
-	ft_putendl_fd(msg, STDERR_FILENO);
+		ft_dprintf(2, "%s:", arg);
+	ft_dprintf(2, "%s\n", msg);
 }
 
-//Builds a key=value string.
-char	*build_keyvalue(const char *key, const char *value)
+char	*build_keyvalue(char *key, char *value)
 {
 	char	*tmp;
 	char	*result;
@@ -39,25 +33,35 @@ char	*build_keyvalue(const char *key, const char *value)
 	return (result);
 }
 
-//Returns 1 and updates the node if key is found, 0 otherwise
-static int	update_existing(t_env *node, const char *key,
-		size_t key_len, char *new_var)
+/**
+ * @brief Update envirnoment
+ * @param env
+ * @param key
+ * @param key_l
+ * @param new_var
+ * @return 1 and updates the node if key is found, 0 otherwise 
+ */
+static int	update_existing(t_env *env, char *key, size_t key_l, char *new_var)
 {
-	while (node)
+	while (env)
 	{
-		if (ft_strncmp(node->var, key, key_len) == 0
-			&& node->var[key_len] == '=')
+		if (ft_strncmp(env->var, key, key_l) == 0
+			&& env->var[key_l] == '=')
 		{
-			free(node->var);
-			node->var = new_var;
+			free(env->var);
+			env->var = new_var;
 			return (1);
 		}
-		node = node->next;
+		env = env->next;
 	}
 	return (0);
 }
 
-//Allocates a new node and appends it to the list
+/**
+ * @brief Allocates a new node and appends it to the list
+ * @param env
+ * @param new_var
+ */
 static int	append_new(t_env **env, char *new_var)
 {
 	t_env	*new_node;
@@ -73,8 +77,7 @@ static int	append_new(t_env **env, char *new_var)
 	return (0);
 }
 
-//Updates key=value node, creates the node if needed
-int	ft_setenv(t_env **env, const char *key, const char *value)
+int	ft_setenv(t_env **env, char *key, char *value)
 {
 	size_t	key_len;
 	int		node_append_flag;

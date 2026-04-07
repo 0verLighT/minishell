@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_core.c                                      :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 16:47:06 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 17:47:56 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/05 01:08:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
-//take a single arg and update the shell env
+/**
+ * @brief Take a single arg and update the shell env
+ * @param arg
+ * @param ctx
+ */
 static int	export_one(char *arg, t_ctx *ctx)
 {
 	char	*val_assign;
@@ -30,9 +34,15 @@ static int	export_one(char *arg, t_ctx *ctx)
 	return (setenv_success_check);
 }
 
-// Validate then export one arg, accumulate worst return code
+/**
+ * @brief Validate then export one arg, accumulate worst return code
+ * @param arg
+ * @param ctx
+ */
 static int	handle_arg(char *arg, t_ctx *ctx)
 {
+	int	export_one_check;
+
 	if (!is_valid_identifier(arg))
 	{
 		builtin_error("export", arg, "not a valid identifier");
@@ -42,9 +52,7 @@ static int	handle_arg(char *arg, t_ctx *ctx)
 	return (export_one_check);
 }
 
-//add all args passed to export, in the while argv[i] loop
-//We do not stop when one error happens, we store at argv[i]
-int	export_core(char **argv, t_ctx *ctx)
+int	ft_export(char **argv, t_ctx *ctx)
 {
 	int	i;
 	int	final_result_code;
@@ -56,13 +64,12 @@ int	export_core(char **argv, t_ctx *ctx)
 		return (SUCCESS);
 	}
 	i = 1;
-	ret = SUCCESS;
 	while (argv[i])
 	{
 		tmp = handle_arg(argv[i], ctx);
 		if (tmp != SUCCESS)
 			final_result_code = tmp;
-		i++;
+		++i;
 	}
 	return (final_result_code);
 }

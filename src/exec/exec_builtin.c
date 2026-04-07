@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 20:19:50 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 03:33:38 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 04:02:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ static int	run_argv_ctx(t_builtin_id id, char **argv, t_ctx *ctx)
 
 	ret = FAIL;
 	if (id == BUILTIN_ECHO)
-		ret = echo_core(argv, ctx);
+		ret = ft_echo(argv, ctx);
 	else if (id == BUILTIN_CD)
-		ret = cd_core(argv, ctx);
+		ret = ft_cd(argv, ctx);
 	else if (id == BUILTIN_EXIT)
-		ret = exit_core(argv, ctx);
+		ret = ft_exit(argv, ctx);
 	else if (id == BUILTIN_EXPORT)
-		ret = export_core(argv, ctx);
+		ret = ft_export(argv, ctx);
 	else if (id == BUILTIN_UNSET)
-		ret = unset_core(argv, ctx);
+		ret = ft_unset(argv, ctx);
 	return (ret);
 }
 
@@ -39,7 +39,7 @@ static int	run_ctx_only(t_builtin_id id, t_ctx *ctx)
 
 	ret = FAIL;
 	if (id == BUILTIN_ENV)
-		ret = env(ctx->env);
+		ret = ft_env(ctx->env);
 	return (ret);
 }
 
@@ -50,7 +50,7 @@ static int	run_void(t_builtin_id id)
 
 	ret = FAIL;
 	if (id == BUILTIN_PWD)
-		ret = pwd_core();
+		ret = ft_pwd();
 	return (ret);
 }
 

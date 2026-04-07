@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 05:54:40 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/02 15:43:48 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/04 19:58:27 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
-int	env(t_env *env)
+int	ft_env(t_env *env)
 {
 	while (env)
 	{
-		printf("%s\n", env->var);
+		ft_dprintf(1, "%s\n", env->var);
 		env = env->next;
 	}
 	return (SUCCESS);

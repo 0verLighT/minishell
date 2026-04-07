@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 03:36:41 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 03:58:28 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "minishell.h"
 # include "builtin.h"
+# include "parser.h"
 
 //used to save the fds, so it doesn't get lost with dup2 calls
 typedef struct s_fdsave
@@ -28,6 +29,9 @@ typedef struct s_fdsave
 }	t_fdsave;
 
 typedef struct s_builtin_entry	t_builtin_entry;
+typedef struct s_ctx			t_ctx;
+typedef struct s_ast_node		t_ast_node;
+typedef enum e_builtin_id		t_builtin_id;
 
 //exec_core.c
 int				exec_node(t_ast_node *node, t_ctx *ctx);

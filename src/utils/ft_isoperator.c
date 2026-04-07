@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_sig.c                                        :+:      :+:    :+:   */
+/*   ft_isoperator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 22:49:57 by amartel           #+#    #+#             */
-/*   Updated: 2026/02/20 23:26:06 by amartel          ###   ########.fr       */
+/*   Created: 2026/02/26 01:05:00 by amartel           #+#    #+#             */
+/*   Updated: 2026/04/02 04:31:57 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signal.h"
-#include "minishell.h"
+#include "utils.h"
 
-void	check_sig(t_ctx *ctx)
+int	isoperator(char c)
 {
-	if (g_sig_code != 0)
-		ctx->return_code = 130;
-	g_sig_code = 0;
+	if (c == '<' || c == '|' || c == '>' || c == '(' || c == ')')
+		return (1);
+	return (0);
+}
+
+int	isdoubleop(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	if (isoperator(str[i]))
+	{
+		if (str[i + 1] == '<' || str[i + 1] == '>')
+			return (1);
+		else
+			return (0);
+	}
+	else
+		return (0);
 }
