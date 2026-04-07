@@ -6,13 +6,12 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 20:19:50 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 04:02:25 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 20:26:53 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//! link -> change builtin name function and ft_cd arg
 //Handle the builtins base on their enum
 static int	run_argv_ctx(t_builtin_id id, char **argv, t_ctx *ctx)
 {

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 01:53:30 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 20:26:06 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static int	update_existing(t_env *env, char *key, size_t key_l, char *new_var)
 {
 	while (env)
 	{
-		if (ft_strncmp(env->var, key, key_l) == 0
-			&& env->var[key_l] == '=')
+		if (ft_strncmp(env->var, key, key_l) == 0 && env->var[key_l] == '=')
 		{
 			free(env->var);
 			env->var = new_var;
