@@ -14,11 +14,15 @@ SIGNALS		:= check_sig.c signal.c
 UTILS		:= ft_getenv.c free_env.c
 INPUT		:= fish.c
 #TOKENIZER	:= tokenizer_utils.c tokenizer_utils_two.c
+EXEC		:= exec_builtin_helper.c exec_builtin.c exec_cmd.c exec_core.c \
+				exec_external.c exec_logical.c exec_pipe.c
+
 
 SOURCES =									\
 	$(addprefix src/, $(SRC))				\
 	$(addprefix src/built-in/, $(BUILTIN))	\
 	$(addprefix src/ctx/, $(CTX))			\
+	$(addprefix src/exec/, $(EXEC))			\
 	$(addprefix src/input/, $(INPUT))		\
 	$(addprefix src/signals/, $(SIGNALS))	\
 	$(addprefix src/utils/, $(UTILS))		\

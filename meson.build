@@ -17,6 +17,13 @@ sources = files(
   'src/utils/ft_getenv.c',
   'src/utils/free_env.c',
   'src/input/fish.c',
+  'src/exec/exec_builtin.c',
+  'src/exec/exec_builtin_helper.c',
+  'src/exec/exec_cmd.c',
+  'src/exec/exec_core.c',
+  'src/exec/exec_external.c',
+  'src/exec/exec_logical.c',
+  'src/exec/exec_pipe.c',
 )
 
 deps = [
