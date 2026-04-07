@@ -44,10 +44,12 @@ typedef enum e_token_type
 //Type is for the type of redirection, 
 //0: <, 1: >, 2: >>, 3: <<
 //file points to either a file or a heredoc
+//the int quoted is a flag to mark when a delimiter was found quoted
 typedef struct s_redirect
 {
 	size_t				type;
 	char				*file;
+	int					quoted;
 	struct s_redirect	*next;
 }	t_redirect;
 
