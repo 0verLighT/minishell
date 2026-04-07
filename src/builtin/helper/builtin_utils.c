@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 21:00:18 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 01:53:30 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	builtin_error(char *builtin, char *arg, char *msg)
 	ft_dprintf(2, "%s\n", msg);
 }
 
-char	*build_keyvalue(const char *key, const char *value)
+char	*build_keyvalue(char *key, char *value)
 {
 	char	*tmp;
 	char	*result;
@@ -35,25 +35,24 @@ char	*build_keyvalue(const char *key, const char *value)
 
 /**
  * @brief Update envirnoment
- * @param node
+ * @param env
  * @param key
- * @param key_len
+ * @param key_l
  * @param new_var
  * @return 1 and updates the node if key is found, 0 otherwise 
  */
-static int	update_existing(t_env *node, const char *key,
-		size_t key_len, char *new_var)
+static int	update_existing(t_env *env, char *key, size_t key_l, char *new_var)
 {
-	while (node)
+	while (env)
 	{
-		if (ft_strncmp(node->var, key, key_len) == 0
-			&& node->var[key_len] == '=')
+		if (ft_strncmp(env->var, key, key_l) == 0
+			&& env->var[key_l] == '=')
 		{
-			free(node->var);
-			node->var = new_var;
+			free(env->var);
+			env->var = new_var;
 			return (1);
 		}
-		node = node->next;
+		env = env->next;
 	}
 	return (0);
 }
@@ -78,7 +77,7 @@ static int	append_new(t_env **env, char *new_var)
 	return (0);
 }
 
-int	ft_setenv(t_env **env, const char *key, const char *value)
+int	ft_setenv(t_env **env, char *key, char *value)
 {
 	size_t	key_len;
 	int		node_append_flag;

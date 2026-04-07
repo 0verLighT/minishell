@@ -12,7 +12,7 @@ BUILTIN			:= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.
 BUILTIN_HELPER	:= builtin_utils.c cd_utils.c exit_utils.c export_utils.c
 CTX				:= init.c
 SIGNALS			:= signal.c
-UTILS			:= ft_getenv.c free_env.c
+UTILS			:= ft_getenv.c free_env.c ft_isoperator.c
 PARSER			:=																	\
 				ast_node_helper.c parser_free.c parse_command_helper.c				\
 				parse_command.c pipe_parse.c redirection_create.c 					\
@@ -25,10 +25,10 @@ SOURCES =													\
 	$(addprefix src/builtin/, $(BUILTIN))					\
 	$(addprefix src/builtin/helper/, $(BUILTIN_HELPER))		\
 	$(addprefix src/ctx/, $(CTX))							\
-	$(addprefix src/signals/, $(SIGNALS))					\
-	$(addprefix src/utils/, $(UTILS))						\
 	$(addprefix src/parser/, $(PARSER))						\
+	$(addprefix src/signals/, $(SIGNALS))					\
 	$(addprefix src/tokenizer/, $(TOKENIZER))				\
+	$(addprefix src/utils/, $(UTILS))						\
 
 OBJS			:= $(SOURCES:%.c=%.o)
 DEPS			:= $(SOURCES:%.c=%.d)

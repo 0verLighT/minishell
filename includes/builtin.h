@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 00:47:51 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/07 01:55:09 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,8 @@ int		is_valid_identifier(char *str);
  * @param str
  * @param err_flag
  */
-int		parse_exitcode(char *str, int *err_flag);/**
+int		parse_exitcode(char *str, int *err_flag);
+/**
  * @brief handle no arg hypothesis, call previous functions,
  * set must_free flag to 0 if it was a tilde or dash arg
  * @param tokens
@@ -129,7 +130,7 @@ char	*resolve_target(t_token *tokens, int token_count, t_ctx *ctx,
  * @param key
  * @param value
  */
-int		ft_setenv(t_env **env, const char *key, const char *value);
+int		ft_setenv(t_env **env, char *key, char *value);
 /**
  * @brief display an builtin error
  * @param builtin
@@ -142,6 +143,6 @@ void	builtin_error(char *builtin, char *arg, char *msg);
  * @param key
  * @param value
  */
-char	*build_keyvalue(const char *key, const char *value);
+char	*build_keyvalue(char *key, char *value);
 
 #endif
