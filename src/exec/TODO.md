@@ -10,9 +10,11 @@
 
 - exec-external (execve + PATH resolution) : DONE
 
-- exec-redir (apply < > >> before execution) :
+- exec-redir (apply < > >> before execution) : DONE
 
-- exec-heredoc (<< handling) :
+- exec-expand : WORK IN PROGRESS (see TODO in the file)
+
+- exec-heredoc (<< handling) : DONE
 
 - exec-fd (save, restore fds for builtin running in parent process) :
 
@@ -27,8 +29,9 @@
         - exec-logical : DONE
         - exec-builtin : DONE
         - exec-external : DONE
-        - exec-redir :
-        - exec-heredoc :
+        - exec-redir : DONE
+        - exec-expand : WORK IN PROGRESS (see TODO in the file)
+        - exec-heredoc : DONE
         - exec-fd :
         - exec-wait :
         - exec-error :
