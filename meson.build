@@ -29,6 +29,7 @@ sources = files(
   'src/exec/exec_external.c',
   'src/exec/exec_logical.c',
   'src/exec/exec_pipe.c',
+  'src/exec/exec_redir.c',
   'src/main.c',
   'src/parser/ast_node_helper.c',
   'src/parser/parse_command.c',
