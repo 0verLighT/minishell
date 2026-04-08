@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_expand.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 20:10:56 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/08 18:05:33 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,8 @@ static char	*extract_varname(const char *str, int *i)
 
 	start = *i;
 	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '_'))
-		(*i)++;
+		++(*i);
 	return (ft_substr(str, start, *i - start));
-}
-
-//A strjoin that frees
-//TO ALEXANDRE: tu m'as dis que le tiens fait déjà ça, non ? Dans le doute j'ai fait ça
-//mais tu pourras le supprimer sans problemes vu que c'est une statique
-static char	*append_str(char *dst, const char *src)
-{
-	char	*tmp;
-
-	tmp = ft_strjoin(dst, src);
-	free(dst);
-	return (tmp);
 }
 
 // Handle a $ expansion at pos i in str
@@ -42,7 +30,7 @@ static char	*expand_var(const char *str, int *i, t_ctx *ctx)
 	char	*varname;
 	char	*value;
 
-	(*i)++;
+	++(*i);
 	if (!str[*i] || (!ft_isalpha(str[*i]) && str[*i] != '_'))
 	{
 		ret = ft_strdup("$");
@@ -62,7 +50,7 @@ static char	*expand_var(const char *str, int *i, t_ctx *ctx)
 	return (ret);
 }
 
-//TODO: refactoriser pour passer sous 25 lignes
+//! TODO: refactoriser pour passer sous 25 lignes
 char	*ft_expand(const char *str, t_ctx *ctx)
 {
 	char	*result;
@@ -85,13 +73,13 @@ char	*ft_expand(const char *str, t_ctx *ctx)
 				free(result);
 				return (NULL);
 			}
-			result = append_str(result, tmp);
+			result = ft_strjoin(result, tmp);
 			free(tmp);
 		}
 		else
 		{
 			buf[0] = str[i];
-			result = append_str(result, buf);
+			result = ft_strjoin(result, buf);
 			i++;
 		}
 		if (!result)

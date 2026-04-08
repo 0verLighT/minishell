@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:02:09 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 03:32:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/08 18:18:01 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	init_builtins(t_builtin_entry *builtins)
 }
 
 //parse the table above, to know what builtin to pick
-static t_builtin_id	get_builtin_id(const char *name,
-						t_builtin_entry *builtins)
+static t_builtin_id	get_builtin_id(const char *name, t_builtin_entry *builtins)
 {
 	int	i;
 
@@ -36,7 +35,7 @@ static t_builtin_id	get_builtin_id(const char *name,
 	{
 		if (ft_strcmp(builtins[i].name, name) == 0)
 			return (builtins[i].id);
-		i++;
+		++i;
 	}
 	return (BUILTIN_NONE);
 }
