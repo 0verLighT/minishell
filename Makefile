@@ -18,7 +18,7 @@ PARSER			:=																	\
 				parse_command.c pipe_parse.c redirection_create.c 					\
 				redirection_parse.c redirection_utils.c simple_command_utils.c		\
 				token_cursor.c
-TOKENIZER		:= tokenizer.c tokenizer_utils.c init_type_tokens.c					\
+TOKENIZER		:= tokenizer.c tokenizer_utils.c init_type_tokens.c
 EXEC			:= exec_builtin_helper.c exec_builtin.c exec_cmd.c exec_core.c		\
 				exec_external.c exec_logical.c exec_pipe.c exec_redir.c				\
 

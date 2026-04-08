@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:48:39 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 01:48:59 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:27:11 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static char	*search_path(const char *cmd, t_ctx *ctx)
 	while (dirs[i] && !full)
 	{
 		full = try_path(dirs[i], cmd);
-		i++;
+		++i;
 	}
-	ft_free_split(dirs);
+	free_array(dirs);
 	return (full);
 }
 
