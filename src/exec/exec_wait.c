@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isoperator.c                                    :+:      :+:    :+:   */
+/*   exec_wait.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 01:05:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:39:08 by amartel          ###   ########.fr       */
+/*   Created: 2026/04/09 05:58:53 by jdessoli          #+#    #+#             */
+/*   Updated: 2026/04/09 17:30:07 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "exec.h"
 
-int	isoperator(char c)
+int	exec_wait(pid_t pid, t_ctx *ctx)
 {
-	if (c == '<' || c == '|' || c == '>' || c == '(' || c == ')')
-		return (1);
-	return (0);
-}
+	int	status;
 
-int	isdoubleop(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	if (isoperator(str[i]))
+	waitpid(pid, &status, 0);
+	if (WIFSIGNALED(status))
 	{
-		if (str[i + 1] == '<' || str[i + 1] == '>')
-			return (1);
-		else
-			return (0);
+		ctx->return_code = 128 + WTERMSIG(status);
+		return (ctx->return_code);
 	}
-	else
-		return (0);
+	ctx->return_code = WEXITSTATUS(status);
+	return (ctx->return_code);
 }

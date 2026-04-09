@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 01:55:09 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:34:34 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_builtin_id
 	BUILTIN_HISTORY,
 }	t_builtin_id;
 
-//needed for a dispatch table, maping built-in name to func
+//neede for a dispatch table, maping built-in name to func
 typedef struct s_builtin_entry
 {
 	const char		*name;
@@ -58,11 +58,10 @@ typedef struct s_builtin_entry
 
 /**
  * @brief cd command, change the current directory
- * @param tokens
- * @param token_count
+ * @param argv
  * @param ctx
  */
-int		ft_cd(t_token *tokens, int token_count, t_ctx *ctx);
+int		ft_cd(char **argv, t_ctx *ctx);
 /**
  * @brief echo command, render argv
  * @param argv
@@ -115,15 +114,13 @@ int		is_valid_identifier(char *str);
  */
 int		parse_exitcode(char *str, int *err_flag);
 /**
- * @brief handle no arg hypothesis, call previous functions,
- * set must_free flag to 0 if it was a tilde or dash arg
- * @param tokens
- * @param token_count
+ * @brief Check if argv of cd command it's '~' or '-'
+ * @details For `cd -` the condition check if there is nothings 
+ * afer the character '-'
+ * @param argv
  * @param ctx
- * @param must_free
  */
-char	*resolve_target(t_token *tokens, int token_count, t_ctx *ctx,
-			int *must_free);
+char	*resolve_target(char **argv, t_ctx *ctx);
 /**
  * @brief Updates key=value node, creates the node if needed
  * @param env

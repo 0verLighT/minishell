@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 02:15:45 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:34:41 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+//.h of the different minishell parts
+# include "builtin.h"
+# include "exec.h"
+# include "parser.h"
+# include "signals.h"
+# include "tokenizer.h"
+# include "utils.h"
+//lib needed for the whole project
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
@@ -24,8 +32,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <limits.h>
-# include "builtin.h"
-# include "signals.h"
+# include <sys/wait.h>
+# include <sys/types.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <string.h>
 
 # ifndef HOST_NAME_MAX
 #  ifdef __APPLE__

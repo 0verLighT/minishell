@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:59:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/28 17:31:20 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:35:12 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define SIGNALS_H
 
 # include "minishell.h"
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>

@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isoperator.c                                    :+:      :+:    :+:   */
+/*   exec_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 01:05:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:39:08 by amartel          ###   ########.fr       */
+/*   Created: 2026/04/09 06:05:07 by jdessoli          #+#    #+#             */
+/*   Updated: 2026/04/09 19:39:23 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "exec.h"
 
-int	isoperator(char c)
+void	exec_error(const char *cmd, const char *msg, int exitcode, t_ctx *ctx)
 {
-	if (c == '<' || c == '|' || c == '>' || c == '(' || c == ')')
-		return (1);
-	return (0);
-}
-
-int	isdoubleop(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	if (isoperator(str[i]))
-	{
-		if (str[i + 1] == '<' || str[i + 1] == '>')
-			return (1);
-		else
-			return (0);
-	}
-	else
-		return (0);
+	builtin_error(cmd, NULL, msg);
+	ctx->return_code = exitcode;
 }
