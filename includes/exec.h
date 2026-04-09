@@ -47,5 +47,11 @@ int				exec_pipe(t_ast_node *node, t_ctx *ctx);
 int				exec_external(char **argv, t_ctx *ctx);
 //exec_redir.c
 int				apply_redirections(t_redirect *redirs, t_fdsave *save);
+//
+
+//exec_heredoc.c
+int				exec_heredoc(t_redirect *redir, t_ctx *ctx);
+//exec_fd.h
+void			restore_fds(t_fdsave *save);
 	
 #endif

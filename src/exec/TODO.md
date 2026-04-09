@@ -16,7 +16,7 @@
 
 - exec-heredoc (<< handling) : DONE
 
-- exec-fd (save, restore fds for builtin running in parent process) :
+- exec-fd (save, restore fds for builtin running in parent process) : DONE
 
 - exec-wait (waitpid + store result in ctx return-code) :
 
@@ -32,7 +32,7 @@
         - exec-redir : DONE
         - exec-expand : WORK IN PROGRESS (see TODO in the file)
         - exec-heredoc : DONE
-        - exec-fd :
+        - exec-fd : DONE
         - exec-wait :
         - exec-error :
 
