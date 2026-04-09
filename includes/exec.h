@@ -50,7 +50,7 @@ int				apply_redirections(t_redirect *redirs, t_fdsave *save);
 //exec_heredoc.c
 int				exec_heredoc(t_redirect *redir, t_ctx *ctx);
 //exec_expand.c
-
+char			*ft_expand(const char *str, t_ctx *ctx);
 //exec_fd.h
 void			restore_fds(t_fdsave *save);
 // exec_wait.c — waitpid and store result in ctx->return_code
