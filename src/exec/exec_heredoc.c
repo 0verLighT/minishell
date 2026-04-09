@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 20:24:03 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:09:43 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exec.h"
 
 //Check if a line match the delim
 static int	is_delimiter(const char *line, const char *delim)

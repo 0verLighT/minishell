@@ -16,11 +16,11 @@
 
 - exec-heredoc (<< handling) : DONE
 
-- exec-fd (save, restore fds for builtin running in parent process) :
+- exec-fd (save, restore fds for builtin running in parent process) : DONE
 
-- exec-wait (waitpid + store result in ctx return-code) :
+- exec-wait (waitpid + store result in ctx return-code) : DONE
 
-- exec-error (handle command not found, permission denied and such) :
+- exec-error (handle command not found, permission denied and such) : DONE
 
     - exec.h:
         - exec-core : DONE
@@ -32,8 +32,8 @@
         - exec-redir : DONE
         - exec-expand : WORK IN PROGRESS (see TODO in the file)
         - exec-heredoc : DONE
-        - exec-fd :
-        - exec-wait :
-        - exec-error :
+        - exec-fd : DONE
+        - exec-wait : DONE
+        - exec-error : DONE
 
 - norminette :

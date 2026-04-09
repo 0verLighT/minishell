@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdessoli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:08:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 19:08:43 by jdessoli         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:09:52 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exec.h"
 
 //Handles <
 static int	redir_input(const char *file)
