@@ -29,6 +29,7 @@ sources = files(
   'src/exec/exec_error.c',
   'src/exec/exec_expand.c',
   'src/exec/exec_external.c',
+  'src/exec/exec_fd.c',
   'src/exec/exec_heredoc.c',
   'src/exec/exec_logical.c',
   'src/exec/exec_pipe.c',

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:29:22 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 22:14:30 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_fdsave
 typedef struct s_builtin_entry	t_builtin_entry;
 typedef struct s_ctx			t_ctx;
 typedef struct s_ast_node		t_ast_node;
+typedef struct s_redirect		t_redirect;
 typedef enum e_builtin_id		t_builtin_id;
 
 //exec_core.c
