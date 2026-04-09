@@ -6,14 +6,19 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:48:39 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/08 17:27:11 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:10:00 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//Is used to built a full path, joins a dir, /, the cmd name
-//and check if it's executable with access, if it is returns it
+/**
+ * @brief Built a full path
+ * @details Is used to built a full path, joins a dir, /, the cmd name
+ * and check if it's executable with access, if it is returns it
+ * @param dir
+ * @param cmd
+ */
 static char	*try_path(char *dir, char *cmd)
 {
 	char	*tmp;
@@ -23,7 +28,6 @@ static char	*try_path(char *dir, char *cmd)
 	if (!tmp)
 		return (NULL);
 	full = ft_strjoin(tmp, cmd);
-	free(tmp);
 	if (!full)
 		return (NULL);
 	if (access(full, X_OK) == 0)
@@ -32,8 +36,12 @@ static char	*try_path(char *dir, char *cmd)
 	return (NULL);
 }
 
-//Fetch PATH from env, split it on :, use try_path to seek for
-//a matching part. If it does, returns the first exec found 
+/**
+ * @brief Fetch PATH from env
+ * @param cmd
+ * @param ctx
+ * @return The frist exec found
+ */
 static char	*search_path(const char *cmd, t_ctx *ctx)
 {
 	char	*path_env;
@@ -58,10 +66,13 @@ static char	*search_path(const char *cmd, t_ctx *ctx)
 	return (full);
 }
 
-
-//Distinguish direct and indirect path
-//if /, it's a direct path, we can check the executability
-//if there's none, we have to search for the path
+/**
+ * @brief Distinguish direct and indirect path
+ * @details if /, it's a direct path, we can check the executability
+ * if there's none, we have to search for the path
+ * @param cmd
+ * @param ctx
+ */
 static char	*resolve_path(const char *cmd, t_ctx *ctx)
 {
 	char	*ret;
@@ -79,8 +90,10 @@ static char	*resolve_path(const char *cmd, t_ctx *ctx)
 	return (ret);
 }
 
-//Converts t_env linked list into a char **, so that
-//it can be used by execve. 
+/**
+ * @brief Convert t_env in char **envp for exev
+ * @param env
+ */
 static char	**build_envp(t_env *env)
 {
 	t_env	*cur;
@@ -108,7 +121,6 @@ static char	**build_envp(t_env *env)
 	return (envp);
 }
 
-//Orchestrate it all, and return the proper return codes
 int	exec_external(char **argv, t_ctx *ctx)
 {
 	char	*path;

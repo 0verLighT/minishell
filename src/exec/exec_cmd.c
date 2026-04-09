@@ -6,15 +6,19 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 20:01:53 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 03:34:07 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:18:10 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//Saves the current fd, run the builtin, then restore fd
-//The saving is needed because some bultin like export modify
-//shell state
+/**
+ * @brief Saves the current fd, run the builtin, then restore fd
+ * @details The saving is needed because some bultin like export modify
+ * shell state
+ * @param node
+ * @param ctx
+ */
 static int	run_builtin_in_parent(t_ast_node *node, t_ctx *ctx)
 {
 	t_fdsave	fdsave;
@@ -27,7 +31,11 @@ static int	run_builtin_in_parent(t_ast_node *node, t_ctx *ctx)
 	return (ret);
 }
 
-//fork then apply a redir or builtin in the child process
+/**
+ * @brief fork then apply a redir or builtin in the child process
+ * @param node
+ * @param ctx
+ */
 static int	run_in_child(t_ast_node *node, t_ctx *ctx)
 {
 	pid_t	pid;

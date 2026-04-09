@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 03:58:28 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:29:22 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,113 @@ typedef struct s_ast_node		t_ast_node;
 typedef enum e_builtin_id		t_builtin_id;
 
 //exec_core.c
+/**
+ * @brief Entry point fo exec call. Call dispatch, then store return code
+ * @param node
+ * @param ctx
+ */
 int				exec_node(t_ast_node *node, t_ctx *ctx);
 //exec_logical.c
+/**
+ * @brief dispatcher of the function [exec_or, exec_and]
+ * @param node
+ * @param ctx
+ */
 int				exec_logical(t_ast_node *node, t_ctx *ctx);
 //exec_cmd.c
+/**
+ * @brief Check if cmd it's builtin or not to call the right function
+ * @param node
+ * @param ctx
+ */
 int				exec_cmd(t_ast_node *node, t_ctx *ctx);
 //exec_builtin.c
+/**
+ * @brief Call the proper function builtin
+ * @param argv
+ * @param ctx
+ */
 int				exec_builtin(char **argv, t_ctx *ctx);
 //exec_builtin_helper.c
+/**
+ * @brief Basically a dic with key value pairs, being name and enum
+ * @details the NULL serves as a sentinel, just like \0 on a string
+ * @param builtins
+ */
 void			init_builtins(t_builtin_entry *builtins);
+/**
+ * @brief Check to know if we are looking at a builtin
+ * @param name
+ */
 int				is_builtin(const char *name);
+/**
+ * @brief more evolved version of is_builtin
+ * @param name
+ * @returns the builtin id
+ */
 t_builtin_id	resolve_builtin_id(const char *name);
 //exec_pipe.c
+/**
+ * @brief Orchestrate, then wait for left then right chidren
+ * @return the last children exit code
+ */
 int				exec_pipe(t_ast_node *node, t_ctx *ctx);
 //exec_external.c
+/**
+ * @brief Orchestrate it all, and return the proper return codes
+ * @param argv
+ * @param ctx
+ */
 int				exec_external(char **argv, t_ctx *ctx);
 //exec_redir.c
+/**
+ * @brief Walk the whole redir list, applies each on in order
+ * @details If save is non-NULL it means a builtin is running in the parent
+ * so it saves the original stdin/stdout via dup before touching anything
+ * that's what allows restore_fds in exec_fd.c to undo
+ * the redirections afterward.
+ * @param redirs
+ * @param save
+ */
 int				apply_redirections(t_redirect *redirs, t_fdsave *save);
 //exec_heredoc.c
+/**
+ * @brief Create the pipe, fills it, redir stdin to read the end
+ * @details The write end is closed before the dup2 
+ * so the child sees EOF when it drains the pipe
+ * @param redir
+ * @param ctx
+ */
 int				exec_heredoc(t_redirect *redir, t_ctx *ctx);
 //exec_expand.c
+/**
+ * @brief Handle expand '$USER'
+ * @param str
+ * @param ctx
+ */
 char			*ft_expand(const char *str, t_ctx *ctx);
 //exec_fd.h
+/**
+ * @brief Restore fd of strdin and stdout
+ * @param save
+ */
 void			restore_fds(t_fdsave *save);
 // exec_wait.c — waitpid and store result in ctx->return_code
+/**
+ * @brief Wrap waitpid anbd fetch exit code for either child
+ * (if case) or parent
+ * @param pid
+ * @param ctx
+ */
 int				exec_wait(pid_t pid, t_ctx *ctx);
 // exec_error.c — unified error reporting for exec
+/**
+ * @brief Handle Error in exec
+ * @param cmd
+ * @param msg
+ * @param exitcode
+ * @param ctx
+ */
 void			exec_error(const char *cmd, const char *msg,
 					int exitcode, t_ctx *ctx);
 

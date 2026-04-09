@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:57:04 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 19:52:10 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 17:19:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_builtin_entry
  * @param argv
  * @param ctx
  */
-int	ft_cd(char **argv, t_ctx *ctx);
+int		ft_cd(char **argv, t_ctx *ctx);
 /**
  * @brief echo command, render argv
  * @param argv

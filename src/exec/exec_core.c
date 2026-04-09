@@ -6,13 +6,17 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 21:49:48 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 03:34:49 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:15:18 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//asses what to call depending on the node type
+/**
+ * @brief asses what to call depending on the node type
+ * @param node
+ * @param ctx
+ */
 static int	exec_dispatch(t_ast_node *node, t_ctx *ctx)
 {
 	int	ret;
@@ -35,7 +39,6 @@ static int	exec_dispatch(t_ast_node *node, t_ctx *ctx)
 	return (FAIL);
 }
 
-//Entry point fo exec call. Call dispatch, then store return code
 int	exec_node(t_ast_node *node, t_ctx *ctx)
 {
 	int	ret;

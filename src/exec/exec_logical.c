@@ -6,15 +6,18 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 19:37:32 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 03:34:58 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 17:43:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//Mimic && by executing left node first, even if right fail
-//if both succeed right is returned
-//if needed, check parser.h for the node struct
+/**
+ * @brief Mimic && by executing left node first, even if right fail
+ * @param node
+ * @param ctx
+ * @return If both succed, right is returned
+ */
 static int	exec_and(t_ast_node *node, t_ctx *ctx)
 {
 	int	ret_left;
@@ -27,7 +30,11 @@ static int	exec_and(t_ast_node *node, t_ctx *ctx)
 	return (ret_right);
 }
 
-//Mimic || so that right only runs if left fail
+/**
+ * @brief Mimic || so that right only runs if left fail
+ * @param node
+ * @param ctx
+ */
 static int	exec_or(t_ast_node *node, t_ctx *ctx)
 {
 	int	left_ret;
@@ -40,7 +47,6 @@ static int	exec_or(t_ast_node *node, t_ctx *ctx)
 	return (right_ret);
 }
 
-//dispatcher of the two above
 int	exec_logical(t_ast_node *node, t_ctx *ctx)
 {
 	int	ret_and;

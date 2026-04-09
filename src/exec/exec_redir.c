@@ -6,13 +6,16 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:08:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 17:09:52 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 17:29:10 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//Handles <
+/**
+ * @brief Handles '<'
+ * @param file
+ */
 static int	redir_input(const char *file)
 {
 	int	fd;
@@ -33,9 +36,13 @@ static int	redir_input(const char *file)
 	return (SUCCESS);
 }
 
-//Handles > and >>
-//O_TRUNC for >, O_APPEND for >>
-//open 0644 because it's the standart file permission
+/**
+ * @brief Handles '>'and '>>'
+ * @details O_TRUNC for '>', O_APPEND for '>>'
+ * open 0644 because it's the standart file permission
+ * @param file
+ * @param append
+ */
 static int	redir_output(const char *file, int append)
 {
 	int	fd;
@@ -62,7 +69,10 @@ static int	redir_output(const char *file, int append)
 	return (SUCCESS);
 }
 
-//Dispatch the redirect node according to it's type
+/**
+ * @brief Dispatch the redirect node according to it's type
+ * @param redir
+ */
 static int	apply_one(t_redirect *redir)
 {
 	if (redir->type == 0)
@@ -74,10 +84,6 @@ static int	apply_one(t_redirect *redir)
 	return (FAIL);
 }
 
-//Walk the whole redir list, applies each on in order
-//If save is non-NULL it means a builtin is running in the parent
-//so it saves the original stdin/stdout via dup before touching anything
-//that's what allows restore_fds in exec_fd.c to undo the redirections afterward. 
 int	apply_redirections(t_redirect *redirs, t_fdsave *save)
 {
 	if (save)

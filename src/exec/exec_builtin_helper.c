@@ -6,13 +6,12 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:02:09 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/08 18:18:01 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:29:33 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-//Basically a dic with key value pairs, being name and enum
-//the NULL serves as a sentinel, just like \0 on a string
+
 void	init_builtins(t_builtin_entry *builtins)
 {
 	builtins[0] = (t_builtin_entry){"echo", BUILTIN_ECHO, NULL};
@@ -25,7 +24,11 @@ void	init_builtins(t_builtin_entry *builtins)
 	builtins[7] = (t_builtin_entry){NULL, BUILTIN_NONE, NULL};
 }
 
-//parse the table above, to know what builtin to pick
+/**
+ * @brief Parse table builtins to know what builtin to pick
+ * @param name
+ * @param builtins
+ */
 static t_builtin_id	get_builtin_id(const char *name, t_builtin_entry *builtins)
 {
 	int	i;
@@ -40,8 +43,6 @@ static t_builtin_id	get_builtin_id(const char *name, t_builtin_entry *builtins)
 	return (BUILTIN_NONE);
 }
 
-//check to know if we are looking at a builtin
-//which is needed to know if we need to fork
 int	is_builtin(const char *name)
 {
 	t_builtin_entry	builtins[8];
@@ -52,7 +53,6 @@ int	is_builtin(const char *name)
 	return (id != BUILTIN_NONE);
 }
 
-//more evolved version of the one above, returns the builtin id
 t_builtin_id	resolve_builtin_id(const char *name)
 {
 	t_builtin_entry	builtins[8];

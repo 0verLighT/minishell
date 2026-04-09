@@ -6,13 +6,17 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 17:09:43 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 17:51:34 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//Check if a line match the delim
+/**
+ * @brief Check if a line match the delim
+ * @param line
+ * @param delim
+ */
 static int	is_delimiter(const char *line, const char *delim)
 {
 	size_t	len;
@@ -23,7 +27,13 @@ static int	is_delimiter(const char *line, const char *delim)
 	return (ret);
 }
 
-//Write a line to the pipe, expands the line if needed (if quoted flag = 0)
+/**
+ * @brief Write a line to the pipe, expands the line if needed
+ * (if quoted flag = 0)
+ * @param line
+ * @param quoted
+ * @param ctx
+ */
 static int	write_line(int fd, const char *line, int quoted, t_ctx *ctx)
 {
 	char	*expanded;
@@ -46,7 +56,13 @@ static int	write_line(int fd, const char *line, int quoted, t_ctx *ctx)
 	return (SUCCESS);
 }
 
-//Readline loop until EOF or delim found
+/**
+ * @brief Readline loop until EOF or delim found
+ * @param fd
+ * @param delim
+ * @param quoted
+ * @param ctx
+ */
 static int	fill_heredoc(int fd, const char *delim, int quoted, t_ctx *ctx)
 {
 	char	*line;
@@ -72,9 +88,6 @@ static int	fill_heredoc(int fd, const char *delim, int quoted, t_ctx *ctx)
 	return (SUCCESS);
 }
 
-//Create the pipe, fills it, redir stdin to read the end
-//The write end is closed before the dup2 
-//so the child sees EOF when it drains the pipe
 int	exec_heredoc(t_redirect *redir, t_ctx *ctx)
 {
 	int	fd[2];

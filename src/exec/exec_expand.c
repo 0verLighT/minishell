@@ -6,13 +6,17 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 17:09:23 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:12:24 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//Extract variable name starting after the $
+/**
+ * @brief Extract variable name starting after the $
+ * @param str
+ * @param i
+ */
 static char	*extract_varname(const char *str, int *i)
 {
 	int	start;
@@ -23,7 +27,12 @@ static char	*extract_varname(const char *str, int *i)
 	return (ft_substr(str, start, *i - start));
 }
 
-// Handle a $ expansion at pos i in str
+/**
+ * @brief Handle a $ expansion at pos i in str
+ * @param str
+ * @param i
+ * @param ctx
+ */
 static char	*expand_var(const char *str, int *i, t_ctx *ctx)
 {
 	char	*ret;

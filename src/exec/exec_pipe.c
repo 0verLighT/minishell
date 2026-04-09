@@ -6,13 +6,16 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:33:52 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/07 03:38:36 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 17:37:55 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//wrap pipe with perror, same logic as cd_core in builtin folder
+/**
+ * @brief Wrap pipe with perror
+ * @details same logic as ft_cd
+ */
 static int	open_pipe(int fd[2])
 {
 	if (pipe(fd) < 0)
@@ -23,8 +26,13 @@ static int	open_pipe(int fd[2])
 	return (SUCCESS);
 }
 
-//Child process for redirecting the output of
-//what's on the left side of the pipe
+/**
+ * @brief Child process for redirecting the output of
+ * what's on the left side of the pipe
+ * @param node
+ * @param fd
+ * @param ctx
+ */
 static void	run_left(t_ast_node *node, int fd[2], t_ctx *ctx)
 {
 	dup2(fd[1], STDOUT_FILENO);
@@ -33,8 +41,13 @@ static void	run_left(t_ast_node *node, int fd[2], t_ctx *ctx)
 	exit(exec_node(node->data.pair.left, ctx));
 }
 
-//Child process for redirecting to the input of
-//what's on the right side of the pipe
+/**
+ * @brief Child process for redirecting to the input of
+ * what's on the right side of the pipe
+ * @param node
+ * @param fd
+ * @param ctx
+ */
 static void	run_right(t_ast_node *node, int fd[2], t_ctx *ctx)
 {
 	dup2(fd[0], STDIN_FILENO);
@@ -43,7 +56,13 @@ static void	run_right(t_ast_node *node, int fd[2], t_ctx *ctx)
 	exit(exec_node(node->data.pair.right, ctx));
 }
 
-//Fork process for the run left and right functions
+/**
+ * @brief Fork process for the run left and right functions
+ * @param node
+ * @param fd
+ * @param pids
+ * @param ctx
+ */
 static int	fork_children(t_ast_node *node, int fd[2],
 				pid_t pids[2], t_ctx *ctx)
 {
@@ -72,8 +91,6 @@ static int	fork_children(t_ast_node *node, int fd[2],
 	return (SUCCESS);
 }
 
-//Orchestrate, then wait for left then right chidren,
-//and return the last children exit code
 int	exec_pipe(t_ast_node *node, t_ctx *ctx)
 {
 	int		fd[2];

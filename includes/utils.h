@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:59:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/07 03:50:44 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/09 17:19:27 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char	*ft_getenv(t_env *env, char *var);
  * @brief free context variable of minishell
  * @param ctx context
  */
- 
-//free_ctx.c
 void	free_ctx(t_ctx *ctx);
 /**
  * @brief return if it's a shell operator
