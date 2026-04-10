@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/30 23:22:56 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 17:39:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ static char	*prompt_fish(t_ctx *ctx)
 {
 	char	*tmp;
 
-	ctx->prompt = ft_strjoin(NULL, ft_getenv(ctx->env, "USER"));
-	ctx->prompt = ft_strjoin(ctx->prompt, ":");
+	ctx->prompt = ft_strdup("");
+	if (ft_getenv(ctx->env, "USER"))
+	{
+		ctx->prompt = ft_strjoin(NULL, ft_getenv(ctx->env, "USER"));
+		ctx->prompt = ft_strjoin(ctx->prompt, ":");
+	}
 	if (ft_strcmp(ft_getenv(ctx->env, "HOME"), ft_getenv(ctx->env, "PWD")) == 0)
 		tmp = "~";
-	else
+	else if (ft_getenv(ctx->env, "PWD"))
 		tmp = ft_getenv(ctx->env, "PWD");
+	else
+		tmp = NULL;
 	ctx->prompt = ft_strjoin(ctx->prompt, tmp);
 	ctx->prompt = ft_strjoin(ctx->prompt, "$ ");
 	return (ctx->prompt);
