@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 21:02:09 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 19:29:33 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 03:30:39 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_builtins(t_builtin_entry *builtins)
  * @param name
  * @param builtins
  */
-static t_builtin_id	get_builtin_id(const char *name, t_builtin_entry *builtins)
+static t_builtin_id	get_builtin_id(char *name, t_builtin_entry *builtins)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ static t_builtin_id	get_builtin_id(const char *name, t_builtin_entry *builtins)
 	return (BUILTIN_NONE);
 }
 
-int	is_builtin(const char *name)
+int	is_builtin(char *name)
 {
 	t_builtin_entry	builtins[8];
 	t_builtin_id	id;
@@ -53,7 +53,7 @@ int	is_builtin(const char *name)
 	return (id != BUILTIN_NONE);
 }
 
-t_builtin_id	resolve_builtin_id(const char *name)
+t_builtin_id	resolve_builtin_id(char *name)
 {
 	t_builtin_entry	builtins[8];
 	t_builtin_id	id;

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 19:12:24 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 03:30:55 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @param str
  * @param i
  */
-static char	*extract_varname(const char *str, int *i)
+static char	*extract_varname(char *str, int *i)
 {
 	int	start;
 
@@ -33,7 +33,7 @@ static char	*extract_varname(const char *str, int *i)
  * @param i
  * @param ctx
  */
-static char	*expand_var(const char *str, int *i, t_ctx *ctx)
+static char	*expand_var(char *str, int *i, t_ctx *ctx)
 {
 	char	*ret;
 	char	*varname;
@@ -59,7 +59,7 @@ static char	*expand_var(const char *str, int *i, t_ctx *ctx)
 	return (ret);
 }
 
-static char	*expand_step(const char *str, int *i, char *result, t_ctx *ctx)
+static char	*expand_step(char *str, int *i, char *result, t_ctx *ctx)
 {
 	char	*tmp;
 	char	buf[2];
@@ -85,7 +85,7 @@ static char	*expand_step(const char *str, int *i, char *result, t_ctx *ctx)
 	return (result);
 }
 
-char	*ft_expand(const char *str, t_ctx *ctx)
+char	*ft_expand(char *str, t_ctx *ctx)
 {
 	char	*result;
 	int		i;

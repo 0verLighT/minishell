@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 17:51:34 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 03:28:34 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @param line
  * @param delim
  */
-static int	is_delimiter(const char *line, const char *delim)
+static int	is_delimiter(char *line, char *delim)
 {
 	size_t	len;
 	size_t	ret;
@@ -34,7 +34,7 @@ static int	is_delimiter(const char *line, const char *delim)
  * @param quoted
  * @param ctx
  */
-static int	write_line(int fd, const char *line, int quoted, t_ctx *ctx)
+static int	write_line(int fd, char *line, int quoted, t_ctx *ctx)
 {
 	char	*expanded;
 	int		ret;
@@ -63,7 +63,7 @@ static int	write_line(int fd, const char *line, int quoted, t_ctx *ctx)
  * @param quoted
  * @param ctx
  */
-static int	fill_heredoc(int fd, const char *delim, int quoted, t_ctx *ctx)
+static int	fill_heredoc(int fd, char *delim, int quoted, t_ctx *ctx)
 {
 	char	*line;
 

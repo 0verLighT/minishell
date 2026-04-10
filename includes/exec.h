@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 22:14:30 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 03:36:35 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "minishell.h"
 # include "builtin.h"
 # include "parser.h"
+# include <sys/types.h>
 
 //used to save the fds, so it doesn't get lost with dup2 calls
 typedef struct s_fdsave
@@ -73,13 +74,13 @@ void			init_builtins(t_builtin_entry *builtins);
  * @brief Check to know if we are looking at a builtin
  * @param name
  */
-int				is_builtin(const char *name);
+int				is_builtin(char *name);
 /**
  * @brief more evolved version of is_builtin
  * @param name
  * @returns the builtin id
  */
-t_builtin_id	resolve_builtin_id(const char *name);
+t_builtin_id	resolve_builtin_id(char *name);
 //exec_pipe.c
 /**
  * @brief Orchestrate, then wait for left then right chidren
@@ -119,7 +120,7 @@ int				exec_heredoc(t_redirect *redir, t_ctx *ctx);
  * @param str
  * @param ctx
  */
-char			*ft_expand(const char *str, t_ctx *ctx);
+char			*ft_expand(char *str, t_ctx *ctx);
 //exec_fd.h
 /**
  * @brief Restore fd of strdin and stdout
@@ -142,7 +143,6 @@ int				exec_wait(pid_t pid, t_ctx *ctx);
  * @param exitcode
  * @param ctx
  */
-void			exec_error(const char *cmd, const char *msg,
-					int exitcode, t_ctx *ctx);
+void			exec_error(char *cmd, char *msg, int exitcode, t_ctx *ctx);
 
 #endif

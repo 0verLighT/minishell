@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:48:39 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 19:10:00 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 03:28:11 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*try_path(char *dir, char *cmd)
  * @param ctx
  * @return The frist exec found
  */
-static char	*search_path(const char *cmd, t_ctx *ctx)
+static char	*search_path(char *cmd, t_ctx *ctx)
 {
 	char	*path_env;
 	char	**dirs;
@@ -73,7 +73,7 @@ static char	*search_path(const char *cmd, t_ctx *ctx)
  * @param cmd
  * @param ctx
  */
-static char	*resolve_path(const char *cmd, t_ctx *ctx)
+static char	*resolve_path(char *cmd, t_ctx *ctx)
 {
 	char	*ret;
 
