@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/05 00:59:06 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 20:27:49 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ int				init_tokens(t_token *tokens, char *str, size_t token_count);
 /**
  * @brief Main function of tokenzier
  * @param str
+ * @param token_count
  * @return prompt in token struct
  */
-int				tokenizing(char *str);
+t_token			*tokenizing(char *str, size_t *token_count);
 
 //tokenizer_utils.c
 /**

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/10 17:39:05 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 20:25:16 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,31 @@ static char	*prompt_fish(t_ctx *ctx)
 	return (ctx->prompt);
 }
 
+static void procces(char *line, t_ctx *ctx)
+{
+	t_token		*tokens;
+	t_parser	*parser;
+	t_ast_node	*ast;
+	size_t		token_count;
+
+	token_count = 0;
+	tokens = tokenizing(line, &token_count);
+	if (!tokens)
+		return ;
+	parser = malloc(sizeof(t_parser));
+	if (!parser)
+		free(parser);
+	ast = malloc(sizeof(t_ast_node));
+	if (!ast)
+		free(ast);
+	init_parser(parser, tokens, (int)token_count);
+	ast = parse_pipeline(parser);
+	exec_node(ast, ctx);
+	free(ast);
+	free(tokens);
+	free(parser);
+}
+
 static void	content_loop(t_ctx *ctx)
 {
 	char	*line;
@@ -53,9 +78,8 @@ static void	content_loop(t_ctx *ctx)
 		check_sig(ctx);
 		if (!line)
 			break ;
+		procces(line, ctx);
 		free(prompt);
-		if (!tokenizing(line))
-			return ;
 		if (line[0] != '\0')
 			add_history(line);
 		free(line);

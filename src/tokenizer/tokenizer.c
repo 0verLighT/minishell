@@ -12,6 +12,8 @@
 
 #include "tokenizer.h"
 #include "parser.h"
+#include "exec.h"
+#include "minishell.h"
 
 static size_t	get_token_len_helper(char *str, size_t pos,
 	size_t len, size_t *content_len)
@@ -90,26 +92,22 @@ int	init_tokens(t_token *tokens, char *str, size_t token_count)
 	return (1);
 }
 
-int	tokenizing(char *str)
+t_token	*tokenizing(char *str, size_t *token_count)
 {
 	t_token		*tokens;
-	size_t		token_count;
 	t_parser	*parser;
 	t_ast_node	*ast;
 
 	if (!str)
-		return (0);
-	token_count = count_token(str);
-	tokens = ft_calloc((token_count + 1), sizeof(t_token));
+		return (NULL);
+	*token_count = count_token(str);
+	tokens = ft_calloc((*token_count + 1), sizeof(t_token));
 	if (!tokens)
-		return (0);
-	if (!init_tokens(tokens, str, token_count))
-		return (0);
-	parser = malloc(sizeof(t_parser));
-	ast = malloc(sizeof(t_ast_node));
-	if (!ast || !parser)
-		return (0);
-	init_parser(parser, tokens, token_count);
-	ast = parse_pipeline(parser);
-	return (1);
+		return (NULL);
+	if (!init_tokens(tokens, str, *token_count))
+	{
+		free(tokens);
+		return (NULL);
+	}
+	return (tokens);
 }
