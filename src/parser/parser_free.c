@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up.c                                         :+:      :+:    :+:   */
+/*   parser_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 01:19:51 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/30 22:42:51 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/11 03:17:32 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_array(char **array)
 		++i;
 	}
 	free(array);
+	array = NULL;
 }
 
 void	free_redirects(t_redirect *redirects)
@@ -38,26 +39,7 @@ void	free_redirects(t_redirect *redirects)
 		free(tmp->file);
 		free(tmp);
 	}
-}
-
-/**
- * @brief Free the data in a command node
- * @param node the AST
- */
-static void	free_cmd_node(t_ast_node *node)
-{
-	free_array(node->data.cmd.input);
-	free_redirects(node->data.cmd.redirects);
-}
-
-/**
- * @brief Free a pipe, and, or node
- * @param node the AST
- */
-static void	free_binary_node(t_ast_node *node)
-{
-	free_ast_node(node->data.pair.left);
-	free_ast_node(node->data.pair.right);
+	redirects = NULL;
 }
 
 void	free_ast_node(t_ast_node *node)
@@ -65,8 +47,15 @@ void	free_ast_node(t_ast_node *node)
 	if (!node)
 		return ;
 	if (node->type == NODE_CMD)
-		free_cmd_node(node);
+	{
+		free_array(node->data.cmd.input);
+		free_redirects(node->data.cmd.redirects);
+	}
 	else
-		free_binary_node(node);
+	{
+		free_ast_node(node->data.pair.left);
+		free_ast_node(node->data.pair.right);
+	}
 	free(node);
+	node = NULL;
 }

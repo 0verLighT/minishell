@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 19:40:24 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 23:22:14 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ char	*build_keyvalue(char *key, char *value)
 {
 	char	*tmp;
 	char	*result;
+	char	*key_copy;
 
-	tmp = ft_strjoin(key, "=");
+	key_copy = ft_strdup(key);
+	if (!key_copy)
+		return (NULL);
+	tmp = ft_strjoin(key_copy, "=");
 	if (!tmp)
 		return (NULL);
 	result = ft_strjoin(tmp, value);
-	free(tmp);
 	return (result);
 }
 

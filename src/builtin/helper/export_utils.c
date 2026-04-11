@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 15:53:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/06 01:37:09 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/10 22:42:22 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static void	print_export_entry(const char *var)
 	key = ft_substr(var, 0, val_assign - var);
 	if (!key)
 		return ;
-	ft_dprintf(1, "declare -x %s=\"%s\"", key, val_assign + 1);
+	if (ft_strncmp(key, "_", 2) != 0)
+		ft_dprintf(1, "declare -x %s=\"%s\"\n", key, val_assign + 1);
 	free(key);
 }
 

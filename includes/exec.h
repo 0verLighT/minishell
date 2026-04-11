@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/10 03:36:35 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/11 02:48:21 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,11 @@ int				exec_wait(pid_t pid, t_ctx *ctx);
  * @param ctx
  */
 void			exec_error(char *cmd, char *msg, int exitcode, t_ctx *ctx);
+/**
+ * @brief applies expand in ast
+ * @param as
+ * @param ctx
+ */
+t_ast_node		*applies_expand(t_ast_node *ast, t_ctx *ctx);
 
 #endif

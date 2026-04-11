@@ -21,15 +21,15 @@ BUILTIN_HELPER	:= builtin_utils.c cd_utils.c exit_utils.c export_utils.c
 CTX				:= init.c
 SIGNALS			:= signal.c
 UTILS			:= ft_getenv.c free_env.c ft_isoperator.c
-PARSER			:=																	\
-				ast_node_helper.c parser_free.c parse_command_helper.c				\
-				parse_command.c pipe_parse.c redirection_create.c 					\
-				redirection_parse.c redirection_utils.c simple_command_utils.c		\
+PARSER			:=																		\
+				ast_node_helper.c parser_free.c parse_command_helper.c					\
+				parse_command.c pipe_parse.c redirection_create.c 						\
+				redirection_parse.c redirection_utils.c simple_command_utils.c			\
 				token_cursor.c
 TOKENIZER		:= tokenizer.c tokenizer_utils.c init_type_tokens.c
-EXEC			:= exec_builtin_helper.c exec_builtin.c exec_cmd.c exec_core.c		\
-				exec_error.c exec_expand.c exec_external.c exec_fd.c exec_heredoc.c	\
-				exec_logical.c exec_pipe.c exec_redir.c exec_wait.c					\
+EXEC			:= exec_builtin_helper.c exec_builtin.c exec_cmd.c exec_core.c			\
+				exec_error.c exec_expand.c exec_external.c exec_fd.c exec_heredoc.c		\
+				exec_logical.c exec_pipe.c exec_redir.c exec_wait.c applies_expand.c	\
 
 
 SOURCES =													\
