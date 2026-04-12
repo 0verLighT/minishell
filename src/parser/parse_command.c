@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/12 05:03:27 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 00:15:12 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_ast_node	*finalize_command_node(t_cmd_ctx *ctx, t_parser *parser)
 
 	if (ctx->argc == 0)
 	{
-		free_cmd_ctx(ctx);
+		free(ctx->input);
 		if (parser->tokens->type == TOKEN_PIPE)
 			ft_dprintf(2, "%s `|'\n", line_error);
 		else if (parser->tokens->type == TOKEN_AND)

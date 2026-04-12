@@ -95,8 +95,6 @@ int	init_tokens(t_token *tokens, char *str, size_t token_count)
 t_token	*tokenizing(char *str, size_t *token_count)
 {
 	t_token		*tokens;
-	t_parser	*parser;
-	t_ast_node	*ast;
 
 	if (!str)
 		return (NULL);

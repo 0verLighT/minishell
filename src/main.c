@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/12 04:49:07 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 00:57:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ static void	procces(char *line, t_ctx *ctx)
 		return ;
 	init_parser(&parser, tokens, (int)token_count);
 	ast = parse_pipeline(&parser);
-	ast = applies_expand(ast, ctx);
-	exec_node(ast, ctx);
+	if (ast)
+	{
+		ast = applies_expand(ast, ctx);
+		exec_node(ast, ctx);
+	}
+	else
+		ctx->return_code = 2;
 	free_ast_node(ast);
 	free_tokens(tokens, token_count);
 }
@@ -86,6 +91,7 @@ static void	content_loop(t_ctx *ctx)
 int	main(int ac, char **av, char **envp)
 {
 	t_ctx	*ctx;
+	int		last_return_code;
 
 	(void)ac;
 	(void)av;
@@ -93,7 +99,8 @@ int	main(int ac, char **av, char **envp)
 	ctx = ft_calloc(1, sizeof(t_ctx));
 	init_ctx(ctx, envp);
 	content_loop(ctx);
+	last_return_code = ctx->return_code;
 	free_ctx(ctx);
 	ft_dprintf(1, "exit\n");
-	return (0);
+	return (last_return_code);
 }
