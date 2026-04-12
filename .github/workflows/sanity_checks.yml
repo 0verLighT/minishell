@@ -158,8 +158,13 @@ jobs:
           chmod u+x ${{env.bin}}
       - name: Git clone tester
         run: git clone https://gitlab.com/nda-cunh/minishell_tester.git
-      - name: compile tester and run
+      - name: compile tester
         run: |
           cd minishell_tester/
           make
+      - name: run with leaks
+        run: |
           ./tester -v
+      - name: run without leaks
+        run: |
+          ./tester -j1
