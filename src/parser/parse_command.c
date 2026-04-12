@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/04 03:43:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/12 05:03:27 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	process_command_tokens(t_parser *parser, t_cmd_ctx *ctx)
 t_ast_node	*parse_simple_command(t_parser *parser)
 {
 	t_cmd_ctx	*ctx;
+	t_ast_node	*node;
 
 	ctx = malloc(sizeof(t_cmd_ctx));
 	if (!ctx)
@@ -88,5 +89,7 @@ t_ast_node	*parse_simple_command(t_parser *parser)
 		free_cmd_ctx(ctx);
 		return (NULL);
 	}
-	return (finalize_command_node(ctx, parser));
+	node = finalize_command_node(ctx, parser);
+	free(ctx);
+	return (node);
 }
