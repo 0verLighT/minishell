@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/11 03:19:01 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/12 04:49:07 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*prompt_fish(t_ctx *ctx)
 {
 	char	*tmp;
 
-	ctx->prompt = ft_strdup("");
+	ctx->prompt = NULL;
 	if (ft_getenv(ctx->env, "USER"))
 	{
 		ctx->prompt = ft_strjoin(NULL, ft_getenv(ctx->env, "USER"));
@@ -57,7 +57,7 @@ static void	procces(char *line, t_ctx *ctx)
 	ast = applies_expand(ast, ctx);
 	exec_node(ast, ctx);
 	free_ast_node(ast);
-	free(tokens);
+	free_tokens(tokens, token_count);
 }
 
 static void	content_loop(t_ctx *ctx)
@@ -72,10 +72,13 @@ static void	content_loop(t_ctx *ctx)
 		check_sig(ctx);
 		if (!line)
 			break ;
-		procces(line, ctx);
+		if (*line)
+		{
+			procces(line, ctx);
+			if (*line != '\0')
+				add_history(line);
+		}
 		free(prompt);
-		if (line[0] != '\0')
-			add_history(line);
 		free(line);
 	}
 }
