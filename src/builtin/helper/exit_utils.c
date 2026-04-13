@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:18:24 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/05 01:08:57 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:57:00 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int	parse_exitcode(char *str, int *err_flag)
 	int					exitcode;
 	unsigned long long	*result;
 
-	tab = malloc(sizeof(int) * 4);
+	tab = ft_calloc(sizeof(int), 4);
 	if (!tab)
 		return (0);
-	result = malloc(sizeof(unsigned long long));
+	result = ft_calloc(sizeof(unsigned long long), 1);
 	if (!result)
 	{
 		free(tab);

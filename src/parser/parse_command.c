@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/13 02:14:23 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:54:02 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_ast_node	*parse_simple_command(t_parser *parser)
 	ctx->cmd_node = NULL;
 	ctx->argc = 0;
 	ctx->capacity = 10;
-	ctx->input = malloc(sizeof(char *) * ctx->capacity);
+	ctx->input = ft_calloc(sizeof(char *), ctx->capacity);
 	if (!ctx->input)
 		return (NULL);
 	if (process_command_tokens(parser, ctx) == -1)

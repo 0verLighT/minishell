@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 04:44:46 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 03:10:25 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:58:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**expand_input_array(t_cmd_ctx *ctx)
 	char	**new_input;
 	int		i;
 
-	new_input = malloc(sizeof(char *) * (ctx->capacity * 2));
+	new_input = ft_calloc(sizeof(char *), ctx->capacity * 2);
 	if (!new_input)
 		return (NULL);
 	i = 0;

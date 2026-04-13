@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/13 18:11:25 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:58:16 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_node_token	*token_maker(char *str)
 
 	if (!str)
 		return (NULL);
-	token = malloc(sizeof(t_node_token));
+	token = ft_calloc(sizeof(t_node_token), 1);
 	if (!token)
 		return (NULL);
 	token_start = strskip(str);

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 03:12:06 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/22 19:04:36 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:57:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_redirect	*create_redirect(int type, char *file)
 
 	if (!file)
 		return (NULL);
-	redir = malloc(sizeof(t_redirect));
+	redir = ft_calloc(sizeof(t_redirect), 1);
 	if (!redir)
 		return (NULL);
 	redir->type = (size_t)type;

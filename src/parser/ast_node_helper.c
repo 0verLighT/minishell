@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 00:52:47 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/21 15:45:09 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:57:38 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_ast_node	*create_cmd_node(char **input, t_redirect *redirects)
 {
 	t_ast_node	*node;
 
-	node = malloc(sizeof(t_ast_node));
+	node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!node)
 		return (NULL);
 	node->type = NODE_CMD;
@@ -29,7 +29,7 @@ t_ast_node	*create_pipe_node(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*node;
 
-	node = malloc(sizeof(t_ast_node));
+	node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!node)
 		return (NULL);
 	node->type = NODE_PIPE;
@@ -42,7 +42,7 @@ t_ast_node	*create_and_node(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*node;
 
-	node = malloc(sizeof(t_ast_node));
+	node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!node)
 		return (NULL);
 	node->type = NODE_AND;
@@ -55,7 +55,7 @@ t_ast_node	*create_or_node(t_ast_node *left, t_ast_node *right)
 {
 	t_ast_node	*node;
 
-	node = malloc(sizeof(t_ast_node));
+	node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!node)
 		return (NULL);
 	node->type = NODE_OR;
