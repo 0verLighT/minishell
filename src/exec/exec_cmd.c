@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 20:01:53 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 19:18:10 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 02:32:43 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	run_builtin_in_parent(t_ast_node *node, t_ctx *ctx)
 	t_fdsave	fdsave;
 	int			ret;
 
-	if (apply_redirections(node->data.cmd.redirects, &fdsave))
+	if (apply_redirections(node->data.cmd.redirects, &fdsave, ctx))
 		return (FAIL);
 	ret = exec_builtin(node->data.cmd.input, ctx);
 	restore_fds(&fdsave);
@@ -49,7 +49,7 @@ static int	run_in_child(t_ast_node *node, t_ctx *ctx)
 	}
 	if (pid == 0)
 	{
-		if (apply_redirections(node->data.cmd.redirects, NULL))
+		if (apply_redirections(node->data.cmd.redirects, NULL, ctx))
 			exit(FAIL);
 		if (is_builtin(node->data.cmd.input[0]))
 			exit(exec_builtin(node->data.cmd.input, ctx));

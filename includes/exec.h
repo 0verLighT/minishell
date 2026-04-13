@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/11 02:48:21 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 02:42:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int				exec_external(char **argv, t_ctx *ctx);
  * @param redirs
  * @param save
  */
-int				apply_redirections(t_redirect *redirs, t_fdsave *save);
+int				apply_redirections(t_redirect *redirs, t_fdsave *save,
+					t_ctx *ctx);
 //exec_heredoc.c
 /**
  * @brief Create the pipe, fills it, redir stdin to read the end

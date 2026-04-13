@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:08:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/10 03:32:05 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 02:32:12 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	redir_output(char *file, int append)
  * @brief Dispatch the redirect node according to it's type
  * @param redir
  */
-static int	apply_one(t_redirect *redir)
+static int	apply_one(t_redirect *redir, t_ctx *ctx)
 {
 	if (redir->type == 0)
 		return (redir_input(redir->file));
@@ -81,10 +81,12 @@ static int	apply_one(t_redirect *redir)
 		return (redir_output(redir->file, 0));
 	if (redir->type == 2)
 		return (redir_output(redir->file, 1));
+	if (redir->type == 3)
+		return (exec_heredoc(redir->file, ctx));
 	return (FAIL);
 }
 
-int	apply_redirections(t_redirect *redirs, t_fdsave *save)
+int	apply_redirections(t_redirect *redirs, t_fdsave *save, t_ctx *ctx)
 {
 	if (save)
 	{
@@ -93,7 +95,7 @@ int	apply_redirections(t_redirect *redirs, t_fdsave *save)
 	}
 	while (redirs)
 	{
-		if (apply_one(redirs))
+		if (apply_one(redirs, ctx))
 		{
 			if (save)
 				restore_fds(save);

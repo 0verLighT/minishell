@@ -1,0 +1,15 @@
+a
+build
+docs
+Doxyfile
+doxygen-awesome-css
+flake.lock
+flake.nix
+includes
+LICENSE
+Makefile
+meson.build
+readline.supp
+README.md
+src
+subprojects
