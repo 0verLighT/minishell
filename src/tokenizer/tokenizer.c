@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "tokenizer.h"
-#include "parser.h"
-#include "exec.h"
-#include "minishell.h"
 
 static size_t	get_token_len_helper(char *str, size_t pos,
 		size_t *content_len, t_token *token)

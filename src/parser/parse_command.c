@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/13 16:54:02 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 00:55:30 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_ast_node	*parse_simple_command(t_parser *parser)
 	t_cmd_ctx	*ctx;
 	t_ast_node	*node;
 
-	ctx = malloc(sizeof(t_cmd_ctx));
+	ctx = ft_calloc(sizeof(t_cmd_ctx), 1);
 	if (!ctx)
 		return (NULL);
 	ctx->cmd_node = NULL;

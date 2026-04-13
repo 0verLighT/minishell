@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:08:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/13 02:32:12 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 00:50:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	apply_one(t_redirect *redir, t_ctx *ctx)
 	if (redir->type == 2)
 		return (redir_output(redir->file, 1));
 	if (redir->type == 3)
-		return (exec_heredoc(redir->file, ctx));
+		return (exec_heredoc(redir, ctx));
 	return (FAIL);
 }
 

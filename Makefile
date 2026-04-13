@@ -1,13 +1,5 @@
 CC				:= cc
-CFLAGS			:= -MP -MMD -Wall -g #-Werror -Wextra #-fsanitize=address
-LIBFT_DIR		:= ./subprojects/libft
-LDFLAGS			:= -L$(LIBFT_DIR)
-LDLIBS			:= -lft -lreadline
-NAME			:= minishell
-INCLUDES		:= -Iincludes -I$(LIBFT_DIR)/includes -Isrc/tokenizer
-PREFIX			?= ~/.local/bin
-CC				:= cc
-CFLAGS			:= -MP -MMD -Wall -g #-Werror -Wextra #-fsanitize=address
+CFLAGS			:= -MP -MMD -Wall -g -Werror -Wextra #-fsanitize=address
 LIBFT_DIR		:= ./subprojects/libft
 LDFLAGS			:= -L$(LIBFT_DIR)
 LDLIBS			:= -lft -lreadline

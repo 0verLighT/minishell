@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/10 03:28:34 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 00:46:13 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	fill_heredoc(int fd, char *delim, int quoted, t_ctx *ctx)
 			free(line);
 			return (FAIL);
 		}
-		write(fd, "\n", 1);
+		(void) write(fd, "\n", 1);
 		free(line);
 	}
 	return (SUCCESS);
