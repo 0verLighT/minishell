@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/03/28 17:10:59 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 18:11:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ size_t	count_token(char *str)
 		if (str[i])
 		{
 			token_nb++;
-			len = get_token_len(str, i, &_);
+			len = get_token_len(str, i, &_, NULL);
 			i += len;
 		}
 	}

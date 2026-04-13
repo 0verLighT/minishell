@@ -16,15 +16,21 @@
 #include "minishell.h"
 
 static size_t	get_token_len_helper(char *str, size_t pos,
-	size_t len, size_t *content_len)
+		size_t *content_len, t_token *token)
 {
+	size_t	len;
 	char	quote;
 
+	len = 0;
 	quote = 0;
 	while (str[pos + len])
 	{
 		if ((str[pos + len] == '"' || str[pos + len] == '\'') && !quote)
+		{
 			quote = str[pos + len];
+			if (token)
+				token->content.quote = 1;
+		}
 		else if (quote && str[pos + len] == quote)
 			quote = 0;
 		else if (!quote && (ft_isspace(str[pos + len])
@@ -37,7 +43,8 @@ static size_t	get_token_len_helper(char *str, size_t pos,
 	return (len);
 }
 
-size_t	get_token_len(char *str, size_t pos, size_t *content_len)
+size_t	get_token_len(char *str, size_t pos,
+			size_t *content_len, t_token *token)
 {
 	size_t	len;
 
@@ -53,7 +60,7 @@ size_t	get_token_len(char *str, size_t pos, size_t *content_len)
 		*content_len = 1;
 		return (1);
 	}
-	len += get_token_len_helper(str, pos, len, content_len);
+	len += get_token_len_helper(str, pos, content_len, token);
 	return (len);
 }
 
@@ -62,7 +69,8 @@ int	fill_token(t_token *token, char *str, size_t *pos, int index)
 	size_t	len;
 	size_t	content_len;
 
-	len = get_token_len(str, *pos, &content_len);
+	token->content.quote = 0;
+	len = get_token_len(str, *pos, &content_len, token);
 	token->index = index;
 	token->content.len = content_len;
 	token->content.ptr = create_token(str, *pos, len, content_len);

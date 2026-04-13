@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 02:31:28 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/10 20:27:49 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 18:28:03 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,21 @@ typedef enum e_token_type
 }	t_token_type;
 
 /**
- * @brief Allows to take chunks of the input, with a precise starting and ending 
- * point
+ * @brief Allows to take chunks of the input, with a precise
+ * starting and ending point
  * @param ptr
+ * @param quote
  * @param len
  */
 typedef struct s_node_token
 {
 	char	*ptr;
+	int		quote;
 	size_t	len;
 }	t_node_token;
 
 /**
- * @brief A token is a chunk of the input with an index That way, we can  
+ * @brief A token is a chunk of the input with an index That way, we can
  * work on isolated chunks by giving the index
  * @param index
  * @param type
@@ -70,9 +72,11 @@ typedef struct s_token
  * @brief Get the length of a token starting at pos
  * @param str
  * @param pos
+ * @param token
  * @return length of token starting at pos
  */
-size_t			get_token_len(char *str, size_t pos, size_t *content_len);
+size_t			get_token_len(char *str, size_t pos,
+					size_t *content_len, t_token *token);
 /**
  * @brief Allocate and fill a token
  * @param token

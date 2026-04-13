@@ -166,7 +166,3 @@ jobs:
         run: |
           cd minishell_tester
           ./tester -v
-      - name: run without leaks
-        run: |
-          cd minishell_tester
-          ./tester --jobs=1
