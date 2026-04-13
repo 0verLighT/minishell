@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_simple_command.c                             :+:      :+:    :+:   */
+/*   parse_command_helper.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 03:12:54 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/02 03:36:21 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 02:12:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	process_token(t_parser *parser, t_token *current, t_cmd_ctx *ctx)
 
 	if (is_redirection(current))
 	{
-		result = handle_redirection_token(parser, ctx->cmd_node);
+		result = handle_redirection_token(parser, ctx);
 		return (result);
 	}
 	if (current->type == TOKEN_WORD)

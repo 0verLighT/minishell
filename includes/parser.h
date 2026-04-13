@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 22:41:12 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/09 19:35:04 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/13 02:12:46 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void		free_ast_node(t_ast_node *node);
  * @param cmd_node 
  * @return -1 on error, 1 on successfully
  */
-int			handle_redirection_token(t_parser *parser, t_ast_node *cmd_node);
+int			handle_redirection_token(t_parser *parser, t_cmd_ctx *ctx);
 /**
  * @brief Same as above but for words
  * @param parser
