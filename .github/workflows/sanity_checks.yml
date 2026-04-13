@@ -164,7 +164,9 @@ jobs:
           make
       - name: run with leaks
         run: |
+          cd minishell_tester
           ./tester -v
       - name: run without leaks
         run: |
-          ./tester -j1
+          cd minishell_tester
+          ./tester --jobs=1
