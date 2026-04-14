@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 18:18:24 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/13 16:57:00 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 19:22:23 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ static void	handle_whitespaces_sign(char *str, int *tab)
 	while ((str[idx] >= 9 && str[idx] <= 13) || str[idx] == 32)
 		idx++;
 	if (str[idx] == '+' || str[idx] == '-')
+	{
 		if (str[idx] == '-')
 			tab[3] = -1;
+		++idx;
+	}
 	tab[0] = idx;
 }
 
@@ -69,26 +72,19 @@ static void	error_handling(char *str, int *tab, unsigned long long *result)
 
 int	parse_exitcode(char *str, int *err_flag)
 {
-	int					*tab;
+	int					tab[4];
+	unsigned long long	result;
 	int					exitcode;
-	unsigned long long	*result;
 
-	tab = ft_calloc(sizeof(int), 4);
-	if (!tab)
-		return (0);
-	result = ft_calloc(sizeof(unsigned long long), 1);
-	if (!result)
-	{
-		free(tab);
-		return (0);
-	}
+	tab[0] = 0;
+	tab[1] = 0;
+	tab[2] = 0;
+	tab[3] = 1;
 	handle_whitespaces_sign(str, tab);
 	tab[1] = tab[0];
-	parse_digit(str, tab, result);
-	error_handling(str, tab, result);
+	parse_digit(str, tab, &result);
+	error_handling(str, tab, &result);
 	*err_flag = tab[2];
-	exitcode = (int)((*result * tab[3]) % 256);
-	free(tab);
-	free(result);
+	exitcode = (int)((result * tab[3]) % 256);
 	return (exitcode);
 }
