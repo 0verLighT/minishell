@@ -1,35 +1,30 @@
 # Minishell
 
-42 | minshell
+42 | minishell
 *This project has been created as part of the 42 curriculum by amartel, jdessoli*
 
 [![wakatime](https://wakatime.com/badge/user/1c291166-2001-49b1-85d5-2e496934f6a6/project/3fa2f1f8-5f97-41ca-8fae-14543d4f8c45.svg)](https://wakatime.com/badge/user/1c291166-2001-49b1-85d5-2e496934f6a6/project/3fa2f1f8-5f97-41ca-8fae-14543d4f8c45)
 
-## to check
+## Description
+Minishell is a simplified Unix shell inspired by Bash.  
+The goal is to understand how a shell works by implementing parsing, tokenization, process execution, pipes, and environment handling under strict constraints.
 
-- [ ] run into minishell `program recived SIGfault`
-- [ ] `echo "'$a' + "$a""` -> `echo '$a'`
-- [ ] strace (command)
+The project focuses on reproducing core Bash behavior while maintaining a clean and modular architecture.
 
-## parsing
+## Instructions
 
-- [ ] make redirection
-- [ ] make heredoc
+### Compilation
 
-## expand
+    - make
+    - meson
 
-## built-in
+## Resources
 
-- [x] env
-- [ ] pwd
-- [ ] cd
-- [ ] export
-- [ ] unset
-- [ ] exit
-- [ ] echo
-  - [ ] `-n`
+- peer to peer with other really sweet 42 students, in order to get what's expected and what to be careful of.
 
-## built-in logic
+- Online documents to understand how to structure a group project properly, and how bash works
+
+- AI usage: helping with core concept understanding and unit testing
 
 ### Macos issue (Meson)
 
