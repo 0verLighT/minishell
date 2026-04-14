@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 21:21:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/13 16:58:16 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 02:44:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,33 +83,5 @@ t_node_token	*token_maker(char *str)
 		return (NULL);
 	}
 	ft_memcpy(token->ptr, str + token_start, token->len);
-	return (token);
-}
-
-char	*create_token(char *str, size_t pos, size_t len, size_t content_len)
-{
-	size_t	i;
-	size_t	j;
-	int		quote;
-	char	*token;
-
-	quote = 0;
-	i = 0;
-	j = 0;
-	token = ft_calloc((content_len + 1), sizeof(char));
-	if (!token)
-		return (0);
-	while (i < len)
-	{
-		if ((str[pos + i] == '"' || str[pos + i] == '\'') && !quote)
-			quote = str[pos + i++];
-		else if (quote && str[pos + i] == quote)
-		{
-			quote = 0;
-			i++;
-		}
-		else
-			token[j++] = str[pos + i++];
-	}
 	return (token);
 }

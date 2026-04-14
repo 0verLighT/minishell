@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/13 02:42:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 02:47:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,17 @@ void			exec_error(char *cmd, char *msg, int exitcode, t_ctx *ctx);
  * @param ctx
  */
 t_ast_node		*applies_expand(t_ast_node *ast, t_ctx *ctx);
+/**
+ * @brief remove quote in str
+ * @param str
+ */
+char			*ft_strip_quotes(char *str);
+/**
+ * @brief helper for expand
+ * @param str
+ * @param i
+ * @param ctx
+ */
+char			*expand_code(char *str, int *i, t_ctx *ctx);
 
 #endif

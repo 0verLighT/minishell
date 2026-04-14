@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/10 03:30:55 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 02:47:29 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ static char	*expand_var(char *str, int *i, t_ctx *ctx)
 	char	*value;
 
 	++(*i);
+	ret = expand_code(str, i, ctx);
+	if (ret)
+		return (ret);
 	if (!str[*i] || (!ft_isalpha(str[*i]) && str[*i] != '_'))
 	{
 		ret = ft_strdup("$");
@@ -59,42 +62,74 @@ static char	*expand_var(char *str, int *i, t_ctx *ctx)
 	return (ret);
 }
 
-static char	*expand_step(char *str, int *i, char *result, t_ctx *ctx)
+static char	*expand_step(char *str, int *i, t_ctx *ctx, char *q)
 {
-	char	*tmp;
 	char	buf[2];
+	char	*buffer;
 
+	if ((str[*i] == '\'' || str[*i] == '"') && !*q)
+		*q = str[*i];
+	else if (*q && str[*i] == *q)
+		*q = 0;
+	if (str[*i] == '$' && *q != '\'')
+		return (expand_var(str, i, ctx));
+	buf[0] = str[*i];
 	buf[1] = '\0';
-	if (str[*i] == '$')
-	{
-		tmp = expand_var(str, i, ctx);
-		if (!tmp)
-		{
-			free(result);
-			return (NULL);
-		}
-		result = ft_strjoin(result, tmp);
-		free(tmp);
-	}
-	else
-	{
-		buf[0] = str[*i];
-		result = ft_strjoin(result, buf);
-		++(*i);
-	}
-	return (result);
+	++(*i);
+	buffer = ft_strdup(buf);
+	return (buffer);
 }
 
 char	*ft_expand(char *str, t_ctx *ctx)
 {
 	char	*result;
 	int		i;
+	char	*tmp;
+	char	q;
 
 	result = ft_strdup("");
 	if (!result)
 		return (NULL);
 	i = 0;
+	q = 0;
 	while (str[i] && result)
-		result = expand_step(str, &i, result, ctx);
+	{
+		tmp = expand_step(str, &i, ctx, &q);
+		if (!tmp)
+		{
+			free(tmp);
+			return (NULL);
+		}
+		result = ft_strjoin(result, tmp);
+		free(tmp);
+	}
 	return (result);
+}
+
+char	*ft_strip_quotes(char *str)
+{
+	char	*new;
+	int		i;
+	int		j;
+	char	q;
+
+	new = ft_calloc(sizeof(char), (ft_strlen(str) + 1));
+	if (!new)
+		return (NULL);
+	i = 0;
+	j = 0;
+	q = 0;
+	while (str[i])
+	{
+		if ((str[i] == '\'' || str[i] == '"') && !q)
+			q = str[i++];
+		else if (q && str[i] == q)
+		{
+			q = 0;
+			++i;
+		}
+		else
+			new[j++] = str[i++];
+	}
+	return (new);
 }

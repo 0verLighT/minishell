@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 02:45:47 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/11 02:46:42 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 02:47:02 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,24 @@ t_ast_node	*applies_expand(t_ast_node *ast, t_ctx *ctx)
 			{
 				expand = ft_expand(ast->data.cmd.input[i], ctx);
 				free(ast->data.cmd.input[i]);
-				ast->data.cmd.input[i] = expand;
+				ast->data.cmd.input[i] = ft_strip_quotes(expand);
 				++i;
 			}
 		}
 		applies_expand_redirect(ast->data.cmd.redirects, ctx);
 	}
 	return (ast);
+}
+
+char	*expand_code(char *str, int *i, t_ctx *ctx)
+{
+	char	*ret;
+
+	if (str[*i] == '?')
+	{
+		++(*i);
+		ret = ft_itoa(ctx->return_code);
+		return (ret);
+	}
+	return (NULL);
 }

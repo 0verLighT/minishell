@@ -70,7 +70,7 @@ int	fill_token(t_token *token, char *str, size_t *pos, int index)
 	len = get_token_len(str, *pos, &content_len, token);
 	token->index = index;
 	token->content.len = content_len;
-	token->content.ptr = create_token(str, *pos, len, content_len);
+	token->content.ptr = ft_substr(str, *pos, len);
 	if (!token->content.ptr)
 		return (0);
 	*pos += len;
