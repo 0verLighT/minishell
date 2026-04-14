@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 00:46:13 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 04:04:05 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	is_delimiter(char *line, char *delim)
 	size_t	ret;
 
 	len = ft_strlen(delim);
-	ret = ft_strncmp(line, delim, len) == 0 && line[len] == '\n';
+	ret = ft_strncmp(line, delim, len) == 0 && line[len] == '\0';
 	return (ret);
 }
 
@@ -50,7 +50,8 @@ static int	write_line(int fd, char *line, int quoted, t_ctx *ctx)
 	if (!expanded)
 		return (FAIL);
 	ret = write(fd, expanded, ft_strlen(expanded));
-	free(expanded);
+	if (expanded != line)
+		free(expanded);
 	if (ret < 0)
 		return (FAIL);
 	return (SUCCESS);
