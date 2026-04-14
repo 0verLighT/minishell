@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:48:39 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 04:22:11 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 17:44:00 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ static char	*try_path(char *dir, char *cmd)
 {
 	char	*tmp;
 	char	*full;
-	char	*dir_copy;
 
-	dir_copy = ft_strdup(dir);
-	tmp = ft_strjoin(dir_copy, "/");
+	tmp = ft_strjoin(dir, "/");
 	if (!tmp)
 		return (NULL);
 	full = ft_strjoin(tmp, cmd);
+	free(tmp);
 	if (!full)
 		return (NULL);
 	if (access(full, X_OK) == 0)

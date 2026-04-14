@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/13 00:57:25 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 17:35:32 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,35 @@
  * @brief generate shell prompt
  * @details fish 🐟
  * @param env struct env
+ * @param path jsut string
  * @return the format prompt for readline
  */
-static char	*prompt_fish(t_ctx *ctx)
+static char	*prompt_fish(t_ctx *ctx, char *path)
 {
 	char	*tmp;
 
-	ctx->prompt = NULL;
 	if (ft_getenv(ctx->env, "USER"))
 	{
-		ctx->prompt = ft_strjoin(NULL, ft_getenv(ctx->env, "USER"));
-		ctx->prompt = ft_strjoin(ctx->prompt, ":");
+		tmp = ctx->prompt;
+		ctx->prompt = ft_strjoin(tmp, ft_getenv(ctx->env, "USER"));
+		free(tmp);
+		tmp = ctx->prompt;
+		ctx->prompt = ft_strjoin(tmp, ":");
+		free(tmp);
 	}
 	if (ft_strcmp(ft_getenv(ctx->env, "HOME"), ft_getenv(ctx->env, "PWD")) == 0)
-		tmp = "~";
-	else if (ft_getenv(ctx->env, "PWD"))
-		tmp = ft_getenv(ctx->env, "PWD");
+		path = "~";
 	else
-		tmp = NULL;
-	ctx->prompt = ft_strjoin(ctx->prompt, tmp);
-	ctx->prompt = ft_strjoin(ctx->prompt, "$ ");
+		path = ft_getenv(ctx->env, "PWD");
+	if (path)
+	{
+		tmp = ctx->prompt;
+		ctx->prompt = ft_strjoin(tmp, path);
+		free(tmp);
+	}
+	tmp = ctx->prompt;
+	ctx->prompt = ft_strjoin(tmp, "$ ");
+	free(tmp);
 	return (ctx->prompt);
 }
 
@@ -72,7 +81,8 @@ static void	content_loop(t_ctx *ctx)
 
 	while (1)
 	{
-		prompt = prompt_fish(ctx);
+		ctx->prompt = ft_strdup("");
+		prompt = prompt_fish(ctx, "");
 		line = readline(prompt);
 		check_sig(ctx);
 		if (!line)
