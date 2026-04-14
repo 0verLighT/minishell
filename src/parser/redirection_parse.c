@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:06:40 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/03 01:04:18 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 19:38:45 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ static int	append_redir(t_parser *parser, t_ast_node *cmd_node,
 									int redir_type, t_token *file_token)
 {
 	t_redirect	*new_redir;
+	char		*file_without_quote;
 
-	new_redir = create_redirect(redir_type, file_token->content.ptr);
+	file_without_quote = ft_strip_quotes(file_token->content.ptr);
+	new_redir = create_redirect(redir_type, file_without_quote);
+	free(file_without_quote);
 	if (!new_redir)
 		return (-1);
+	if (redir_type == TOKEN_DLESS)
+		new_redir->quoted = file_token->content.quote;
 	add_redirection_to_cmd(cmd_node, new_redir);
 	advance(parser);
 	return (0);
