@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 03:23:31 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 03:52:18 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 04:51:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ast_node	*finalize_command_node(t_cmd_ctx *ctx, t_parser *parser)
 {
 	const char	*line_error = "minishel: syntax error near unexpected token";
 
-	if (ctx->argc == 0)
+	if (ctx->argc == 0 && !ctx->cmd_node)
 	{
 		free(ctx->input);
 		if (parser->tokens->type == TOKEN_PIPE)
@@ -83,7 +83,10 @@ t_ast_node	*parse_simple_command(t_parser *parser)
 	ctx->capacity = 10;
 	ctx->input = ft_calloc(sizeof(char *), ctx->capacity);
 	if (!ctx->input)
+	{
+		free(ctx);
 		return (NULL);
+	}
 	if (process_command_tokens(parser, ctx) == -1)
 	{
 		free_cmd_ctx(ctx);
