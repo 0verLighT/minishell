@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 02:47:29 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 03:33:06 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
  */
 static char	*extract_varname(char *str, int *i)
 {
-	int	start;
+	int		start;
+	char	*string;
 
 	start = *i;
 	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '_'))
 		++(*i);
-	return (ft_substr(str, start, *i - start));
+	string = ft_substr(str, start, *i - start);
+	return (string);
 }
 
 /**
@@ -86,6 +88,7 @@ char	*ft_expand(char *str, t_ctx *ctx)
 	int		i;
 	char	*tmp;
 	char	q;
+	char	*old_result;
 
 	result = ft_strdup("");
 	if (!result)
@@ -100,7 +103,8 @@ char	*ft_expand(char *str, t_ctx *ctx)
 			free(tmp);
 			return (NULL);
 		}
-		result = ft_strjoin(result, tmp);
+		old_result = result;
+		result = ft_strjoin(old_result, tmp);
 		free(tmp);
 	}
 	return (result);

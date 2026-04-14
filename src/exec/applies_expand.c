@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 02:45:47 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/14 02:47:02 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 03:32:22 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_ast_node	*applies_expand(t_ast_node *ast, t_ctx *ctx)
 				expand = ft_expand(ast->data.cmd.input[i], ctx);
 				free(ast->data.cmd.input[i]);
 				ast->data.cmd.input[i] = ft_strip_quotes(expand);
+				free(expand);
 				++i;
 			}
 		}
