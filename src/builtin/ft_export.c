@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 16:47:06 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/05 01:08:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 18:52:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_export(char **argv, t_ctx *ctx)
 	int	final_result_code;
 	int	tmp;
 
+	final_result_code = 0;
 	if (!argv[1])
 	{
 		print_all_export(ctx->env);
