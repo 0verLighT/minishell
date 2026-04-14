@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:48:39 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 00:57:52 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 04:22:11 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	exec_external(char **argv, t_ctx *ctx)
 {
 	char	*path;
 	char	**envp;
-	int		ret;
 
 	path = resolve_path(argv[0], ctx);
 	if (!path)
@@ -141,10 +140,9 @@ int	exec_external(char **argv, t_ctx *ctx)
 		free(path);
 		return (FAIL);
 	}
-	ret = execve(path, argv, envp);
+	execve(path, argv, envp);
 	free(path);
 	free(envp);
-	if (ret < 0)
-		builtin_error(argv[0], NULL, strerror(errno));
+	builtin_error(argv[0], NULL, strerror(errno));
 	return (126);
 }

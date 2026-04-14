@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 03:33:06 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 04:31:50 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ char	*ft_expand(char *str, t_ctx *ctx)
 	int		i;
 	char	*tmp;
 	char	q;
-	char	*old_result;
 
 	result = ft_strdup("");
 	if (!result)
@@ -100,11 +99,10 @@ char	*ft_expand(char *str, t_ctx *ctx)
 		tmp = expand_step(str, &i, ctx, &q);
 		if (!tmp)
 		{
-			free(tmp);
+			free(result);
 			return (NULL);
 		}
-		old_result = result;
-		result = ft_strjoin(old_result, tmp);
+		result = ft_strjoin(result, tmp);
 		free(tmp);
 	}
 	return (result);
