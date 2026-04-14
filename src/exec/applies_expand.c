@@ -6,13 +6,13 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 02:45:47 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/14 03:32:22 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 18:27:12 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static void	applies_expand_redirect(t_redirect *redirect, t_ctx *ctx)
+void	applies_expand_redirect(t_redirect *redirect, t_ctx *ctx)
 {
 	char	*expand;
 
@@ -27,42 +27,19 @@ static void	applies_expand_redirect(t_redirect *redirect, t_ctx *ctx)
 
 t_ast_node	*applies_expand(t_ast_node *ast, t_ctx *ctx)
 {
-	char	*expand;
-	size_t	i;
+	char	**new_input;
 
-	i = 0;
 	if (ast->type == NODE_PIPE)
 	{
 		applies_expand(ast->data.pair.left, ctx);
 		applies_expand(ast->data.pair.right, ctx);
+		return (ast);
 	}
-	else if (ast->type == NODE_CMD)
-	{
-		if (ast->data.cmd.input)
-		{
-			while (ast->data.cmd.input[i])
-			{
-				expand = ft_expand(ast->data.cmd.input[i], ctx);
-				free(ast->data.cmd.input[i]);
-				ast->data.cmd.input[i] = ft_strip_quotes(expand);
-				free(expand);
-				++i;
-			}
-		}
-		applies_expand_redirect(ast->data.cmd.redirects, ctx);
-	}
+	if (ast->type != NODE_CMD || !ast->data.cmd.input)
+		return (ast);
+	new_input = build_new_input(ast->data.cmd.input, ctx);
+	free(ast->data.cmd.input);
+	ast->data.cmd.input = new_input;
+	applies_expand_redirect(ast->data.cmd.redirects, ctx);
 	return (ast);
-}
-
-char	*expand_code(char *str, int *i, t_ctx *ctx)
-{
-	char	*ret;
-
-	if (str[*i] == '?')
-	{
-		++(*i);
-		ret = ft_itoa(ctx->return_code);
-		return (ret);
-	}
-	return (NULL);
 }

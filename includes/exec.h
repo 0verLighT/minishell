@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/14 02:47:08 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 18:29:48 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,17 @@ char			*ft_strip_quotes(char *str);
  * @param ctx
  */
 char			*expand_code(char *str, int *i, t_ctx *ctx);
+/**
+ * @brief create an new input with the old input
+ * @param old_input
+ * @param ctx
+ */
+char			**build_new_input(char **old_input, t_ctx *ctx);
+/**
+ * @brief applies expand in redirection
+ * @param redirect
+ * @param ctx
+ */
+void			applies_expand_redirect(t_redirect *redirect, t_ctx *ctx);
 
 #endif

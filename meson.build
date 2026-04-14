@@ -24,6 +24,7 @@ sources = files(
   'src/builtin/helper/exit_utils.c',
   'src/builtin/helper/export_utils.c',
   'src/ctx/init.c',
+  'src/exec/exec_expand_helper.c',
   'src/exec/applies_expand.c',
   'src/exec/exec_builtin.c',
   'src/exec/exec_builtin_helper.c',

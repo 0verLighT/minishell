@@ -6,109 +6,54 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:01:49 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 17:40:28 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/14 18:28:45 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-/**
- * @brief Extract variable name starting after the $
- * @param str
- * @param i
- */
-static char	*extract_varname(char *str, int *i)
+static char	*expand_and_strip(char *token, t_ctx *ctx, int *had_quotes)
 {
-	int		start;
-	char	*string;
+	char	*expand;
+	char	*stripped;
 
-	start = *i;
-	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '_'))
-		++(*i);
-	string = ft_substr(str, start, *i - start);
-	return (string);
-}
-
-/**
- * @brief Handle a $ expansion at pos i in str
- * @param str
- * @param i
- * @param ctx
- */
-static char	*expand_var(char *str, int *i, t_ctx *ctx)
-{
-	char	*ret;
-	char	*varname;
-	char	*value;
-
-	++(*i);
-	ret = expand_code(str, i, ctx);
-	if (ret)
-		return (ret);
-	if (!str[*i] || (!ft_isalpha(str[*i]) && str[*i] != '_'))
-	{
-		ret = ft_strdup("$");
-		return (ret);
-	}
-	varname = extract_varname(str, i);
-	if (!varname)
+	*had_quotes = (ft_strchr(token, '\'') || ft_strchr(token, '"'));
+	expand = ft_expand(token, ctx);
+	free(token);
+	if (!expand)
 		return (NULL);
-	value = ft_getenv(ctx->env, varname);
-	free(varname);
-	if (!value)
-	{
-		ret = ft_strdup("");
-		return (ret);
-	}
-	ret = ft_strdup(value);
-	return (ret);
+	stripped = ft_strip_quotes(expand);
+	free(expand);
+	return (stripped);
 }
 
-static char	*expand_step(char *str, int *i, t_ctx *ctx, char *q)
+char	**build_new_input(char **old_input, t_ctx *ctx)
 {
-	char	buf[2];
-	char	*buffer;
+	char	**new_input;
+	char	*stripped;
+	int		had_quotes;
+	size_t	i;
+	size_t	j;
 
-	if ((str[*i] == '\'' || str[*i] == '"') && !*q)
-		*q = str[*i];
-	else if (*q && str[*i] == *q)
-		*q = 0;
-	if (str[*i] == '$' && *q != '\'')
-		return (expand_var(str, i, ctx));
-	buf[0] = str[*i];
-	buf[1] = '\0';
-	++(*i);
-	buffer = ft_strdup(buf);
-	return (buffer);
-}
-
-char	*ft_expand(char *str, t_ctx *ctx)
-{
-	char	*result;
-	int		i;
-	char	*tmp;
-	char	q;
-	char	*old_result;
-
-	result = ft_strdup("");
-	if (!result)
+	i = 0;
+	j = 0;
+	while (old_input[i])
+		++i;
+	new_input = ft_calloc(i + 1, sizeof(char *));
+	if (!new_input)
 		return (NULL);
 	i = 0;
-	q = 0;
-	while (str[i] && result)
+	while (old_input[i])
 	{
-		tmp = expand_step(str, &i, ctx, &q);
-		if (!tmp)
-		{
-			free(result);
-			return (NULL);
-		}
-		old_result = result;
-		result = ft_strjoin(old_result, tmp);
-		free(old_result);
-		free(tmp);
+		stripped = expand_and_strip(old_input[i], ctx, &had_quotes);
+		if (stripped && (stripped[0] != '\0' || had_quotes))
+			new_input[j++] = stripped;
+		else
+			free(stripped);
+		++i;
 	}
-	return (result);
+	new_input[j] = NULL;
+	return (new_input);
 }
 
 char	*ft_strip_quotes(char *str)
