@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 19:45:30 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:45:31 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 07:01:27 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,20 @@ static int	update_env(t_ctx *ctx, char *old_cwd)
 /**
  * @brief wrap getcwd with error management
  * @param old_cwd
+ * @param ctx
  */
-static int	get_cwd(char **old_cwd)
+static int	get_cwd(char **old_cwd, t_ctx *ctx)
 {
+	char	*tmp;
+
 	*old_cwd = getcwd(NULL, 0);
 	if (!*old_cwd)
 	{
-		perror("cd");
-		return (1);
+		tmp = ft_getenv(ctx->env, "PWD");
+		if (tmp)
+			*old_cwd = ft_strdup(tmp);
+		else
+			*old_cwd = ft_strdup("");
 	}
 	return (0);
 }
@@ -77,7 +83,7 @@ int	ft_cd(char **argv, t_ctx *ctx)
 	char	*target;
 	int		update_flag;
 
-	if (get_cwd(&old_cwd))
+	if (get_cwd(&old_cwd, ctx))
 		return (1);
 	target = resolve_target(argv, ctx);
 	if (!target)
