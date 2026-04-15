@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 16:47:06 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 18:52:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 06:19:30 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static int	export_one(char *arg, t_ctx *ctx)
 
 	val_assign = ft_strchr(arg, '=');
 	if (!val_assign)
-		return (SUCCESS);
+	{
+		setenv_success_check = ft_setenv(&ctx->env, arg, "");
+		return (setenv_success_check);
+	}
 	key = ft_substr(arg, 0, val_assign - arg);
 	if (!key)
 		return (FAIL);
