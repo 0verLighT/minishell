@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/15 15:58:29 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 16:31:42 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	init_sig();
 	ctx = ft_calloc(1, sizeof(t_ctx));
+	if (!ctx)
+		return (1);
 	init_ctx(ctx, envp);
 	content_loop(ctx);
 	last_return_code = ctx->return_code;

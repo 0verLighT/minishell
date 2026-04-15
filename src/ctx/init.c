@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 06:09:07 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/21 15:38:48 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 16:31:54 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static t_env	*new_node_env(char *env)
 	return (new_node);
 }
 
-// TODO : add deflaut env value if you launch with env -i
 static t_env	*init_env(char **envp)
 {
 	t_env	*env;
