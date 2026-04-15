@@ -1,6 +1,8 @@
-# ignore all Leak form libreadline
 {
-	readline
-	Mencheck:Leak
-	obj:*libreadline.so*
+   name
+   Memcheck:Leak
+   fun:*
+   ...
+   obj:*libreadline.so*
+   ...
 }
