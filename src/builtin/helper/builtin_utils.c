@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:21:22 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 17:36:18 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 17:27:54 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ char	*build_keyvalue(char *key, char *value)
 	char	*tmp;
 	char	*result;
 
+	if (!value[0])
+	{
+		result = ft_strdup(key);
+		return (result);
+	}
 	tmp = ft_strjoin(key, "=");
 	if (!tmp)
 		return (NULL);
@@ -45,7 +50,8 @@ static int	update_existing(t_env *env, char *key, size_t key_l, char *new_var)
 {
 	while (env)
 	{
-		if (ft_strncmp(env->var, key, key_l) == 0 && env->var[key_l] == '=')
+		if (ft_strncmp(env->var, key, key_l) == 0
+			&& (env->var[key_l] == '=' || env->var[key_l] == '\0'))
 		{
 			free(env->var);
 			env->var = new_var;
