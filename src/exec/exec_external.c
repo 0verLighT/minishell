@@ -6,11 +6,12 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 01:48:39 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 17:44:00 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 15:52:41 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+#include <sys/stat.h>
 
 /**
  * @brief Built a full path
@@ -78,6 +79,8 @@ static char	*resolve_path(char *cmd, t_ctx *ctx)
 {
 	char	*ret;
 
+	if (!cmd || cmd[0] == '\0')
+		return (NULL);
 	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)

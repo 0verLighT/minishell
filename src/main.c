@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/14 17:35:32 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 15:46:44 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	procces(char *line, t_ctx *ctx)
 		ast = applies_expand(ast, ctx);
 		exec_node(ast, ctx);
 	}
+	else if (!ast && line[0] == ' ')
+		ctx->return_code = 0;
 	else
 		ctx->return_code = 2;
 	free_ast_node(ast);
