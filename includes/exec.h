@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:04:01 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/14 18:29:48 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 05:37:54 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,11 @@ char			**build_new_input(char **old_input, t_ctx *ctx);
  * @param ctx
  */
 void			applies_expand_redirect(t_redirect *redirect, t_ctx *ctx);
+/**
+ * @brief helper for fill heredoc
+ * @param fd_copy for close it
+ * @param line for free it
+ */
+void			post_fill_heredoc(int fd_copy, char *line);
 
 #endif

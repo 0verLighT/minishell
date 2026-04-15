@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:14:44 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/28 17:30:07 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 05:38:36 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ static void	handle_sig(int sig, siginfo_t *info, void *c)
 		g_sig_code = 130;
 		rl_replace_line("", 0);
 		rl_redisplay();
+	}
+}
+
+void	handle_sig_heredoc(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_sig_code = 130;
+		close(0);
 	}
 }
 

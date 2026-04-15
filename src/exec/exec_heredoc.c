@@ -6,11 +6,13 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:23:27 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 04:04:05 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 05:38:19 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+#include "signals.h"
+#include <stdio.h>
 
 /**
  * @brief Check if a line match the delim
@@ -66,30 +68,33 @@ static int	write_line(int fd, char *line, int quoted, t_ctx *ctx)
  */
 static int	fill_heredoc(int fd, char *delim, int quoted, t_ctx *ctx)
 {
-	char	*line;
+	char			*line;
+	const int		fd_copy = dup(0);
 
+	signal(SIGINT, handle_sig_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		line = readline("> ");
-		if (!line)
+		if (!line || g_sig_code == 130)
 			break ;
 		if (is_delimiter(line, delim))
-		{
-			free(line);
 			break ;
-		}
 		if (write_line(fd, line, quoted, ctx))
 		{
 			free(line);
+			close(fd);
+			close(fd_copy);
 			return (FAIL);
 		}
 		(void) write(fd, "\n", 1);
 		free(line);
 	}
+	post_fill_heredoc(fd_copy, line);
 	return (SUCCESS);
 }
 
-int	exec_heredoc(t_redirect *redir, t_ctx *ctx)
+int	exec_heredoc_pipe(t_redirect *redir, t_ctx *ctx)
 {
 	int	fd[2];
 	int	ret;
@@ -97,21 +102,47 @@ int	exec_heredoc(t_redirect *redir, t_ctx *ctx)
 	if (pipe(fd) < 0)
 	{
 		perror("pipe");
-		return (FAIL);
+		return (-1);
 	}
 	ret = fill_heredoc(fd[1], redir->file, redir->quoted, ctx);
 	close(fd[1]);
+	if (g_sig_code == 130)
+	{
+		ctx->return_code = 130;
+		close(fd[0]);
+		return (FAIL);
+	}
 	if (ret)
 	{
 		close(fd[0]);
+		return (-1);
+	}
+	return (fd[0]);
+}
+
+int	exec_heredoc(t_redirect *redir, t_ctx *ctx)
+{
+	int	fd;
+	int	fd_copy;
+
+	fd_copy = dup(0);
+	fd = exec_heredoc_pipe(redir, ctx);
+	if (fd < 0 || g_sig_code == 130)
+	{
+		dup2(fd_copy, 0);
+		close(fd_copy);
+		if (fd < 0)
+			close(fd);
 		return (FAIL);
 	}
-	if (dup2(fd[0], STDIN_FILENO) < 0)
+	if (dup2(fd, STDIN_FILENO) < 0)
 	{
-		close(fd[0]);
+		close(fd);
+		dup2(fd_copy, 0);
+		close(fd_copy);
 		perror("heredoc");
 		return (FAIL);
 	}
-	close(fd[0]);
+	close(fd);
 	return (SUCCESS);
 }

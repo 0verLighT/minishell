@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:59:23 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:35:12 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/15 04:05:43 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ extern volatile sig_atomic_t	g_sig_code;
  * @param ctx
  */
 void							check_sig(t_ctx *ctx);
+/**
+ * 
+ */
+void							handle_sig_heredoc(int sig);
 /**
  * @brief init signal of minishell
  */
