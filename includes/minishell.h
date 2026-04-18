@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:33:26 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:34:41 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/18 04:50:38 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_ctx
 	char	*prompt;
 	int		return_code;
 	t_env	*env;
+	t_token	*tokens;
+	size_t	nb_token;
 }	t_ctx;
 
 /**

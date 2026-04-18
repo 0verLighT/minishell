@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 20:01:53 by jdessoli          #+#    #+#             */
-/*   Updated: 2026/04/14 04:24:37 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/18 05:00:55 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@ static int	run_in_child(t_ast_node *node, t_ctx *ctx)
 	{
 		if (apply_redirections(node->data.cmd.redirects, NULL, ctx))
 		{
-			ctx->return_code = 1;
-			exit(FAIL);
+			free_in_run_child(node, ctx);
+			exit(1);
 		}
 		if (is_builtin(node->data.cmd.input[0]))
-			exit(exec_builtin(node->data.cmd.input, ctx));
-		exit(exec_external(node->data.cmd.input, ctx));
+			ret = exec_builtin(node->data.cmd.input, ctx);
+		else
+			ret = exec_external(node->data.cmd.input, ctx);
+		free_in_run_child(node, ctx);
+		exit(ret);
 	}
 	ret = exec_wait(pid, ctx);
 	return (ret);

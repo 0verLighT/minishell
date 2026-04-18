@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:59:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/09 19:35:17 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/18 05:02:20 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 # include "minishell.h"
 
-typedef struct s_ctx	t_ctx;
-typedef struct s_env	t_env;
+typedef struct s_ctx		t_ctx;
+typedef struct s_env		t_env;
+typedef struct s_ast_node	t_ast_node;
 
 /**
  * @brief get content of environement variable
@@ -46,4 +47,11 @@ int		isoperator(char c);
  * @return true or false
  */
 int		isdoubleop(char *str);
+/**
+ * @brief just another free function juste still reachable
+ * value
+ * @param ast
+ * @param ctx
+ */
+void	free_in_run_child(t_ast_node *node, t_ctx *ctx);
 #endif

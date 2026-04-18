@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 02:32:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/04/15 16:31:42 by amartel          ###   ########.fr       */
+/*   Updated: 2026/04/18 04:58:47 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,14 @@ static char	*prompt_fish(t_ctx *ctx, char *path)
 
 static void	procces(char *line, t_ctx *ctx)
 {
-	t_token		*tokens;
 	t_parser	parser;
 	t_ast_node	*ast;
-	size_t		token_count;
 
-	token_count = 0;
-	tokens = tokenizing(line, &token_count);
-	if (!tokens)
+	ctx->nb_token = 0;
+	ctx->tokens = tokenizing(line, &ctx->nb_token);
+	if (!ctx->tokens)
 		return ;
-	init_parser(&parser, tokens, (int)token_count);
+	init_parser(&parser, ctx->tokens, (int)ctx->nb_token);
 	ast = parse_pipeline(&parser);
 	if (ast)
 	{
@@ -71,7 +69,8 @@ static void	procces(char *line, t_ctx *ctx)
 	else
 		ctx->return_code = 2;
 	free_ast_node(ast);
-	free_tokens(tokens, token_count);
+	free_tokens(ctx->tokens, ctx->nb_token);
+	ctx->tokens = NULL;
 }
 
 static void	content_loop(t_ctx *ctx)
